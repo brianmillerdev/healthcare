@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">A-OK</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Change the following strings as required -->
+    <string name="back4app_app_id">p6Nr79cQowSNpuHf4QSHzQQVARSHwNwFkaYWRnd5</string>
+    <string name="back4app_client_key">yf2wVVYmI6UWHN2oNKK3Xc8A13pHPlI0aimCzQpi</string>
+    <string name="terms">By using this app, you agree to our terms and conditions. You can read the full terms and conditions in the profile setting page.</string>
+    <string name="sign_in">Sign In</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="create_account">Create Account</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="new_account">NEW ACCOUNT</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="reset">Reset</string>
+    <string name="welcome_to_a_ok">Welcome to A-OK!</string>
+    <string name="find_a_surgery">Find a Surgery</string>
+    <string name="help">HELP</string>
+    <string name="profile">PROFILE</string>
+    <string name="logout">Logout</string>
+    <string name="name">Name</string>
+    <string name="privacy_settings">Privacy Settings</string>
+    <string name="terms_of_service">Terms of Service</string>
+
 </resources>

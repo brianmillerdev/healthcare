@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_home"
+        android:checked="true"
+        android:enabled="true"
+        android:title="home"
+        android:icon="@drawable/icon_home" />
+
+    <item android:id="@+id/action_alarm"
+        android:enabled="true"
+        android:title="alarm"
+        android:icon="@drawable/icon_alarm" />
+
+    <item android:id="@+id/action_meds"
+        android:enabled="true"
+        android:title="meds"
+        android:icon="@drawable/icon_meds" />
+
+</menu>

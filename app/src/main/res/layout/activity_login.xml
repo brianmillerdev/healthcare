@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/background_login"
+                    android:scaleType="centerCrop"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/sign_in"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:layout_marginTop="340dp"
+                        app:font_style="bold"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontEditText
+                        android:id="@+id/edt_email"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        app:font_style="bold"
+                        android:textSize="16sp"
+                        android:hint="@string/email"
+                        android:maxLines="1"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginTop="16dp"
+                        android:drawableStart="@drawable/icon_email"
+                        android:drawablePadding="8dp"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontEditText
+                        android:id="@+id/edt_password"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        app:font_style="bold"
+                        android:textSize="16sp"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginTop="16dp"
+                        android:drawableStart="@drawable/icon_lock"
+                        android:drawablePadding="8dp"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/btn_signin"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="60dp"
+                        app:font_style="bold"
+                        android:text="@string/sign_in"
+                        android:textAllCaps="true"
+                        android:textSize="16sp"
+                        android:background="@drawable/btn_signup"
+                        android:textColor="@color/colorWhite"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginStart="48dp"
+                        android:layout_marginEnd="48dp"
+                        android:layout_marginTop="16dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp">
+                        <com.landonferrier.healthcareapp.views.CustomFontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_style="bold"
+                            android:text="@string/don_t_have_an_account"
+                            android:textColor="@color/colorgray"
+                            android:textSize="16sp"
+                            />
+
+                        <com.landonferrier.healthcareapp.views.CustomFontTextView
+                            android:id="@+id/btn_signup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_style="bold"
+                            android:text="@string/sign_up"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:layout_marginStart="8dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp">
+                        <com.landonferrier.healthcareapp.views.CustomFontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_style="bold"
+                            android:text="@string/forgot_password"
+                            android:textColor="@color/colorgray"
+                            android:textSize="16sp"
+                            />
+
+                        <com.landonferrier.healthcareapp.views.CustomFontTextView
+                            android:id="@+id/btn_reset_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:font_style="bold"
+                            android:text="@string/reset"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:layout_marginStart="8dp"
+                            />
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
