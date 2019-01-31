@@ -5,20 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-
 
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.activity.HelpActivity;
-import com.landonferrier.healthcareapp.activity.ProfileActivity;
-import com.landonferrier.healthcareapp.activity.SurgeryActivity;
 import com.landonferrier.healthcareapp.utils.EventPush;
-import com.landonferrier.healthcareapp.views.CustomFontTextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -28,18 +22,15 @@ import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DashboardFragment extends BaseFragment {
-    @BindView(R.id.btn_info)
-    ImageView btnInfo;
-    @BindView(R.id.btn_profile)
-    ImageView btnProfile;
-    @BindView(R.id.btn_find_surgery)
-    CustomFontTextView btnFindSurgery;
+public class JournalsFragment extends BaseFragment {
+    @BindView(R.id.btn_add)
+    ImageView btnAdd;
+    @BindView(R.id.rc_journals)
+    RecyclerView rcReminders;
 
 //    SimpleAdapter mAdapter;
 
@@ -50,7 +41,7 @@ public class DashboardFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        view = inflater.inflate(R.layout.fragment_journals, container, false);
         ButterKnife.bind(this, view);
 
         initView();
@@ -66,9 +57,7 @@ public class DashboardFragment extends BaseFragment {
 
     @SuppressLint("DefaultLocale")
     public void initView() {
-        btnFindSurgery.setOnClickListener(this);
-        btnInfo.setOnClickListener(this);
-        btnProfile.setOnClickListener(this);
+        btnAdd.setOnClickListener(this);
     }
 
 
@@ -76,16 +65,8 @@ public class DashboardFragment extends BaseFragment {
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
-            case R.id.btn_info:
+            case R.id.btn_add:
                 Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), HelpActivity.class));
-                break;
-            case R.id.btn_profile:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), ProfileActivity.class));
-
-                break;
-            case R.id.btn_find_surgery:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), SurgeryActivity.class));
-
                 break;
 
         }

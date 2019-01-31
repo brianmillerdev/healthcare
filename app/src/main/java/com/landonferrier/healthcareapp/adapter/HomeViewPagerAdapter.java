@@ -2,6 +2,8 @@ package com.landonferrier.healthcareapp.adapter;
 
 
 import com.landonferrier.healthcareapp.fragment.DashboardFragment;
+import com.landonferrier.healthcareapp.fragment.MedicationsFragment;
+import com.landonferrier.healthcareapp.fragment.RemindersFragment;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -28,10 +30,10 @@ public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
                 fragment = new DashboardFragment();
                 break;
             case 1:
-                fragment = new DashboardFragment();
+                fragment = new RemindersFragment();
                 break;
             case 2:
-                fragment = new DashboardFragment();
+                fragment = new MedicationsFragment();
                 break;
         }
 

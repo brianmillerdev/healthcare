@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    tools:context=".activity.HelpActivity">
+    tools:context=".activity.MainActivity">
 
-    <ImageView
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/help_image"
-        android:scaleType="centerInside" />
-
-
+        android:layout_below="@+id/top_bar"/>
     <RelativeLayout
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="80dp">
 
@@ -41,7 +39,9 @@
             android:textColor="@color/colorWhite"
             app:font_style="bold"
             android:textSize="18sp"
-            android:text="@string/help"/>
+            android:textAllCaps="true"
+            android:text="@string/terms_of_service"/>
+
 
     </RelativeLayout>
 

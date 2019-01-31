@@ -79,7 +79,7 @@
                         android:id="@+id/btn_signin"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="60dp"
+                        android:layout_height="64dp"
                         app:font_style="bold"
                         android:text="@string/sign_in"
                         android:textAllCaps="true"

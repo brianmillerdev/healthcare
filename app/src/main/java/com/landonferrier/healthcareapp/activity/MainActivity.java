@@ -7,16 +7,24 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.landonferrier.healthcareapp.R;
+import com.landonferrier.healthcareapp.adapter.DashboardPagerAdapter;
 import com.landonferrier.healthcareapp.adapter.HomeViewPagerAdapter;
+import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.utils.NonSwipeableViewPager;
+import com.parse.ParseUser;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public NonSwipeableViewPager viewPager;
 
     public HomeViewPagerAdapter homeViewPagerAdapter;
+    public DashboardPagerAdapter dashboardPagerAdapter;
     MenuItem prevMenuItem;
 
     @Override
@@ -35,13 +44,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setUpViewPager();
+        EventBus.getDefault().register(this);
 
     }
 
     private void setUpViewPager() {
-        homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(homeViewPagerAdapter);
-        viewPager.setOffscreenPageLimit(3);
+
+        if (Objects.requireNonNull(ParseUser.getCurrentUser().getJSONArray("surgeryIds")).length() > 0) {
+            bnve.getMenu().clear();
+            bnve.inflateMenu(R.menu.navigation);
+            dashboardPagerAdapter = new DashboardPagerAdapter(getSupportFragmentManager());
+            viewPager.setAdapter(dashboardPagerAdapter);
+            viewPager.setOffscreenPageLimit(5);
+        }else{
+            bnve.getMenu().clear();
+            bnve.inflateMenu(R.menu.navigation_init);
+            homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager());
+            viewPager.setAdapter(homeViewPagerAdapter);
+            viewPager.setOffscreenPageLimit(3);
+        }
+
         viewPager.setCurrentItem(0);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -73,19 +95,22 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_home:
                         viewPager.setCurrentItem(0, false);
-//                        EventBus.getDefault().post(new EventPush("refresh", "give"));
                         break;
                     case R.id.action_info:
-                        viewPager.setCurrentItem(1, false);
+                        viewPager.setCurrentItem(4, false);
                         break;
-                    case R.id.action_calendar:
+                    case R.id.action_journal:
                         viewPager.setCurrentItem(2, false);
                         break;
                     case R.id.action_alarm:
                         viewPager.setCurrentItem(1, false);
                         break;
                     case R.id.action_meds:
-                        viewPager.setCurrentItem(2, false);
+                        if (Objects.requireNonNull(ParseUser.getCurrentUser().getJSONArray("surgeryIds")).length() > 0) {
+                            viewPager.setCurrentItem(3, false);
+                        }else{
+                            viewPager.setCurrentItem(2, false);
+                        }
                         break;
                     default:
                         viewPager.setCurrentItem(0, false);
@@ -96,6 +121,33 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(EventPush event) {
+        if (event.getMessage().equals("SurgeryInfo")) {
+            viewPager.setCurrentItem(4, false);
+            if (prevMenuItem != null)
+                prevMenuItem.setChecked(false);
+            else
+                bnve.getMenu().getItem(4).setChecked(false);
+
+            bnve.getMenu().getItem(4).setChecked(true);
+            prevMenuItem = bnve.getMenu().getItem(4);
+        }
+    }
 
 //    @Override
 //    public void onClick(View v) {

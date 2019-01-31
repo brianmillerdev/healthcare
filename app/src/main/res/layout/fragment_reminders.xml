@@ -4,33 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    tools:context=".activity.HelpActivity">
+    tools:context=".activity.MainActivity">
 
-    <ImageView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_reminders"
+        android:layout_below="@id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/help_image"
-        android:scaleType="centerInside" />
+        android:layout_height="match_parent"/>
 
 
     <RelativeLayout
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        android:background="@drawable/bg_action_bar">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_action_bar"/>
-        <ImageView
-            android:id="@+id/btn_back"
+    <ImageView
+            android:id="@+id/btn_add"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:scaleType="center"
-            android:src="@drawable/arrowhead_thin_outline_to_the_left"
+            android:src="@drawable/icon_plus"
             android:tint="@color/colorWhite"
             android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
             android:clickable="true"
             android:focusable="true"/>
 
@@ -41,7 +39,8 @@
             android:textColor="@color/colorWhite"
             app:font_style="bold"
             android:textSize="18sp"
-            android:text="@string/help"/>
+            android:textAllCaps="true"
+            android:text="@string/reminders"/>
 
     </RelativeLayout>
 

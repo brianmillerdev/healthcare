@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/top_bar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="bold"
+                android:text="@string/name"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"/>
+            <com.landonferrier.healthcareapp.views.CustomFontEditText
+                android:id="@+id/edt_reminder_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:font_style="bold"
+                android:textColor="@color/colorText"
+                android:textSize="16sp"
+                android:background="@drawable/bg_edittext"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textCursorDrawable="@drawable/cursor"
+                android:layout_marginTop="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+        </RelativeLayout>
+
+        <com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker
+            android:id="@+id/datepicker"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:picker_curved="true"
+            app:picker_cyclic="true"
+            app:picker_visibleItemCount="7"
+            />
+
+
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:font_style="bold"
+            android:text="@string/save"
+            android:textSize="16sp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/btn_signup"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginTop="24dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_action_bar"/>
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:scaleType="center"
+            android:src="@drawable/arrowhead_thin_outline_to_the_left"
+            android:tint="@color/colorWhite"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorWhite"
+            app:font_style="bold"
+            android:textSize="18sp"
+            android:textAllCaps="true"
+            android:text="@string/add_medication"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

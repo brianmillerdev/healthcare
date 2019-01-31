@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+    <ImageView
+        android:id="@+id/imv_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_selectsurgery1_1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:adjustViewBounds="true"/>
+
+    <RelativeLayout
+        android:id="@+id/view_current_surgery"
+        android:layout_below="@id/imv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:focusable="true">
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current_surgery"
+            app:font_style="bold"
+            android:textColor="@color/colorGreen"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="44dp"
+            android:layout_marginBottom="16dp">
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:id="@+id/tv_surgery_name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/current_surgery"
+                app:font_style="bold"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:layout_marginStart="16dp"/>
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:id="@+id/tv_surgery_date"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/current_surgery"
+                app:font_style="bold"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/view_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_current_surgery">
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tv_task_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/today_s_tasks"
+            app:font_style="bold"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:layout_toStartOf="@+id/btn_right_arrow"
+            android:layout_toEndOf="@+id/btn_left_arrow"/>
+
+        <ImageView
+            android:id="@+id/btn_left_arrow"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/arrowhead_thin_outline_to_the_left"
+            android:tint="@color/colorPrimary"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_margin="16dp"/>
+        <ImageView
+            android:id="@+id/btn_right_arrow"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/arrow_point_to_right"
+            android:tint="@color/colorPrimary"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_margin="16dp"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view_selector"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:id="@+id/btn_info"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:scaleType="center"
+            android:src="@drawable/icon_info"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:tint="@color/colorWhite"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:font_style="bold"
+            android:textColor="@color/colorWhite"
+            android:text="DASHBOARD"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_centerInParent="true"/>
+
+
+        <ImageView
+            android:id="@+id/btn_profile"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:scaleType="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/icon_user"
+            android:tint="@color/colorWhite" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

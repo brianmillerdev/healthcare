@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/view_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/top_bar"
+        android:layout_margin="16dp">
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tv_surgery_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            app:font_style="bold"
+            android:textSize="18sp"
+            android:text="@string/surgery_info"/>
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tv_surgery_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            app:font_style="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:text="@string/surgery_info"/>
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_info"
+        android:layout_below="@id/view_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/bg_action_bar">
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorWhite"
+            app:font_style="bold"
+            android:textSize="18sp"
+            android:textAllCaps="true"
+            android:text="@string/surgery_info"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

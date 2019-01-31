@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+
+    <ImageView
+        android:id="@+id/imv_medication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_defaultmeds"
+        android:layout_margin="16dp"
+        android:layout_centerVertical="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/imv_medication"
+        android:layout_marginEnd="36dp">
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tv_name_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:font_style="bold"
+            android:text="@string/name"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginStart="16dp"/>
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tv_frequency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:font_style="bold"
+            android:text="@string/name"
+            android:textSize="16sp"
+            android:textColor="@color/colorgray"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"/>
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_point_to_right"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"/>
+</RelativeLayout>

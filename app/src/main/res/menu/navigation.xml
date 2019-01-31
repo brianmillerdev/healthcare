@@ -6,24 +6,24 @@
         android:title="home"
         android:icon="@drawable/icon_home" />
 
-    <item android:id="@+id/action_info"
-        android:enabled="true"
-        android:icon="@drawable/icon_info"
-        android:title="info" />
-
-    <item android:id="@+id/action_calendar"
-        android:enabled="true"
-        android:title="calendar"
-        android:icon="@drawable/icon_calendar" />
-
     <item android:id="@+id/action_alarm"
         android:enabled="true"
         android:title="alarm"
         android:icon="@drawable/icon_alarm" />
+    <item android:id="@+id/action_journal"
+        android:enabled="true"
+        android:title="journal"
+        android:icon="@drawable/icon_journal" />
+
 
     <item android:id="@+id/action_meds"
         android:enabled="true"
         android:title="meds"
         android:icon="@drawable/icon_meds" />
+    <item android:id="@+id/action_info"
+        android:enabled="true"
+        android:icon="@drawable/icon_info"
+        android:title="info" />
+
 
 </menu>

@@ -27,5 +27,22 @@
     <string name="name">Name</string>
     <string name="privacy_settings">Privacy Settings</string>
     <string name="terms_of_service">Terms of Service</string>
+    <string name="reminders">Reminders</string>
+    <string name="medications">Medications</string>
+    <string name="amount_in_mg">Amount in mg</string>
+    <string name="frequency_of_dosage">Frequency of Dosage</string>
+    <string name="double_tap_on_bar_to_clear_times">Double tap on bar to clear times</string>
+    <string name="save">Save</string>
+    <string name="add_medication">Add Medication</string>
+    <string name="select_a_surgery_from_the_list_below_to_begin_tracking_your_surgery">Select a surgery from the list below to begin tracking your surgery</string>
+    <string name="surgeries">Surgeries</string>
+    <string name="select_surgery">Select Surgery</string>
+    <string name="choose_surgery_date">Choose Surgery Date</string>
+    <string name="if_you_haven_t_decided_on_a_date_yet_click_skip_you_can_come_back_to_this_later">If you haven\'t decided on a date yet, click skip. You can come back to this later.</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="current_surgery">Current Surgery</string>
+    <string name="today_s_tasks">Today\'s Tasks</string>
+    <string name="surgery_info">Surgery Info</string>
 
 </resources>
