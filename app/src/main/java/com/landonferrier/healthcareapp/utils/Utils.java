@@ -12,12 +12,15 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.landonferrier.healthcareapp.models.TaskModel;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Calendar;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Random;
 
 public class Utils {
@@ -133,12 +136,12 @@ public class Utils {
     {
         return dp * context.getResources().getDisplayMetrics().density;
     }
-//    public static class CustomComparator implements Comparator<MessageModel> {
-//        @Override
-//        public int compare(MessageModel o1, MessageModel o2) {
-//            return o1.getCreatedAt().compareTo(o2.getCreatedAt());
-//        }
-//    }
+    public static class CustomComparator implements Comparator<TaskModel> {
+        @Override
+        public int compare(TaskModel o1, TaskModel o2) {
+            return o1.getDate().compareTo(o2.getDate());
+        }
+    }
 
 
     public static String getRandom6DigitCode() {
@@ -173,17 +176,26 @@ public class Utils {
         Calendar now = Calendar.getInstance();
 
         final String timeFormatString = "h:mm aa";
-        final String dateTimeFormatString = "EEEE, MMMM d, h:mm aa";
+        final String dateTimeFormatString = "MMMM d, yyyy";
         final long HOURS = 60 * 60 * 60;
         if (now.get(Calendar.DATE) == smsTime.get(Calendar.DATE) ) {
-            return "Today " + DateFormat.format(timeFormatString, smsTime);
+            return "Today's Task";
         } else if (now.get(Calendar.DATE) - smsTime.get(Calendar.DATE) == 1  ){
-            return "Yesterday " + DateFormat.format(timeFormatString, smsTime);
+            return "Yesterday's Task";
         } else if (now.get(Calendar.YEAR) == smsTime.get(Calendar.YEAR)) {
             return DateFormat.format(dateTimeFormatString, smsTime).toString();
         } else {
             return DateFormat.format("MMMM d, yyyy", smsTime).toString();
         }
+    }
+
+    public static boolean isSameDay(Date date1, Date date2) {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(date1);
+        cal2.setTime(date2);
+        return cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
+                cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
     }
 
 }

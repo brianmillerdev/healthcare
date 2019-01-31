@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,12 @@ import android.widget.RelativeLayout;
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.activity.HelpActivity;
 import com.landonferrier.healthcareapp.activity.ProfileActivity;
+import com.landonferrier.healthcareapp.adapter.TaskAdapter;
+import com.landonferrier.healthcareapp.models.TaskModel;
 import com.landonferrier.healthcareapp.utils.EventPush;
+import com.landonferrier.healthcareapp.utils.Utils;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -27,14 +32,22 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -53,11 +66,17 @@ public class DashboardSurgeryFragment extends BaseFragment {
     ImageView btnLeft;
     @BindView(R.id.btn_right_arrow)
     ImageView btnRight;
+    @BindView(R.id.rc_tasks)
+    RecyclerView rcTasks;
 
     @BindView(R.id.view_current_surgery)
     RelativeLayout viewCurrentSurgery;
 
     Date showDate = new Date();
+    ArrayList<TaskModel> taskModels = new ArrayList<>();
+    TaskAdapter taskAdapter;
+
+    boolean isFetching = false;
     View view;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable
@@ -86,6 +105,13 @@ public class DashboardSurgeryFragment extends BaseFragment {
         viewCurrentSurgery.setOnClickListener(this);
         btnInfo.setOnClickListener(this);
         btnProfile.setOnClickListener(this);
+        rcTasks.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider));
+        rcTasks.addItemDecoration(dividerItemDecoration);
+
+        taskAdapter = new TaskAdapter(getContext(), taskModels);
+        rcTasks.setAdapter(taskAdapter);
 
         JSONArray ids = ParseUser.getCurrentUser().getJSONArray("surgeryIds");
         if (ids.length() > 0) {
@@ -107,7 +133,8 @@ public class DashboardSurgeryFragment extends BaseFragment {
                 e.printStackTrace();
             }
         }
-
+        tvTaskTitle.setText(Utils.getFormattedDate(getContext(), showDate.getTime()));
+        getMedications();
     }
 
 
@@ -135,25 +162,212 @@ public class DashboardSurgeryFragment extends BaseFragment {
     }
 
     public void fintPreviousDate() {
-        ParseQuery reminderQuery = PFQuery(className: "Reminder")
-        reminderQuery.whereKey("creatorId", equalTo: PFUser.current()?.objectId!)
-
-        if forward {
-
-            reminderQuery.whereKey("time", greaterThan: self.showDate)
-            reminderQuery.order(byAscending: "time")
-        } else {
-
-            reminderQuery.whereKey("time", lessThan: self.showDate)
-            reminderQuery.order(byDescending: "time")
+        if (isFetching) {
+            return;
         }
+        isFetching = true;
+        ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
+        reminderQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+        reminderQuery.whereLessThan("time", showDate).orderByDescending("time");
+        reminderQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    Log.d("score", "Retrieved " + objects.size() + " scores");
+                    if (objects.size() > 0) {
+                        Date newDate = objects.get(0).getDate("time");
+                        if (new Date().after(newDate) && showDate.after(new Date()) && !Utils.isSameDay(showDate, new Date())) {
+                            showDate = new Date();
+                        }else{
+                            showDate = newDate;
+                        }
+                        tvTaskTitle.setText(Utils.getFormattedDate(getContext(), showDate.getTime()));
+                        getMedications();
+                    }else{
+                        isFetching = false;
 
-
+                    }
+                } else {
+                    isFetching = false;
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
+        getMedications();
 
     }
 
     public void fintNextDate() {
+        if (isFetching) {
+            return;
+        }
+        isFetching = true;
+        ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
+        reminderQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+        reminderQuery.whereGreaterThan("time", showDate).orderByAscending("time");
+        reminderQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    Log.d("score", "Retrieved " + objects.size() + " scores");
+                    if (objects.size() > 0) {
+                        Date newDate = objects.get(0).getDate("time");
+                        if (new Date().after(showDate) && newDate.after(new Date()) && !Utils.isSameDay(showDate, new Date())) {
+                            showDate = new Date();
+                        }else{
+                            showDate = newDate;
+                        }
+                        tvTaskTitle.setText(Utils.getFormattedDate(getContext(), showDate.getTime()));
+                        getMedications();
+                    }else{
+                        isFetching = false;
 
+                    }
+                } else {
+                    isFetching = false;
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
+
+
+    }
+
+    public void getMedications() {
+        ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
+        reminderQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+        reminderQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    Log.d("score", "Retrieved " + objects.size() + " scores");
+                    if (objects.size() > 0) {
+                        taskModels.clear();
+                        for (ParseObject reminder : objects) {
+                            Date remindDate = reminder.getDate("time");
+                            boolean complted  = reminder.getBoolean("complete");
+                            String name = reminder.getString("name");
+                            if (Utils.isSameDay(remindDate, showDate)) {
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm a");
+                                String dateString = dateFormat.format(remindDate);
+                                if (name == null) {
+                                    continue;
+                                }
+                                String string = dateString.replace(" ", "");
+                                string = String.format("%s - %s", string, name);
+                                TaskModel taskModel = new TaskModel();
+                                taskModel.setCompleted(complted);
+                                taskModel.setDate(remindDate);
+                                taskModel.setId(reminder.getObjectId());
+                                taskModel.setReminder(true);
+                                taskModel.setName(string);
+                                taskModel.setIndex(0);
+                                taskModels.add(taskModel);
+                            }
+                        }
+                        if (Utils.isSameDay(showDate, new Date())){
+                            ParseQuery<ParseObject> medicationQuery = ParseQuery.getQuery("Medication");
+                            medicationQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+                            medicationQuery.findInBackground(new FindCallback<ParseObject>() {
+                                @Override
+                                public void done(List<ParseObject> objects, ParseException e) {
+                                    if (e == null) {
+                                        Log.d("score", "Retrieved " + objects.size() + " scores");
+                                        if (objects.size() > 0) {
+                                            for (ParseObject medication : objects) {
+                                                JSONArray medicationTimes = medication.getJSONArray("times");
+                                                String medicationName = medication.getString("name");
+                                                int index = 0;
+                                                for (int i = 0; i < medicationTimes.length(); i++) {
+                                                    index = index + 1;
+                                                    try {
+                                                        String time = medicationTimes.getString(i);
+                                                        SimpleDateFormat dateFormat = new SimpleDateFormat("h:mma");
+                                                        try {
+                                                            Date timeDate = dateFormat.parse(time);
+                                                            String string = String.format("%s - %s", time, medicationName);
+                                                            SimpleDateFormat datehourFormat = new SimpleDateFormat("h");
+                                                            String hourString = datehourFormat.format(timeDate);
+                                                            SimpleDateFormat dateminFormat = new SimpleDateFormat("mm");
+                                                            String minString = dateminFormat.format(timeDate);
+                                                            Calendar calendar = Calendar.getInstance();
+                                                            calendar.set(Calendar.HOUR, Integer.parseInt(hourString));
+                                                            calendar.set(Calendar.MINUTE, Integer.parseInt(minString));
+                                                            Date newDate = calendar.getTime();
+                                                            TaskModel taskModel = new TaskModel();
+                                                            taskModel.setCompleted(false);
+                                                            taskModel.setDate(newDate);
+                                                            taskModel.setId(medication.getObjectId());
+                                                            taskModel.setReminder(true);
+                                                            taskModel.setName(string);
+                                                            taskModel.setIndex(0);
+                                                            taskModels.add(taskModel);
+                                                        } catch (java.text.ParseException e1) {
+                                                            e1.printStackTrace();
+                                                            SimpleDateFormat dateFormat1 = new SimpleDateFormat("h:mm a");
+                                                            try {
+                                                                Date timeDate = dateFormat1.parse(time);
+                                                                String string = String.format("%s - %s", time, medicationName);
+                                                                SimpleDateFormat datehourFormat = new SimpleDateFormat("h");
+                                                                String hourString = datehourFormat.format(timeDate);
+                                                                SimpleDateFormat dateminFormat = new SimpleDateFormat("mm");
+                                                                String minString = dateminFormat.format(timeDate);
+                                                                Calendar calendar = Calendar.getInstance();
+                                                                calendar.set(Calendar.HOUR, Integer.parseInt(hourString));
+                                                                calendar.set(Calendar.MINUTE, Integer.parseInt(minString));
+                                                                Date newDate = calendar.getTime();
+                                                                TaskModel taskModel = new TaskModel();
+                                                                taskModel.setCompleted(false);
+                                                                taskModel.setDate(newDate);
+                                                                taskModel.setId(medication.getObjectId());
+                                                                taskModel.setReminder(true);
+                                                                taskModel.setName(string);
+                                                                taskModel.setIndex(0);
+                                                                taskModels.add(taskModel);
+                                                            } catch (java.text.ParseException e2) {
+                                                                e2.printStackTrace();
+
+                                                            }
+
+                                                        }
+
+                                                    } catch (JSONException e1) {
+                                                        e1.printStackTrace();
+                                                    }
+                                                }
+                                            }
+                                            isFetching = false;
+                                            Collections.sort(taskModels, new Utils.CustomComparator());
+                                            taskAdapter.setmItems(taskModels);
+
+                                        }else{
+                                            isFetching = false;
+                                            Collections.sort(taskModels, new Utils.CustomComparator());
+                                            taskAdapter.setmItems(taskModels);
+                                        }
+
+                                    } else {
+                                        isFetching = false;
+                                        Log.d("score", "Error: " + e.getMessage());
+                                    }
+                                }
+                            });
+
+                        }else{
+                            isFetching = false;
+                            Collections.sort(taskModels, new Utils.CustomComparator());
+                            taskAdapter.setmItems(taskModels);
+                        }
+
+                    }else{
+                        isFetching = false;
+                    }
+                } else {
+                    isFetching = false;
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
     }
 
     @Override
