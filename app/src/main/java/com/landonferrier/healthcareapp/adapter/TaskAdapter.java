@@ -1,6 +1,7 @@
 package com.landonferrier.healthcareapp.adapter;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,19 @@ import android.widget.LinearLayout;
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.models.TaskModel;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
+import com.parse.ParseUser;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final Context mContext;
+    private static Context mContext;
     private ArrayList<TaskModel> mItems = new ArrayList<>();
     private int mCurrentItemId = 0;
     private OnItemSelectedListener listener;
@@ -71,6 +77,19 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         public void onBindeViewHolder(TaskModel model, OnItemSelectedListener listener) {
+            if (model.isCompleted()) {
+                ivCheck.setImageResource(R.drawable.icon_checkbox_selected);
+            } else {
+                ivCheck.setImageResource(R.drawable.icon_checkbox);
+                ivCheck.setColorFilter(ContextCompat.getColor(mContext, R.color.colorgray), PorterDuff.Mode.SRC_IN);
+                tvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.colorgray));
+                if ((model.getDate().getTime() < new Date().getTime()) && (!model.isCompleted())) {
+                    tvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.colorRed));
+                    ivCheck.setColorFilter(ContextCompat.getColor(mContext, R.color.colorRed), PorterDuff.Mode.SRC_IN);
+                }
+            }
+
+
             tvTitle.setText(model.getName());
         }
 

@@ -8,43 +8,73 @@
     android:orientation="horizontal">
 
     <RelativeLayout
+        android:id="@+id/main_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imv_medication"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_defaultmeds"
-            android:layout_margin="16dp"
-            android:layout_centerVertical="true"/>
+        <RelativeLayout
+            android:id="@+id/view_calendar"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="16dp">
+
+            <ImageView
+                android:id="@+id/imv_medication"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_calendar"
+                android:layout_centerVertical="true"/>
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:id="@+id/tv_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="bold"
+                android:text="JAN"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:textColor="@color/colorText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"/>
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="bold"
+                android:text="13"
+                android:textSize="26sp"
+                android:maxLines="1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorText"
+                android:layout_marginBottom="4dp"/>
+
+        </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/imv_medication"
+            android:layout_toEndOf="@+id/view_calendar"
             android:layout_marginEnd="36dp">
 
             <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_name_amount"
+                android:id="@+id/tv_journal_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:font_style="bold"
                 android:text="@string/name"
                 android:textSize="16sp"
                 android:maxLines="1"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginStart="16dp"/>
+                android:textColor="@color/colorPrimary"/>
             <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_frequency"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_detail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:font_style="bold"
                 android:text="@string/name"
                 android:textSize="16sp"
                 android:textColor="@color/colorgray"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"/>
 
 
@@ -56,7 +86,6 @@
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"/>
-
     </RelativeLayout>
 
 

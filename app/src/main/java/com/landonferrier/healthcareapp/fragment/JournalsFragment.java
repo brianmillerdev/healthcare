@@ -5,34 +5,56 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.jay.widget.StickyHeadersLinearLayoutManager;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.landonferrier.healthcareapp.R;
+import com.landonferrier.healthcareapp.activity.AddJournalActivity;
 import com.landonferrier.healthcareapp.activity.HelpActivity;
+import com.landonferrier.healthcareapp.adapter.JournalsAdapter;
 import com.landonferrier.healthcareapp.utils.EventPush;
+import com.landonferrier.healthcareapp.views.customRecyclerView.SlidingItemMenuRecyclerView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class JournalsFragment extends BaseFragment {
+public class JournalsFragment extends BaseFragment implements JournalsAdapter.OnItemSelectedListener {
     @BindView(R.id.btn_add)
     ImageView btnAdd;
     @BindView(R.id.rc_journals)
-    RecyclerView rcReminders;
+    SlidingItemMenuRecyclerView rcJournals;
 
-//    SimpleAdapter mAdapter;
+    JournalsAdapter mAdapter;
+    public KProgressHUD hud;
+
+    ArrayList<ParseObject> medications = new ArrayList<>();
+
 
     View view;
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -43,6 +65,20 @@ public class JournalsFragment extends BaseFragment {
 
         view = inflater.inflate(R.layout.fragment_journals, container, false);
         ButterKnife.bind(this, view);
+        hud = KProgressHUD.create(getContext())
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f);
+        rcJournals.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider));
+        rcJournals.addItemDecoration(dividerItemDecoration);
+        StickyHeadersLinearLayoutManager<JournalsAdapter> layoutManager = new StickyHeadersLinearLayoutManager<>(getContext());
+        rcJournals.setLayoutManager(layoutManager);
+        mAdapter = new JournalsAdapter(getContext(), medications, this);
+        rcJournals.setAdapter(mAdapter);
+
 
         initView();
 
@@ -66,7 +102,7 @@ public class JournalsFragment extends BaseFragment {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.btn_add:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), HelpActivity.class));
+                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), AddJournalActivity.class));
                 break;
 
         }
@@ -94,11 +130,69 @@ public class JournalsFragment extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(EventPush event) {
-        if (event.getMessage().equals("updatedBadge")) {
-            initView();
+        if (event.getMessage().equals("updateJournals")) {
+            fetchJournals();
         }
     }
 
+    public void fetchJournals() {
+        if (hud != null) {
+            if (!hud.isShowing()) {
+                hud.show();
+            }
+        }
+        ParseQuery<ParseObject> journalsQuery = ParseQuery.getQuery("Journal");
+        journalsQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+        journalsQuery.orderByDescending("createdAt");
+        journalsQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (hud != null) {
+                    if (hud.isShowing()) {
+                        hud.dismiss();
+                    }
+                }
+                if (e == null) {
+                    medications.clear();
+                    ParseObject preSection = null;
+                    for (int i = 0; i < objects.size(); i++) {
+                        ParseObject object = objects.get(i);
+                        Date date = object.getDate("date");
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy");
+                        String dateString = dateFormat.format(date);
+                        if (preSection == null) {
+                            preSection = new ParseObject("Journal");
+                            preSection.put("name", dateString);
+                            medications.add(preSection);
+                            medications.add(object);
+                        } else {
+                            if (!preSection.getString("name").equals(dateString)) {
+                                preSection = new ParseObject("Journal");
+                                preSection.put("name", dateString);
+                                medications.add(preSection);
+                                medications.add(object);
+                            } else {
+                                medications.add(object);
+                            }
+                        }
+                    }
+                    mAdapter.setmItems(medications);
+
+                }else{
+                    Log.e("error", e.getLocalizedMessage());
+                }
+            }
+        });
+    }
 
 
+    @Override
+    public void onDelete(ParseObject object, int position) {
+
+    }
+
+    @Override
+    public void onSelect(ParseObject object, int position) {
+
+    }
 }

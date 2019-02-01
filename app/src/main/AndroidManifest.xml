@@ -36,6 +36,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.AddMedicationActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AddJournalActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".activity.TermsOfConditionsActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.PrivacySettingsActivity"
@@ -43,6 +45,8 @@
         <activity android:name=".activity.SurgeryActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.SurgeryDateActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.SurgeryInfoDetailActivity"
             android:screenOrientation="portrait"/>
     </application>
 

@@ -20,5 +20,9 @@
             <enum name="IMAGE" value="2"/>
         </attr>
     </declare-styleable>
+    <declare-styleable name="SlidingItemMenuRecyclerView">
+        <attr name="itemScrollingEnabled" format="boolean" />
+        <attr name="itemScrollDuration" format="integer" />
+    </declare-styleable>
 
 </resources>

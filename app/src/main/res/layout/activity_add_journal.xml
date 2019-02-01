@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_bar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="bold"
+                    android:text="@string/title"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"/>
+                <com.landonferrier.healthcareapp.views.CustomFontEditText
+                    android:id="@+id/edt_journal_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:font_style="bold"
+                    android:textColor="@color/colorText"
+                    android:textSize="16sp"
+                    android:background="@drawable/bg_edittext"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@drawable/cursor"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="bold"
+                    android:text="@string/journla_entry"
+                    android:textSize="16sp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"/>
+                <com.landonferrier.healthcareapp.views.CustomFontEditText
+                    android:id="@+id/edt_entry"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    app:font_style="bold"
+                    android:textColor="@color/colorText"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textSize="16sp"
+                    android:textCursorDrawable="@drawable/cursor"
+                    android:background="@drawable/bg_edittext"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="bold"
+                    android:text="@string/frequency_of_dosage"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_edittext"
+                    >
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:font_style="bold"
+                        android:text="@string/current_pain_level"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorgray"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_pain_level"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:gravity="end"
+                        android:text="10 MAXIMUM"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:font_style="bold" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="bold"
+                    android:text="@string/photos"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_photos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"/>
+            </RelativeLayout>
+
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                app:font_style="bold"
+                android:text="@string/add_joural_entry"
+                android:textSize="16sp"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/btn_signup"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginTop="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="24dp"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_action_bar"/>
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:scaleType="center"
+            android:src="@drawable/arrowhead_thin_outline_to_the_left"
+            android:tint="@color/colorWhite"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorWhite"
+            app:font_style="bold"
+            android:textSize="18sp"
+            android:textAllCaps="true"
+            android:text="@string/add_medication"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

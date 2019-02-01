@@ -44,5 +44,12 @@
     <string name="current_surgery">Current Surgery</string>
     <string name="today_s_tasks">Today\'s Tasks</string>
     <string name="surgery_info">Surgery Info</string>
+    <string name="journals">Journals</string>
+    <string name="delete">Delete</string>
+    <string name="title">Title</string>
+    <string name="journla_entry">Journla Entry</string>
+    <string name="current_pain_level">Current pain level:</string>
+    <string name="photos">Photos</string>
+    <string name="add_joural_entry">Add Joural Entry</string>
 
 </resources>

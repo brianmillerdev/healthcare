@@ -262,6 +262,23 @@ public class DashboardSurgeryFragment extends BaseFragment {
                                 taskModel.setReminder(true);
                                 taskModel.setName(string);
                                 taskModel.setIndex(0);
+                                String taskId = reminder.getObjectId();
+
+                                if (ParseUser.getCurrentUser().get("completedIds") != null) {
+                                    JSONArray ids = ParseUser.getCurrentUser().getJSONArray("completedIds");
+                                    int ii = taskModel.getIndex();
+                                    for (int j = 0; j < ids.length(); j++) {
+                                        try {
+                                            if (ids.getString(j).equals(taskId)) {
+                                                taskModel.setCompleted(true);
+                                            }
+                                        } catch (JSONException e1) {
+                                            e1.printStackTrace();
+                                        }
+                                    }
+
+
+                                }
                                 taskModels.add(taskModel);
                             }
                         }
@@ -300,8 +317,22 @@ public class DashboardSurgeryFragment extends BaseFragment {
                                                             taskModel.setId(medication.getObjectId());
                                                             taskModel.setReminder(true);
                                                             taskModel.setName(string);
-                                                            taskModel.setIndex(0);
+                                                            taskModel.setIndex(index);
+                                                            String taskId = medication.getObjectId();
+
+                                                            if (ParseUser.getCurrentUser().get("completedIds") != null) {
+                                                                JSONArray ids = ParseUser.getCurrentUser().getJSONArray("completedIds");
+                                                                int ii = taskModel.getIndex();
+                                                                for (int j = 0; j < ids.length(); j++) {
+                                                                    if (ids.getString(j).equals(String.format("%s-%s", taskId, ii))) {
+                                                                        taskModel.setCompleted(true);
+                                                                    }
+                                                                }
+
+
+                                                            }
                                                             taskModels.add(taskModel);
+
                                                         } catch (java.text.ParseException e1) {
                                                             e1.printStackTrace();
                                                             SimpleDateFormat dateFormat1 = new SimpleDateFormat("h:mm a");

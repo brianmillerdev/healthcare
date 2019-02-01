@@ -97,15 +97,19 @@ public class MainActivity extends AppCompatActivity {
                         viewPager.setCurrentItem(0, false);
                         break;
                     case R.id.action_info:
+                        EventBus.getDefault().post(new EventPush("fetchSurgeryInfo", "fetchSurgeryInfo"));
                         viewPager.setCurrentItem(4, false);
                         break;
                     case R.id.action_journal:
+                        EventBus.getDefault().post(new EventPush("updateJournals", "Journals"));
                         viewPager.setCurrentItem(2, false);
                         break;
                     case R.id.action_alarm:
+                        EventBus.getDefault().post(new EventPush("updateReminders", "Reminders"));
                         viewPager.setCurrentItem(1, false);
                         break;
                     case R.id.action_meds:
+                        EventBus.getDefault().post(new EventPush("updateMedications", "Medications"));
                         if (Objects.requireNonNull(ParseUser.getCurrentUser().getJSONArray("surgeryIds")).length() > 0) {
                             viewPager.setCurrentItem(3, false);
                         }else{
@@ -146,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
             bnve.getMenu().getItem(4).setChecked(true);
             prevMenuItem = bnve.getMenu().getItem(4);
+            EventBus.getDefault().post(new EventPush("fetchSurgeryInfo", "fetchSurgeryInfo"));
         }
     }
 

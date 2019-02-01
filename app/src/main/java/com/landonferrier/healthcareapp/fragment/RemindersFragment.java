@@ -5,35 +5,54 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.activity.AddReminderActivity;
 import com.landonferrier.healthcareapp.activity.HelpActivity;
+import com.landonferrier.healthcareapp.adapter.MedicationAdapter;
+import com.landonferrier.healthcareapp.adapter.RemindersAdapter;
 import com.landonferrier.healthcareapp.utils.EventPush;
+import com.landonferrier.healthcareapp.views.customRecyclerView.SlidingItemMenuRecyclerView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RemindersFragment extends BaseFragment {
+public class RemindersFragment extends BaseFragment implements RemindersAdapter.OnItemSelectedListener {
     @BindView(R.id.btn_add)
     ImageView btnAdd;
     @BindView(R.id.rc_reminders)
-    RecyclerView rcReminders;
+    SlidingItemMenuRecyclerView rcReminders;
 
-//    SimpleAdapter mAdapter;
+    RemindersAdapter mAdapter;
+    public KProgressHUD hud;
+
+    ArrayList<ParseObject> reminders = new ArrayList<>();
+
 
     View view;
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -44,6 +63,19 @@ public class RemindersFragment extends BaseFragment {
 
         view = inflater.inflate(R.layout.fragment_reminders, container, false);
         ButterKnife.bind(this, view);
+        hud = KProgressHUD.create(getContext())
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f);
+        rcReminders.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider));
+        rcReminders.addItemDecoration(dividerItemDecoration);
+
+        mAdapter = new RemindersAdapter(getContext(), reminders, this);
+        rcReminders.setAdapter(mAdapter);
+
 
         initView();
 
@@ -95,11 +127,48 @@ public class RemindersFragment extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(EventPush event) {
-        if (event.getMessage().equals("updatedBadge")) {
-            initView();
+        if (event.getMessage().equals("updateReminders")) {
+            fetchReminders();
         }
     }
 
 
+    public void fetchReminders() {
+        if (hud != null) {
+            if (!hud.isShowing()) {
+                hud.show();
+            }
+        }
+        ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
+        reminderQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+        reminderQuery.orderByDescending("time");
+        reminderQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (hud != null) {
+                    if (hud.isShowing()) {
+                        hud.dismiss();
+                    }
+                }
+                if (e == null) {
+                    reminders.clear();
+                    reminders.addAll(objects);
+                    mAdapter.setmItems(reminders);
+                }else{
+                    Log.e("error", e.getLocalizedMessage());
+                }
+            }
+        });
+    }
 
+
+    @Override
+    public void onDelete(ParseObject object, int position) {
+
+    }
+
+    @Override
+    public void onSelect(ParseObject object, int position) {
+
+    }
 }
