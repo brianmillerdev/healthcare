@@ -33,6 +33,7 @@
                 android:textColor="@color/colorText"
                 android:textSize="16sp"
                 android:background="@drawable/bg_edittext"
+                android:maxLines="1"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:textCursorDrawable="@drawable/cursor"
@@ -63,7 +64,9 @@
                 android:textColor="@color/colorText"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:maxLines="1"
                 android:textSize="16sp"
+                android:inputType="number"
                 android:textCursorDrawable="@drawable/cursor"
                 android:background="@drawable/bg_edittext"
                 android:layout_marginTop="48dp"
@@ -85,7 +88,7 @@
                 android:textColor="@color/colorPrimary"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"/>
-            <com.landonferrier.healthcareapp.views.CustomFontEditText
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
                 android:id="@+id/edt_frequency"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -94,8 +97,12 @@
                 android:textSize="16sp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
                 android:textCursorDrawable="@drawable/cursor"
                 android:background="@drawable/bg_edittext"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_marginTop="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"/>
@@ -155,6 +162,7 @@
             android:focusable="true"/>
 
         <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

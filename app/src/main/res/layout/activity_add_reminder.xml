@@ -98,6 +98,7 @@
             android:focusable="true"/>
 
         <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -105,7 +106,7 @@
             app:font_style="bold"
             android:textSize="18sp"
             android:textAllCaps="true"
-            android:text="@string/add_medication"/>
+            android:text="@string/add_remimder"/>
 
     </RelativeLayout>
 

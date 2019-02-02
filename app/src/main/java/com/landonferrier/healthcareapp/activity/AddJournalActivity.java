@@ -5,9 +5,11 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.views.CustomFontEditText;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
+import com.parse.ParseObject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,11 +37,23 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
     public CustomFontTextView btnSave;
 
 
+    @BindView(R.id.tvTitle)
+    public CustomFontTextView tvTitle;
+
+    ParseObject journal;
+    String journalId = "";
+
+    KProgressHUD hud;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_journal);
         ButterKnife.bind(this);
+        hud = KProgressHUD.create(this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f);
         btnBack.setOnClickListener(this);
         btnSave.setOnClickListener(this);
     }

@@ -19,6 +19,7 @@ import com.landonferrier.healthcareapp.adapter.MedicationAdapter;
 import com.landonferrier.healthcareapp.adapter.RemindersAdapter;
 import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.views.customRecyclerView.SlidingItemMenuRecyclerView;
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -164,11 +165,23 @@ public class RemindersFragment extends BaseFragment implements RemindersAdapter.
 
     @Override
     public void onDelete(ParseObject object, int position) {
-
+        ParseObject reminder = reminders.get(position);
+        reminder.deleteEventually(new DeleteCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    reminders.remove(position);
+                    mAdapter.setmItems(reminders);
+                }
+            }
+        });
     }
 
     @Override
     public void onSelect(ParseObject object, int position) {
-
+        Intent intent = new Intent(getActivity(), AddReminderActivity.class);
+        intent.putExtra("isEdit", true);
+        intent.putExtra("reminder", reminders.get(position).getObjectId());
+        startActivity(intent);
     }
 }

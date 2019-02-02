@@ -75,7 +75,7 @@ public class RemindersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             deleteLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener == null) {
+                    if (listener != null) {
                         listener.onDelete(model, getAdapterPosition());
                     }
                 }
@@ -83,7 +83,7 @@ public class RemindersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener == null) {
+                    if (listener != null) {
                         listener.onSelect(model, getAdapterPosition());
                     }
                 }

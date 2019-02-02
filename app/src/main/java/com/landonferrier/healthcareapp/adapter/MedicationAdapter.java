@@ -79,7 +79,7 @@ public class MedicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             deleteLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener == null) {
+                    if (listener != null) {
                         listener.onDelete(model, getAdapterPosition());
                     }
                 }
@@ -87,7 +87,7 @@ public class MedicationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener == null) {
+                    if (listener != null) {
                         listener.onSelect(model, getAdapterPosition());
                     }
                 }

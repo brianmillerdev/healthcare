@@ -51,5 +51,15 @@
     <string name="current_pain_level">Current pain level:</string>
     <string name="photos">Photos</string>
     <string name="add_joural_entry">Add Joural Entry</string>
+    <string name="my_profile">My Profile:</string>
+    <string name="others">Other:</string>
+    <string name="surgeries_">Surgeries:</string>
+    <string name="remove_surgery">Remove Surgery</string>
+    <string name="change_current_surgery">Change Current Surgery</string>
+    <string name="add_new_surgery">Add New Surgery</string>
+    <string name="add_remimder">Add Remimder</string>
+    <string name="edit_medication">Edit Medication</string>
+    <string name="journal_etry">Journal Entry</string>
+    <string name="reminder_details">Remimder Details</string>
 
 </resources>

@@ -3,6 +3,8 @@
     package="com.landonferrier.healthcareapp">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -39,6 +41,8 @@
         <activity android:name=".activity.AddJournalActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.TermsOfConditionsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.TermsPrivacyActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.PrivacySettingsActivity"
             android:screenOrientation="portrait"/>

@@ -73,4 +73,7 @@ dependencies {
     implementation 'com.kaopiz:kprogresshud:1.2.0'
     //Sticky Header Recycleview
     implementation 'com.github.qiujayen:sticky-layoutmanager:1.0.0'
+    // Get image from gallery or camera
+    implementation 'com.github.jkwiecien:EasyImage:1.3.1'
+
 }

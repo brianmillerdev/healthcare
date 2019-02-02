@@ -16,37 +16,49 @@
             android:id="@+id/view_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="24dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginStart="16dp"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/imv_profile_placeholder">
 
                 <com.landonferrier.healthcareapp.views.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:font_style="bold"
-                    android:text="@string/name"
+                    android:text="@string/my_profile"
                     android:textColor="@color/colorText"
-                    android:textSize="16sp"/>
+                    android:textSize="24sp"/>
 
                 <com.landonferrier.healthcareapp.views.CustomFontTextView
-                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:font_style="bold"
                     android:text="@string/name"
+                    android:textColor="@color/colorgray"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontEditText
+                    android:id="@+id/edt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:font_style="bold"
+                    android:text=""
                     android:textColor="@color/colorPrimary"
-                    android:textSize="16sp"/>
+                    android:background="@color/transparent"
+                    android:textSize="18sp"
+                    android:layout_marginTop="8dp"/>
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/imv_profile_placeholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/icon_phone"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="36dp"
@@ -54,8 +66,8 @@
                 android:focusable="true"/>
             <com.landonferrier.healthcareapp.views.CircleImageView
                 android:id="@+id/imv_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/icon_phone"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="36dp"
@@ -65,6 +77,11 @@
                 android:focusable="true"/>
 
         </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/divider"
+            android:layout_marginTop="8dp"/>
 
         <LinearLayout
             android:id="@+id/view_current_surgery"
@@ -77,32 +94,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:font_style="bold"
-                android:text="@string/current_surgery"
+                android:text="@string/surgeries_"
                 android:textColor="@color/colorText"
-                android:textSize="16sp"
+                android:textSize="24sp"
                 />
 
             <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_surgery_name"
+                android:id="@+id/tv_add_new_surgery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:font_style="bold"
-                android:text="@string/privacy_settings"
+                android:text="@string/add_new_surgery"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 android:clickable="true"
                 android:focusable="true"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"/>
+                android:layout_marginTop="8dp"
+                android:paddingBottom="4dp"/>
 
             <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_surgery_date"
+                android:id="@+id/tv_change_current_surgery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:font_style="regular"
-                android:text="@string/privacy_settings"
-                android:textColor="@color/colorText"
-                android:textSize="14sp"/>
+                app:font_style="bold"
+                android:text="@string/change_current_surgery"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:id="@+id/tv_remove_surgery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="bold"
+                android:text="@string/remove_surgery"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
 
 
         </LinearLayout>
@@ -120,6 +154,15 @@
             android:layout_marginTop="24dp"
             android:layout_marginStart="16dp">
 
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="bold"
+                android:text="@string/others"
+                android:textColor="@color/colorText"
+                android:textSize="24sp"
+                />
+
 
             <com.landonferrier.healthcareapp.views.CustomFontTextView
                 android:id="@+id/btn_privacy_settings"
@@ -128,9 +171,10 @@
                 app:font_style="bold"
                 android:text="@string/privacy_settings"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                android:layout_marginTop="8dp"/>
 
             <com.landonferrier.healthcareapp.views.CustomFontTextView
                 android:id="@+id/btn_terms_service"
@@ -139,10 +183,10 @@
                 app:font_style="bold"
                 android:text="@string/terms_of_service"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="8dp"/>
 
 
         </LinearLayout>
@@ -189,7 +233,8 @@
             android:textSize="16sp"
             android:layout_centerVertical="true"
             android:text="@string/logout"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginEnd="16dp"
+            />
 
     </RelativeLayout>
 

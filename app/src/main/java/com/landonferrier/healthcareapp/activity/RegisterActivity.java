@@ -3,6 +3,7 @@ package com.landonferrier.healthcareapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -55,7 +56,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 .setCancellable(true)
                 .setAnimationSpeed(2)
                 .setDimAmount(0.5f);
-
+        edtPassword.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    createAccount();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -68,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(RegisterActivity.this, SigninActivity.class));
                 break;
             case R.id.tv_terms:
+                startActivity(new Intent(RegisterActivity.this, TermsPrivacyActivity.class));
                 break;
         }
     }
@@ -123,7 +133,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     }
                 }
                 if (e == null) {
-                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }else{
                     Toast.makeText(RegisterActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
