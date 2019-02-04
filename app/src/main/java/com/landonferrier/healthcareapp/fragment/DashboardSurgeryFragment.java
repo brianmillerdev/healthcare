@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.activity.HelpActivity;
 import com.landonferrier.healthcareapp.activity.ProfileActivity;
@@ -78,6 +79,8 @@ public class DashboardSurgeryFragment extends BaseFragment {
 
     boolean isFetching = false;
     View view;
+    KProgressHUD hud;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable
     @Override
@@ -86,20 +89,12 @@ public class DashboardSurgeryFragment extends BaseFragment {
 
         view = inflater.inflate(R.layout.fragment_dashboard_sugery, container, false);
         ButterKnife.bind(this, view);
+        hud = KProgressHUD.create(getActivity())
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f);
 
-        initView();
-
-        return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-
-    @SuppressLint("DefaultLocale")
-    public void initView() {
         btnLeft.setOnClickListener(this);
         btnRight.setOnClickListener(this);
         viewCurrentSurgery.setOnClickListener(this);
@@ -113,28 +108,66 @@ public class DashboardSurgeryFragment extends BaseFragment {
         taskAdapter = new TaskAdapter(getContext(), taskModels);
         rcTasks.setAdapter(taskAdapter);
 
-        JSONArray ids = ParseUser.getCurrentUser().getJSONArray("surgeryIds");
-        if (ids.length() > 0) {
-            try {
-                ParseObject surgery = ParseObject.createWithoutData("Surgery", String.valueOf(ids.get(0)));
-                surgery.fetchIfNeededInBackground(new GetCallback<ParseObject>() {
-                    @Override
-                    public void done(ParseObject object, ParseException e) {
-                        if (e == null) {
-                            tvSurgeryName.setText(ParseUser.getCurrentUser().getString("surgeryName"));
-                            Date date = ParseUser.getCurrentUser().getDate("surgeryDate");
-                            @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM d, yyyy");
-                            String dateString = simpleDateFormat.format(date);
-                            tvSurgeryDate.setText(String.format("%s >", dateString));
-                        }
-                    }
-                });
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
         tvTaskTitle.setText(Utils.getFormattedDate(getContext(), showDate.getTime()));
         getMedications();
+        initView();
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+
+    @SuppressLint("DefaultLocale")
+    public void initView() {
+        JSONArray ids = ParseUser.getCurrentUser().getJSONArray("surgeryIds");
+        if (ids.length() > 0) {
+            String surgeryId = ParseUser.getCurrentUser().getString("currentSurgeryId");
+            ParseObject surgery = ParseObject.createWithoutData("Surgery", surgeryId);
+            if (hud != null) {
+                if (!hud.isShowing()) {
+                    hud.show();
+                }
+            }
+            surgery.fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject o, ParseException e) {
+                    if (hud != null) {
+                        if (hud.isShowing()) {
+                            hud.dismiss();
+                        }
+                    }
+                    if (e == null) {
+                        String name = o.getString("name");
+                        tvSurgeryName.setText(name);
+                        if (ParseUser.getCurrentUser().get("surgeryDates") != null) {
+                            JSONObject object = ParseUser.getCurrentUser().getJSONObject("surgeryDates");
+                            if (object.has(o.getObjectId())) {
+                                try {
+                                    String dateStr = object.getString(o.getObjectId());
+                                    SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+                                    Date date = format.parse(dateStr);
+                                    SimpleDateFormat format1 = new SimpleDateFormat("MMMM d, yyyy");
+                                    String dateString = format1.format(date);
+                                    tvSurgeryDate.setText(String.format("%s>", dateString));
+                                    tvSurgeryDate.setVisibility(View.VISIBLE);
+                                } catch (JSONException e1) {
+                                    e1.printStackTrace();
+                                } catch (java.text.ParseException e2) {
+                                    e2.printStackTrace();
+                                }
+                            }else{
+                                tvSurgeryDate.setVisibility(View.GONE);
+                            }
+                        }else{
+                            tvSurgeryDate.setVisibility(View.GONE);
+                        }
+                    }
+                }
+            });
+        }
     }
 
 
@@ -424,7 +457,7 @@ public class DashboardSurgeryFragment extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(EventPush event) {
-        if (event.getMessage().equals("updatedBadge")) {
+        if (event.getMessage().equals("updateCurrentSurgery")) {
             initView();
         }
     }

@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        updateViewPager();
         setUpViewPager();
         EventBus.getDefault().register(this);
 
     }
 
-    private void setUpViewPager() {
-
+    private void updateViewPager() {
         if (Objects.requireNonNull(ParseUser.getCurrentUser().getJSONArray("surgeryIds")).length() > 0) {
             bnve.getMenu().clear();
             bnve.inflateMenu(R.menu.navigation);
@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         viewPager.setCurrentItem(0);
+    }
+    private void setUpViewPager() {
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 //                Utils.dismissKeyboard(getBaseContext(), rootView);
                 switch (item.getItemId()) {
                     case R.id.action_home:
+                        EventBus.getDefault().post(new EventPush("updateCurrentSurgery", "fetchSurgery"));
                         viewPager.setCurrentItem(0, false);
                         break;
                     case R.id.action_info:
@@ -151,6 +155,8 @@ public class MainActivity extends AppCompatActivity {
             bnve.getMenu().getItem(4).setChecked(true);
             prevMenuItem = bnve.getMenu().getItem(4);
             EventBus.getDefault().post(new EventPush("fetchSurgeryInfo", "fetchSurgeryInfo"));
+        }else if (event.getMessage().equals("updateCurrentSurgery")) {
+            updateViewPager();
         }
     }
 

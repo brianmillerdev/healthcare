@@ -34,6 +34,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -183,15 +184,31 @@ public class SurgeryInfoFragment extends BaseFragment implements SurgeryInfoAdap
     public void updateHeader() {
         String name = surgery.getString("name");
         tvName.setText(name);
-        if (ParseUser.getCurrentUser().get("surgeryDate") != null) {
-            Date date = ParseUser.getCurrentUser().getDate("surgeryDate");
-            SimpleDateFormat format = new SimpleDateFormat("MMMM d, yyyy");
-            String dateString = format.format(date);
-            tvDate.setText(String.format("Date: %s", dateString));
-            tvDate.setTextColor(ContextCompat.getColor(getContext(), R.color.colorText));
-            tvDate.setClickable(false);
-            tvDate.setFocusable(false);
+        if (ParseUser.getCurrentUser().get("surgeryDates") != null) {
+            JSONObject object = ParseUser.getCurrentUser().getJSONObject("surgeryDates");
+            if (object.has(surgery.getObjectId())) {
+                try {
+                    String dateStr = object.getString(surgery.getObjectId());
+                    SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+                    Date date = format.parse(dateStr);
+                    SimpleDateFormat format1 = new SimpleDateFormat("MMMM d, yyyy");
+                    String dateString = format1.format(date);
+                    tvDate.setText(String.format("Date: %s", dateString));
+                    tvDate.setTextColor(ContextCompat.getColor(getContext(), R.color.colorText));
+                    tvDate.setClickable(false);
+                    tvDate.setFocusable(false);
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (java.text.ParseException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                tvDate.setText("Select Surgery Date");
+                tvDate.setTextColor(ContextCompat.getColor(getContext(), R.color.colorGreen));
+                tvDate.setClickable(true);
+                tvDate.setFocusable(true);
+            }
         }else{
             tvDate.setText("Select Surgery Date");
             tvDate.setTextColor(ContextCompat.getColor(getContext(), R.color.colorGreen));

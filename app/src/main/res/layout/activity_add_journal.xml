@@ -38,7 +38,10 @@
                     android:background="@drawable/bg_edittext"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
+                    android:lines="1"
                     android:maxLines="1"
+                    android:inputType="textCapSentences"
+                    android:imeOptions="actionNext"
                     android:textCursorDrawable="@drawable/cursor"
                     android:layout_marginTop="48dp"
                     android:layout_marginStart="16dp"
@@ -68,8 +71,11 @@
                     android:textColor="@color/colorText"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:textSize="16sp"
                     android:textCursorDrawable="@drawable/cursor"
+                    android:gravity="top"
                     android:background="@drawable/bg_edittext"
                     android:layout_marginTop="48dp"
                     android:layout_marginStart="16dp"
@@ -85,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:font_style="bold"
-                    android:text="@string/frequency_of_dosage"
+                    android:text="Pain Level"
                     android:textSize="16sp"
                     android:textColor="@color/colorPrimary"
                     android:layout_marginStart="16dp"
@@ -131,12 +137,25 @@
                 android:layout_height="wrap_content">
 
                 <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tvphoto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:font_style="bold"
                     android:text="@string/photos"
                     android:textSize="16sp"
                     android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_photos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:font_style="bold"
+                    android:text="0"
+                    android:layout_toEndOf="@id/tvphoto"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorgray"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"/>
 
@@ -204,7 +223,7 @@
             app:font_style="bold"
             android:textSize="18sp"
             android:textAllCaps="true"
-            android:text="@string/add_medication"/>
+            android:text="@string/add_joural_entry"/>
 
     </RelativeLayout>
 

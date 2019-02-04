@@ -20,7 +20,7 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="reset">Reset</string>
     <string name="welcome_to_a_ok">Welcome to A-OK!</string>
-    <string name="find_a_surgery">Find a Surgery</string>
+    <string name="find_a_surgery">Find a procedure</string>
     <string name="help">HELP</string>
     <string name="profile">PROFILE</string>
     <string name="logout">Logout</string>
@@ -29,7 +29,7 @@
     <string name="terms_of_service">Terms of Service</string>
     <string name="reminders">Reminders</string>
     <string name="medications">Medications</string>
-    <string name="amount_in_mg">Amount in mg</string>
+    <string name="amount_in_mg">Amount in mg or number of tablets</string>
     <string name="frequency_of_dosage">Frequency of Dosage</string>
     <string name="double_tap_on_bar_to_clear_times">Double tap on bar to clear times</string>
     <string name="save">Save</string>

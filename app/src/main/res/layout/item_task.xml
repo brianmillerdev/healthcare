@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:id="@+id/iv_check"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/icon_checkbox"
+        android:layout_margin="16dp"
+        android:scaleType="center"
+        android:layout_gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"/>
+    <com.landonferrier.healthcareapp.views.CustomFontTextView
+        android:id="@+id/tv_surgery_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:font_style="bold"
+        android:text="easdfasdfasdfasdas ddsfasd asd fasd fasd fasdf asdf asdf asdf asdfasdf asdf asdf asd asd fasdf asdfasdfasdfasdfasdfasdfasdfasdfasd"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:textColor="@color/colorText"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"/>
+
+</LinearLayout>

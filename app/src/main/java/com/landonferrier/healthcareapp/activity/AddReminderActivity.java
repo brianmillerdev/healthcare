@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.landonferrier.healthcareapp.R;
+import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.views.CustomFontEditText;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
 import com.parse.GetCallback;
@@ -16,6 +17,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -126,6 +129,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
                     hud.dismiss();
                 }
                 if (e == null) {
+                    EventBus.getDefault().post(new EventPush("updateReminders", "Reminders"));
                     finish();
                 }else{
                     Toast.makeText(AddReminderActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -152,6 +156,7 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
                         hud.dismiss();
                     }
                     if (e == null) {
+                        EventBus.getDefault().post(new EventPush("updateReminders", "Reminders"));
                         finish();
                     }else{
                         Toast.makeText(AddReminderActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();

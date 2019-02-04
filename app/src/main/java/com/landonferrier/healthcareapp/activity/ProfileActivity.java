@@ -9,26 +9,36 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.landonferrier.healthcareapp.R;
+import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.views.CircleImageView;
 import com.landonferrier.healthcareapp.views.CustomFontEditText;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
+import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.LogOutCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.squareup.picasso.Picasso;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -79,16 +89,32 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @BindView(R.id.tv_change_current_surgery)
     public CustomFontTextView tvChangeCurrentSurgery;
 
+    @BindView(R.id.view_current_surgery)
+    public LinearLayout viewCurrentSurgery;
+
+    @BindView(R.id.tv_currnet_surgery_date)
+    public CustomFontTextView tvCurrentSugeryDate;
+
+    @BindView(R.id.tv_current_surgery_name)
+    public CustomFontTextView tvCurrentSurgeryName;
+
     @BindView(R.id.tv_remove_surgery)
     public CustomFontTextView tvRemoveSurgery;
     byte[] selecteBytes;
     boolean isImageSelected = false;
+
+    KProgressHUD hud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
+        hud = KProgressHUD.create(this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f);
         btnBack.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
         btnPrivacySettings.setOnClickListener(this);
@@ -98,23 +124,81 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         tvAddNewSurgery.setOnClickListener(this);
         tvChangeCurrentSurgery.setOnClickListener(this);
         tvRemoveSurgery.setOnClickListener(this);
+        tvCurrentSurgeryName.setOnClickListener(this);
         initView();
+        EventBus.getDefault().register(this);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(EventPush event) {
+        if (event.getMessage().equals("updateCurrentSurgery")) {
+            initView();
+        }
+    }
+
 
     public void initView() {
         ParseUser currentUser = ParseUser.getCurrentUser();
-//        JSONArray surgeruies = currentUser.getJSONArray("surgeryIds");
-//        assert surgeruies != null;
-//        if (surgeruies.length() > 0) {
-//            viewCurrentSurgery.setVisibility(View.VISIBLE);
-//            tvSurgeryName.setText(currentUser.getString("surgeryName"));
-//            Date date = currentUser.getDate("surgeryDate");
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM d, yyyy");
-//            String dateString = simpleDateFormat.format(date);
-//            tvSurgeryDate.setText(String.format("Scheduled for %s.", dateString));
-//        }else{
-//            viewCurrentSurgery.setVisibility(View.GONE);
-//        }
+        JSONArray surgeruies = currentUser.getJSONArray("surgeryIds");
+        assert surgeruies != null;
+        if (surgeruies.length() > 0) {
+            viewCurrentSurgery.setVisibility(View.VISIBLE);
+            String surgeryId = currentUser.getString("currentSurgeryId");
+            ParseObject surgery = ParseObject.createWithoutData("Surgery", surgeryId);
+            if (hud != null) {
+                if (!hud.isShowing()) {
+                    hud.show();
+                }
+            }
+            surgery.fetchInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject o, ParseException e) {
+                    if (hud != null) {
+                        if (hud.isShowing()) {
+                            hud.dismiss();
+                        }
+                    }
+                    if (e == null) {
+                        String name = o.getString("name");
+                        tvCurrentSurgeryName.setText(name);
+                        if (ParseUser.getCurrentUser().get("surgeryDates") != null) {
+                            JSONObject object = ParseUser.getCurrentUser().getJSONObject("surgeryDates");
+                            if (object.has(o.getObjectId())) {
+                                try {
+                                    String dateStr = object.getString(o.getObjectId());
+                                    SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+                                    Date date = format.parse(dateStr);
+                                    SimpleDateFormat format1 = new SimpleDateFormat("MMMM d, yyyy");
+                                    String dateString = format1.format(date);
+                                    tvCurrentSugeryDate.setText(String.format("Scheduled for %s.", dateString));
+                                    tvCurrentSugeryDate.setVisibility(View.VISIBLE);
+                                } catch (JSONException e1) {
+                                    e1.printStackTrace();
+                                } catch (java.text.ParseException e2) {
+                                    e2.printStackTrace();
+                                }
+                            }else{
+                                tvCurrentSugeryDate.setVisibility(View.GONE);
+                            }
+                        }else{
+                            tvCurrentSugeryDate.setVisibility(View.GONE);
+                        }
+
+                    }else{
+                        Log.e("error", e.getLocalizedMessage());
+                    }
+                }
+            });
+
+        }else{
+            viewCurrentSurgery.setVisibility(View.GONE);
+        }
         tvFullName.setText(currentUser.getString("fullName"));
         if (currentUser.get("imageFile") != null) {
             imvProfile.setVisibility(View.VISIBLE);
@@ -169,11 +253,25 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 checkCameraPermission();
                 break;
 
+            case R.id.tv_current_surgery_name:
+                Intent currentSurgery = new Intent(ProfileActivity.this, SurgeryActivity.class);
+                currentSurgery.putExtra("type", "new");
+                startActivity(currentSurgery);
+                break;
             case R.id.tv_add_new_surgery:
+                Intent addNewSurgery = new Intent(ProfileActivity.this, SurgeryActivity.class);
+                addNewSurgery.putExtra("type", "new");
+                startActivity(addNewSurgery);
                 break;
             case R.id.tv_change_current_surgery:
+                Intent changeSurgery = new Intent(ProfileActivity.this, ChangeRemoveSurgeryActivity.class);
+                changeSurgery.putExtra("type", "change");
+                startActivityForResult(changeSurgery, 300);
                 break;
             case R.id.tv_remove_surgery:
+                Intent deleteSurgery = new Intent(ProfileActivity.this, ChangeRemoveSurgeryActivity.class);
+                deleteSurgery.putExtra("type", "remove");
+                startActivity(deleteSurgery);
                 break;
         }
     }
@@ -194,46 +292,51 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        EasyImage.handleActivityResult(requestCode, resultCode, data, ProfileActivity.this, new DefaultCallback() {
-            @Override
-            public void onImagePickerError(Exception e, EasyImage.ImageSource source, int type) {
-                //Some error handling
-                e.printStackTrace();
+        if (requestCode == 300) {
+            if (resultCode == RESULT_OK) {
+                finish();
             }
+        }else{
+            EasyImage.handleActivityResult(requestCode, resultCode, data, ProfileActivity.this, new DefaultCallback() {
+                @Override
+                public void onImagePickerError(Exception e, EasyImage.ImageSource source, int type) {
+                    //Some error handling
+                    e.printStackTrace();
+                }
 
-            @Override
-            public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
-                if (source == EasyImage.ImageSource.CAMERA) {
-                    File file = null;
-                    try {
-                        file = saveImage(imageFile);
+                @Override
+                public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
+                    if (source == EasyImage.ImageSource.CAMERA) {
+                        File file = null;
+                        try {
+                            file = saveImage(imageFile);
+                            Picasso.get()
+                                    .load(file)
+                                    .fit()
+                                    .centerCrop()
+                                    .into(imvProfile);
+                            selectImageBytes(file);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Toast.makeText(ProfileActivity.this, "Something went wrong, please try again.", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }else{
                         Picasso.get()
-                                .load(file)
+                                .load(imageFile)
                                 .fit()
                                 .centerCrop()
                                 .into(imvProfile);
-                        selectImageBytes(file);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Toast.makeText(ProfileActivity.this, "Something went wrong, please try again.", Toast.LENGTH_SHORT).show();
+                        selectImageBytes(imageFile);
                     }
-
-                }else{
-                    Picasso.get()
-                            .load(imageFile)
-                            .fit()
-                            .centerCrop()
-                            .into(imvProfile);
-                    selectImageBytes(imageFile);
                 }
-            }
 
-            @Override
-            public void onCanceled(EasyImage.ImageSource source, int type) {
-                //Cancel handling, you might wanna remove taken photo if it was canceled
-            }
-        });
+                @Override
+                public void onCanceled(EasyImage.ImageSource source, int type) {
+                    //Cancel handling, you might wanna remove taken photo if it was canceled
+                }
+            });
+        }
 
     }
 
@@ -320,13 +423,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void updateProfile() {
-        if (ParseUser.getCurrentUser() == null) {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser == null) {
             finish();
             return;
         }
 
-        if (!ParseUser.getCurrentUser().getString("fullName").equals(tvFullName.getText().toString())){
-            ParseUser.getCurrentUser().put("fullName", tvFullName.getText().toString());
+        if (!currentUser.getString("fullName").equals(tvFullName.getText().toString())){
+            currentUser.put("fullName", tvFullName.getText().toString());
         }
         if (isImageSelected) {
             ParseFile imageFile = new ParseFile("image.jpg", selecteBytes);
@@ -334,8 +438,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        ParseUser.getCurrentUser().put("imageFile", imageFile);
-                        ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+                        currentUser.put("imageFile", imageFile);
+                        currentUser.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
                                 if (e == null) {
@@ -351,7 +455,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 }
             });
         }else{
-            ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+            currentUser.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {

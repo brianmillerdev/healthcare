@@ -84,8 +84,9 @@ public class DashboardFragment extends BaseFragment {
 
                 break;
             case R.id.btn_find_surgery:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), SurgeryActivity.class));
-
+                Intent intent = new Intent(getActivity(), SurgeryActivity.class);
+                intent.putExtra("type", "new");
+                Objects.requireNonNull(getActivity()).startActivity(intent);
                 break;
 
         }

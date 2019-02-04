@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.landonferrier.healthcareapp.R;
+import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.views.CustomFontEditText;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
 import com.parse.GetCallback;
@@ -20,6 +21,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -199,6 +201,7 @@ public class AddMedicationActivity extends AppCompatActivity implements View.OnC
                     hud.dismiss();
                 }
                 if (e == null) {
+                    EventBus.getDefault().post(new EventPush("updateMedications", "Medications"));
                     finish();
                 }else{
                     Toast.makeText(AddMedicationActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -245,6 +248,7 @@ public class AddMedicationActivity extends AppCompatActivity implements View.OnC
                         hud.dismiss();
                     }
                     if (e == null) {
+                        EventBus.getDefault().post(new EventPush("updateMedications", "Medications"));
                         finish();
                     }else{
                         Toast.makeText(AddMedicationActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();

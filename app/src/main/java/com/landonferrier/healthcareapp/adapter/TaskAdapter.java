@@ -119,7 +119,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            final View view = LayoutInflater.from(mContext).inflate(R.layout.item_surgery, parent, false);
+            final View view = LayoutInflater.from(mContext).inflate(R.layout.item_task, parent, false);
             return new SimpleViewHolder(view);
     }
 

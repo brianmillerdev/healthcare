@@ -15,10 +15,12 @@ import com.jay.widget.StickyHeadersLinearLayoutManager;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.activity.AddJournalActivity;
+import com.landonferrier.healthcareapp.activity.AddMedicationActivity;
 import com.landonferrier.healthcareapp.activity.HelpActivity;
 import com.landonferrier.healthcareapp.adapter.JournalsAdapter;
 import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.views.customRecyclerView.SlidingItemMenuRecyclerView;
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -188,11 +190,23 @@ public class JournalsFragment extends BaseFragment implements JournalsAdapter.On
 
     @Override
     public void onDelete(ParseObject object, int position) {
-
+        ParseObject medication = medications.get(position);
+        medication.deleteEventually(new DeleteCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    medications.remove(position);
+                    mAdapter.setmItems(medications);
+                }
+            }
+        });
     }
 
     @Override
     public void onSelect(ParseObject object, int position) {
-
+        Intent intent = new Intent(getActivity(), AddJournalActivity.class);
+        intent.putExtra("isEdit", true);
+        intent.putExtra("journal", medications.get(position).getObjectId());
+        startActivity(intent);
     }
 }
