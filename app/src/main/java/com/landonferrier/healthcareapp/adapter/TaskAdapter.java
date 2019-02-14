@@ -88,7 +88,15 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     ivCheck.setColorFilter(ContextCompat.getColor(mContext, R.color.colorRed), PorterDuff.Mode.SRC_IN);
                 }
             }
-
+            ivCheck.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ;
+                    if (listener != null) {
+                        listener.onSelect(model, getAdapterPosition());
+                    }
+                }
+            });
 
             tvTitle.setText(model.getName());
         }
@@ -126,8 +134,35 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         TaskModel model = mItems.get(position);
-            SimpleViewHolder holder = (SimpleViewHolder) viewHolder;
-            holder.onBindeViewHolder(model, listener);
+        SimpleViewHolder holder = (SimpleViewHolder) viewHolder;
+//        holder.onBindeViewHolder(model, listener);
+        if (model.isCompleted()) {
+            holder.ivCheck.setImageResource(R.drawable.icon_checkbox_selected);
+//            holder.ivCheck.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+            holder.tvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
+        } else {
+            holder.ivCheck.setImageResource(R.drawable.icon_checkbox_gray);
+            holder.tvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.colorgray));
+            if ((model.getDate().getTime() < new Date().getTime()) && (!model.isCompleted())) {
+                holder.ivCheck.setImageResource(R.drawable.icon_checkbox_red);
+                holder.tvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.colorRed));
+            }
+        }
+        holder.ivCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (listener != null) {
+                    listener.onSelect(model, position);
+                }
+                model.setCompleted(!model.isCompleted());
+                mItems.set(position, model);
+                notifyItemChanged(position);
+            }
+        });
+
+        holder.tvTitle.setText(model.getName());
+
     }
 
     public void addItem(int position, TaskModel model) {

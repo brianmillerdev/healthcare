@@ -18,6 +18,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -122,7 +123,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         newUser.put("lastName", lastName);
         newUser.put("fullName", String.format("%s %s", firstName, lastName));
         newUser.put("surgeryIds", new JSONArray());
-        newUser.put("completedIds", new JSONArray());
+        newUser.put("completedDict", new JSONObject());
+        newUser.put("surgeryDates", new JSONObject());
         hud.show();
         newUser.signUpInBackground(new SignUpCallback() {
             @Override

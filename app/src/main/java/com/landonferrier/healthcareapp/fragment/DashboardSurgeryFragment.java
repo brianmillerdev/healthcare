@@ -24,6 +24,7 @@ import com.landonferrier.healthcareapp.views.CustomFontTextView;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -52,7 +53,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DashboardSurgeryFragment extends BaseFragment {
+public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapter.OnItemSelectedListener {
     @BindView(R.id.btn_info)
     ImageView btnInfo;
     @BindView(R.id.btn_profile)
@@ -105,7 +106,7 @@ public class DashboardSurgeryFragment extends BaseFragment {
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider));
         rcTasks.addItemDecoration(dividerItemDecoration);
 
-        taskAdapter = new TaskAdapter(getContext(), taskModels);
+        taskAdapter = new TaskAdapter(getContext(), taskModels, this);
         rcTasks.setAdapter(taskAdapter);
 
         tvTaskTitle.setText(Utils.getFormattedDate(getContext(), showDate.getTime()));
@@ -218,15 +219,15 @@ public class DashboardSurgeryFragment extends BaseFragment {
                         getMedications();
                     }else{
                         isFetching = false;
-
+                        getMedications();
                     }
                 } else {
                     isFetching = false;
                     Log.d("score", "Error: " + e.getMessage());
+                    getMedications();
                 }
             }
         });
-        getMedications();
 
     }
 
@@ -268,8 +269,39 @@ public class DashboardSurgeryFragment extends BaseFragment {
 
     public void getMedications() {
         ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
-        reminderQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
-        reminderQuery.findInBackground(new FindCallback<ParseObject>() {
+        ParseQuery<ParseObject> pastReminderQuery = ParseQuery.getQuery("Reminder");
+        pastReminderQuery.whereLessThan("time", new Date());
+
+        if (ParseUser.getCurrentUser().get("completedDict") != null) {
+            JSONObject completedDict = ParseUser.getCurrentUser().getJSONObject("completedDict");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+            String dateString = dateFormat.format(showDate);
+            try {
+                if (completedDict.has(dateString) ) {
+                    JSONArray completedIds = completedDict.getJSONArray(dateString);
+                    ArrayList<String> ids = new ArrayList<>();
+                    for (int i = 0; i < completedIds.length(); i++) {
+                        ids.add(completedIds.getString(i));
+                    }
+                    pastReminderQuery.whereNotContainedIn("objectId", ids);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        ArrayList<ParseQuery<ParseObject>> queries = new ArrayList<>();
+        queries.add(reminderQuery);
+        queries.add(pastReminderQuery);
+
+        ParseQuery<ParseObject> combinedReminderQuery = ParseQuery.or(queries);
+
+        if (ParseUser.getCurrentUser().get("currentSurgeryId") != null) {
+            String surgeryId = ParseUser.getCurrentUser().getString("currentSurgeryId");
+            combinedReminderQuery.whereEqualTo("surgeryId", surgeryId);
+        }
+        combinedReminderQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+        combinedReminderQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
@@ -296,22 +328,29 @@ public class DashboardSurgeryFragment extends BaseFragment {
                                 taskModel.setName(string);
                                 taskModel.setIndex(0);
                                 String taskId = reminder.getObjectId();
-
-                                if (ParseUser.getCurrentUser().get("completedIds") != null) {
-                                    JSONArray ids = ParseUser.getCurrentUser().getJSONArray("completedIds");
-                                    int ii = taskModel.getIndex();
-                                    for (int j = 0; j < ids.length(); j++) {
-                                        try {
-                                            if (ids.getString(j).equals(taskId)) {
+                                try {
+                                    if (ParseUser.getCurrentUser().get("completedDict") != null) {
+                                        JSONObject completedDict = ParseUser.getCurrentUser().getJSONObject("completedDict");
+                                        SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+                                        String ds = df.format(showDate);
+                                        if (completedDict.has(ds)) {
+                                            JSONArray completedIds = null;
+                                            completedIds = completedDict.getJSONArray(ds);
+                                            ArrayList<String> ids = new ArrayList<>();
+                                            for (int i = 0; i < completedIds.length(); i++) {
+                                                ids.add(completedIds.getString(i));
+                                            }
+                                            if (ids.contains(taskId)) {
                                                 taskModel.setCompleted(true);
                                             }
-                                        } catch (JSONException e1) {
-                                            e1.printStackTrace();
+
                                         }
                                     }
 
-
+                                } catch (JSONException e1) {
+                                    e1.printStackTrace();
                                 }
+
                                 taskModels.add(taskModel);
                             }
                         }
@@ -340,9 +379,12 @@ public class DashboardSurgeryFragment extends BaseFragment {
                                                             String hourString = datehourFormat.format(timeDate);
                                                             SimpleDateFormat dateminFormat = new SimpleDateFormat("mm");
                                                             String minString = dateminFormat.format(timeDate);
+                                                            SimpleDateFormat apm = new SimpleDateFormat("a");
+                                                            String apmString = apm.format(timeDate);
                                                             Calendar calendar = Calendar.getInstance();
                                                             calendar.set(Calendar.HOUR, Integer.parseInt(hourString));
                                                             calendar.set(Calendar.MINUTE, Integer.parseInt(minString));
+                                                            calendar.set(Calendar.AM_PM, (apmString.equals("AM") ? Calendar.AM : Calendar.PM));
                                                             Date newDate = calendar.getTime();
                                                             TaskModel taskModel = new TaskModel();
                                                             taskModel.setCompleted(false);
@@ -353,17 +395,24 @@ public class DashboardSurgeryFragment extends BaseFragment {
                                                             taskModel.setIndex(index);
                                                             String taskId = medication.getObjectId();
 
-                                                            if (ParseUser.getCurrentUser().get("completedIds") != null) {
-                                                                JSONArray ids = ParseUser.getCurrentUser().getJSONArray("completedIds");
-                                                                int ii = taskModel.getIndex();
-                                                                for (int j = 0; j < ids.length(); j++) {
-                                                                    if (ids.getString(j).equals(String.format("%s-%s", taskId, ii))) {
+                                                            if (ParseUser.getCurrentUser().get("completedDict") != null) {
+                                                                JSONObject completedDict = ParseUser.getCurrentUser().getJSONObject("completedDict");
+                                                                SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+                                                                String ds = df.format(showDate);
+                                                                if (completedDict.has(ds)) {
+                                                                    JSONArray completedIds = completedDict.getJSONArray(ds);
+                                                                    ArrayList<String> ids = new ArrayList<>();
+                                                                    for (int j = 0; j < completedIds.length(); j++) {
+                                                                        ids.add(completedIds.getString(j));
+                                                                    }
+                                                                    int ii = taskModel.getIndex();
+                                                                    if (ids.contains(String.format("%s-%s", taskId, ii))) {
                                                                         taskModel.setCompleted(true);
                                                                     }
+
                                                                 }
-
-
                                                             }
+
                                                             taskModels.add(taskModel);
 
                                                         } catch (java.text.ParseException e1) {
@@ -376,9 +425,12 @@ public class DashboardSurgeryFragment extends BaseFragment {
                                                                 String hourString = datehourFormat.format(timeDate);
                                                                 SimpleDateFormat dateminFormat = new SimpleDateFormat("mm");
                                                                 String minString = dateminFormat.format(timeDate);
+                                                                SimpleDateFormat apm = new SimpleDateFormat("a");
+                                                                String apmString = apm.format(timeDate);
                                                                 Calendar calendar = Calendar.getInstance();
                                                                 calendar.set(Calendar.HOUR, Integer.parseInt(hourString));
                                                                 calendar.set(Calendar.MINUTE, Integer.parseInt(minString));
+                                                                calendar.set(Calendar.AM_PM, (apmString.equals("AM") ? Calendar.AM : Calendar.PM));
                                                                 Date newDate = calendar.getTime();
                                                                 TaskModel taskModel = new TaskModel();
                                                                 taskModel.setCompleted(false);
@@ -463,5 +515,58 @@ public class DashboardSurgeryFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onEdit(TaskModel object, int position) {
 
+    }
+
+    @Override
+    public void onDelete(TaskModel object, int position) {
+
+    }
+
+    @Override
+    public void onSelect(TaskModel object, int position) {
+        if (ParseUser.getCurrentUser().get("completedDict") != null) {
+            String taskId = object.getId();
+            if (!object.isReminder()) {
+                taskId = String.format("%s-%s", taskId, object.getIndex());
+            }
+            JSONObject completedDict = ParseUser.getCurrentUser().getJSONObject("completedDict");
+            SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+            String ds = df.format(showDate);
+            try {
+                if (completedDict.has(ds)) {
+                    JSONArray completedIds = null;
+                    completedIds = completedDict.getJSONArray(ds);
+                    ArrayList<String> ids = new ArrayList<>();
+                    for (int j = 0; j < completedIds.length(); j++) {
+                        ids.add(completedIds.getString(j));
+                    }
+                    if (ids.contains(taskId)) {
+                        ids.remove(taskId);
+                    }else{
+                        ids.add(taskId);
+                    }
+                    JSONArray newArr = new JSONArray();
+                    for (String str : ids) {
+                        newArr.put(str);
+                    }
+                    completedDict.put(ds, newArr);
+                }else{
+                    JSONArray newArr = new JSONArray();
+                    newArr.put(taskId);
+                    completedDict.put(ds, newArr);
+                }
+                ParseUser.getCurrentUser().put("completedDict", completedDict);
+                ParseUser.getCurrentUser().saveInBackground();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+    }
 }
