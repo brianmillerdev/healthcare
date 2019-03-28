@@ -76,6 +76,7 @@
                     android:textSize="16sp"
                     android:textCursorDrawable="@drawable/cursor"
                     android:gravity="top"
+                    android:inputType="textCapSentences"
                     android:background="@drawable/bg_edittext"
                     android:layout_marginTop="48dp"
                     android:layout_marginStart="16dp"

@@ -100,11 +100,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @BindView(R.id.tv_remove_surgery)
     public CustomFontTextView tvRemoveSurgery;
+    @BindView(R.id.tv_change_surgery_date)
+    public CustomFontTextView tvChangeSurgeryDate;
     byte[] selecteBytes;
     boolean isImageSelected = false;
 
     KProgressHUD hud;
-
+    String surgeryId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +127,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         tvChangeCurrentSurgery.setOnClickListener(this);
         tvRemoveSurgery.setOnClickListener(this);
         tvCurrentSurgeryName.setOnClickListener(this);
+        tvChangeSurgeryDate.setOnClickListener(this);
         initView();
         EventBus.getDefault().register(this);
     }
@@ -139,17 +142,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     public void onEventMainThread(EventPush event) {
         if (event.getMessage().equals("updateCurrentSurgery")) {
             initView();
+        }else if (event.getMessage().equals("updateSurgery")) {
+            initView();
         }
     }
 
 
     public void initView() {
         ParseUser currentUser = ParseUser.getCurrentUser();
-        JSONArray surgeruies = currentUser.getJSONArray("surgeryIds");
-        assert surgeruies != null;
-        if (surgeruies.length() > 0) {
+//        JSONArray surgeruies = currentUser.getJSONArray("surgeryIds");
+//        assert surgeruies != null;
+//        if (surgeruies.length() > 0) {
+        if (currentUser.has("currentSurgeryId")) {
             viewCurrentSurgery.setVisibility(View.VISIBLE);
-            String surgeryId = currentUser.getString("currentSurgeryId");
+            surgeryId = currentUser.getString("currentSurgeryId");
             ParseObject surgery = ParseObject.createWithoutData("Surgery", surgeryId);
             if (hud != null) {
                 if (!hud.isShowing()) {
@@ -178,24 +184,25 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                                     String dateString = format1.format(date);
                                     tvCurrentSugeryDate.setText(String.format("Scheduled for %s.", dateString));
                                     tvCurrentSugeryDate.setVisibility(View.VISIBLE);
+                                    tvChangeSurgeryDate.setVisibility(View.VISIBLE);
+
                                 } catch (JSONException e1) {
                                     e1.printStackTrace();
                                 } catch (java.text.ParseException e2) {
                                     e2.printStackTrace();
                                 }
-                            }else{
+                            } else {
                                 tvCurrentSugeryDate.setVisibility(View.GONE);
                             }
-                        }else{
+                        } else {
                             tvCurrentSugeryDate.setVisibility(View.GONE);
                         }
 
-                    }else{
+                    } else {
                         Log.e("error", e.getLocalizedMessage());
                     }
                 }
             });
-
         }else{
             viewCurrentSurgery.setVisibility(View.GONE);
         }
@@ -268,6 +275,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 changeSurgery.putExtra("type", "change");
                 startActivityForResult(changeSurgery, 300);
                 break;
+            case R.id.tv_change_surgery_date:
+                Intent changeDate = new Intent(ProfileActivity.this, SurgeryDateActivity.class);
+                changeDate.putExtra("id", surgeryId);
+                changeDate.putExtra("name", tvCurrentSurgeryName.getText().toString());
+                startActivityForResult(changeDate, 300);
+                break;
             case R.id.tv_remove_surgery:
                 Intent deleteSurgery = new Intent(ProfileActivity.this, ChangeRemoveSurgeryActivity.class);
                 deleteSurgery.putExtra("type", "remove");
@@ -294,6 +307,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 300) {
             if (resultCode == RESULT_OK) {
+
                 finish();
             }
         }else{

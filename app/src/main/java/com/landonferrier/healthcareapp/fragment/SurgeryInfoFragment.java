@@ -24,6 +24,7 @@ import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -155,29 +156,31 @@ public class SurgeryInfoFragment extends BaseFragment implements SurgeryInfoAdap
         tvName.setText("");
         tvDate.setText("");
         JSONArray ids = ParseUser.getCurrentUser().getJSONArray("surgeryIds");
-        if (ids.length() > 0) {
-            try {
-                String surgeryId = ids.getString(0);
-                surgery = ParseObject.createWithoutData("Surgery", surgeryId);
-                surgery.fetchInBackground(new GetCallback<ParseObject>() {
-                    @Override
-                    public void done(ParseObject object, ParseException e) {
-                        if (hud != null) {
-                            if (hud.isShowing()) {
-                                hud.dismiss();
-                            }
-                        }
-                        if (e == null) {
-                            rcInfo.setAdapter(mAdapter);
-                            updateHeader();
-                        }else{
-                            Log.e("error", e.getLocalizedMessage());
+        if (ids.length() > 0){
+            String surgeryId = "";
+            if (ParseUser.getCurrentUser().has("currentSurgeryId")) {
+                surgeryId = ParseUser.getCurrentUser().getString("currentSurgeryId");
+            }
+            if (surgeryId.equals("")) {
+                return;
+            }
+            surgery = ParseObject.createWithoutData("Surgery", surgeryId);
+            surgery.fetchInBackground(new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject object, ParseException e) {
+                    if (hud != null) {
+                        if (hud.isShowing()) {
+                            hud.dismiss();
                         }
                     }
-                });
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+                    if (e == null) {
+                        rcInfo.setAdapter(mAdapter);
+                        updateHeader();
+                    }else{
+                        Log.e("error", e.getLocalizedMessage());
+                    }
+                }
+            });
         }
     }
 

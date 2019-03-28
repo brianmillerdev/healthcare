@@ -30,7 +30,9 @@ public class SplashActivity extends AppCompatActivity {
                             @Override
                             public void done(ParseObject object, ParseException e) {
                                 if (e == null) {
-                                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                                    Intent intent = new Intent(SplashActivity.this, MainDrawerActivity.class);
+                                    startActivity(intent);
+//                                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                     finish();
                                 }else{
                                     startActivity(new Intent(SplashActivity.this, RegisterActivity.class));

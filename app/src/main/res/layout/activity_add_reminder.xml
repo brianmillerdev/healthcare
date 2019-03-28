@@ -109,7 +109,7 @@
             app:font_style="bold"
             android:textSize="18sp"
             android:textAllCaps="true"
-            android:text="@string/add_remimder"/>
+            android:text="@string/add_reminder"/>
 
     </RelativeLayout>
 

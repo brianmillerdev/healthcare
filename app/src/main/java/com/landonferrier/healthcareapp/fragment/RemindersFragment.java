@@ -44,8 +44,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RemindersFragment extends BaseFragment implements RemindersAdapter.OnItemSelectedListener {
-    @BindView(R.id.btn_add)
-    ImageView btnAdd;
     @BindView(R.id.rc_reminders)
     SlidingItemMenuRecyclerView rcReminders;
 
@@ -91,19 +89,19 @@ public class RemindersFragment extends BaseFragment implements RemindersAdapter.
 
     @SuppressLint("DefaultLocale")
     public void initView() {
-        btnAdd.setOnClickListener(this);
+//        btnAdd.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()) {
-            case R.id.btn_add:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), AddReminderActivity.class));
-                break;
-
-        }
+//        switch (v.getId()) {
+//            case R.id.btn_add:
+//                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), AddReminderActivity.class));
+//                break;
+//
+//        }
     }
     @Override
     public void onAttach(Context context) {
@@ -142,6 +140,10 @@ public class RemindersFragment extends BaseFragment implements RemindersAdapter.
         }
         ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
         reminderQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+        if (ParseUser.getCurrentUser().get("currentSurgeryId") != null) {
+            String surgeryID = ParseUser.getCurrentUser().getString("currentSurgeryId");
+            reminderQuery.whereEqualTo("surgeryId", surgeryID);
+        }
         reminderQuery.orderByDescending("time");
         reminderQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override

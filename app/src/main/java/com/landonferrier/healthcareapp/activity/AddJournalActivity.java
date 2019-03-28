@@ -365,7 +365,10 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onSelect(int position) {
-
+        Uri object =  photos.get(position);
+        Intent intent = new Intent(AddJournalActivity.this, ImageViewActivity.class);
+        intent.putExtra("image", object.toString());
+        startActivity(intent);
     }
 
     @Override

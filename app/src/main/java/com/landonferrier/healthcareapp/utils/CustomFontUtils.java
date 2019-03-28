@@ -26,13 +26,25 @@ public class CustomFontUtils {
 
     private static Typeface selectTypeface(Context context, String fontStyle) {
         if (fontStyle.equals("bold")){
-            return FontCache.getTypeface("Lato-Bold.ttf", context);
+            return FontCache.getTypeface("SFProText-Bold.ttf", context);
+        }
+
+        if (fontStyle.equals("medium")){
+            return FontCache.getTypeface("SFProText-Medium.ttf", context);
+        }
+
+        if (fontStyle.equals("semi")){
+            return FontCache.getTypeface("SFProText-Semibold.ttf", context);
+        }
+
+        if (fontStyle.equals("light")){
+            return FontCache.getTypeface("SFProText-Light.ttf", context);
         }
 
         if (fontStyle.equals("regular")){
-            return FontCache.getTypeface("Lato-Regular.ttf", context);
+            return FontCache.getTypeface("SFProText-Regular.ttf", context);
         }
 
-        return FontCache.getTypeface("Lato-Regular.ttf", context);
+        return FontCache.getTypeface("SFProText-Regular.ttf", context);
     }
 }

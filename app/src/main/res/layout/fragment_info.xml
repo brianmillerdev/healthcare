@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainActivity"
+    android:background="@color/colorBackground">
 
 
     <LinearLayout
@@ -46,22 +47,5 @@
         android:layout_height="match_parent"/>
 
 
-    <RelativeLayout
-        android:id="@+id/top_bar"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/bg_action_bar">
-
-        <com.landonferrier.healthcareapp.views.CustomFontTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@color/colorWhite"
-            app:font_style="bold"
-            android:textSize="18sp"
-            android:textAllCaps="true"
-            android:text="@string/surgery_info"/>
-
-    </RelativeLayout>
 
 </RelativeLayout>

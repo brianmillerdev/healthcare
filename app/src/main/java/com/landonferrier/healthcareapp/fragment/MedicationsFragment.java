@@ -46,8 +46,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MedicationsFragment extends BaseFragment implements MedicationAdapter.OnItemSelectedListener {
-    @BindView(R.id.btn_add)
-    ImageView btnAdd;
     @BindView(R.id.rc_medications)
     SlidingItemMenuRecyclerView rcMedications;
 
@@ -91,7 +89,7 @@ public class MedicationsFragment extends BaseFragment implements MedicationAdapt
 
     @SuppressLint("DefaultLocale")
     public void initView() {
-        btnAdd.setOnClickListener(this);
+//        btnAdd.setOnClickListener(this);
     }
 
     public void fetchMedications() {
@@ -123,12 +121,12 @@ public class MedicationsFragment extends BaseFragment implements MedicationAdapt
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()) {
-            case R.id.btn_add:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), AddMedicationActivity.class));
-                break;
-
-        }
+//        switch (v.getId()) {
+//            case R.id.btn_add:
+//                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), AddMedicationActivity.class));
+//                break;
+//
+//        }
     }
     @Override
     public void onAttach(Context context) {

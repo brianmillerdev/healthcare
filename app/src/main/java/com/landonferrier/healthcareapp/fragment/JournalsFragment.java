@@ -47,8 +47,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class JournalsFragment extends BaseFragment implements JournalsAdapter.OnItemSelectedListener {
-    @BindView(R.id.btn_add)
-    ImageView btnAdd;
     @BindView(R.id.rc_journals)
     SlidingItemMenuRecyclerView rcJournals;
 
@@ -95,19 +93,19 @@ public class JournalsFragment extends BaseFragment implements JournalsAdapter.On
 
     @SuppressLint("DefaultLocale")
     public void initView() {
-        btnAdd.setOnClickListener(this);
+//        btnAdd.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()) {
-            case R.id.btn_add:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), AddJournalActivity.class));
-                break;
-
-        }
+//        switch (v.getId()) {
+//            case R.id.btn_add:
+//                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), AddJournalActivity.class));
+//                break;
+//
+//        }
     }
     @Override
     public void onAttach(Context context) {
@@ -145,6 +143,10 @@ public class JournalsFragment extends BaseFragment implements JournalsAdapter.On
         }
         ParseQuery<ParseObject> journalsQuery = ParseQuery.getQuery("Journal");
         journalsQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+        if (ParseUser.getCurrentUser().get("currentSurgeryId") != null) {
+            String surgeryID = ParseUser.getCurrentUser().getString("currentSurgeryId");
+            journalsQuery.whereEqualTo("surgeryId", surgeryID);
+        }
         journalsQuery.orderByDescending("createdAt");
         journalsQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override

@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import ozaydin.serkan.com.image_zoom_view.ImageViewZoom;
+import ozaydin.serkan.com.image_zoom_view.ImageViewZoomConfig;
 
 public class PhotosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static Context mContext;
@@ -82,6 +84,14 @@ public class PhotosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                         listener.onDelete(getAdapterPosition());
                 }
             });
+            imvPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onSelect(getAdapterPosition());
+                    }
+                }
+            });
         }
 
     }
@@ -101,6 +111,17 @@ public class PhotosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             cardView = (CardView) view.findViewById(R.id.cardView);
             imvPhoto = (ImageView) view.findViewById(R.id.imv_photo);
             btnDelete = (ImageView) view.findViewById(R.id.btn_delete);
+
+//            imvPhoto.getBase64();
+//            // ImageViewZoomConfig
+//            ImageViewZoomConfig imageViewZoomConfig=new ImageViewZoomConfig();
+//            imageViewZoomConfig.saveProperty(true);
+//
+//            // OnlyDialog Enum work only user when click to save choose
+//            // Always Enum work when use saveImage() method and user when click to save choose
+//            ImageViewZoomConfig.ImageViewZoomConfigSaveMethod imageViewZoomConfigSaveMethod= ImageViewZoomConfig.ImageViewZoomConfigSaveMethod.always;
+//            imageViewZoomConfig.setImageViewZoomConfigSaveMethod(imageViewZoomConfigSaveMethod);
+//            imvPhoto.setConfig(imageViewZoomConfig);
         }
 
         public void onBindeViewHolder(OnItemSelectedListener listener) {

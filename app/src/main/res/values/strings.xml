@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">A-OK</string>
+    <string name="nothing"></string>
 
     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
 
@@ -57,9 +58,11 @@
     <string name="remove_surgery">Remove Surgery</string>
     <string name="change_current_surgery">Change Current Surgery</string>
     <string name="add_new_surgery">Add New Surgery</string>
-    <string name="add_remimder">Add Remimder</string>
+    <string name="add_reminder">Add Reminder</string>
     <string name="edit_medication">Edit Medication</string>
     <string name="journal_etry">Journal Entry</string>
-    <string name="reminder_details">Remimder Details</string>
+    <string name="reminder_details">Reminder Details</string>
+    <string name="image">Image</string>
+    <string name="change_surgery_date">Change Surgery Date</string>
 
 </resources>

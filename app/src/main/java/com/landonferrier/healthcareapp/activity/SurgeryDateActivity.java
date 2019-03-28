@@ -136,6 +136,7 @@ public class SurgeryDateActivity extends AppCompatActivity implements View.OnCli
                         @Override
                         public void done(ParseObject object, ParseException e) {
                             hud.dismiss();
+                            EventBus.getDefault().post(new EventPush("updateCurrentSurgery", "Surgery"));
                             setResult(RESULT_OK);
                             finish();
                         }

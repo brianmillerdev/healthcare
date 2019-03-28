@@ -117,6 +117,17 @@
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"/>
 
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:id="@+id/tv_change_surgery_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:font_style="bold"
+                android:text="@string/change_surgery_date"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+
 
 
         </LinearLayout>

@@ -54,10 +54,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapter.OnItemSelectedListener {
-    @BindView(R.id.btn_info)
-    ImageView btnInfo;
-    @BindView(R.id.btn_profile)
-    ImageView btnProfile;
     @BindView(R.id.tv_surgery_name)
     CustomFontTextView tvSurgeryName;
     @BindView(R.id.tv_surgery_date)
@@ -99,8 +95,6 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
         btnLeft.setOnClickListener(this);
         btnRight.setOnClickListener(this);
         viewCurrentSurgery.setOnClickListener(this);
-        btnInfo.setOnClickListener(this);
-        btnProfile.setOnClickListener(this);
         rcTasks.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider));
@@ -176,12 +170,12 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
-            case R.id.btn_info:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), HelpActivity.class));
-                break;
-            case R.id.btn_profile:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), ProfileActivity.class));
-                break;
+//            case R.id.btn_info:
+//                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), HelpActivity.class));
+//                break;
+//            case R.id.btn_profile:
+//                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), ProfileActivity.class));
+//                break;
             case R.id.btn_left_arrow:
                 fintPreviousDate();
                 break;
@@ -198,6 +192,9 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
     public void fintPreviousDate() {
         if (isFetching) {
             return;
+        }
+        if (!hud.isShowing()) {
+            hud.show();
         }
         isFetching = true;
         ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
@@ -235,6 +232,9 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
         if (isFetching) {
             return;
         }
+        if (!hud.isShowing()) {
+            hud.show();
+        }
         isFetching = true;
         ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
         reminderQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
@@ -255,11 +255,12 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
                         getMedications();
                     }else{
                         isFetching = false;
-
+                        getMedications();
                     }
                 } else {
                     isFetching = false;
                     Log.d("score", "Error: " + e.getMessage());
+                    getMedications();
                 }
             }
         });
@@ -286,6 +287,9 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
                     pastReminderQuery.whereNotContainedIn("objectId", ids);
                 }
             } catch (JSONException e) {
+                if (hud.isShowing()) {
+                    hud.dismiss();
+                }
                 e.printStackTrace();
             }
         }
@@ -306,8 +310,8 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
                     Log.d("score", "Retrieved " + objects.size() + " scores");
+                    taskModels.clear();
                     if (objects.size() > 0) {
-                        taskModels.clear();
                         for (ParseObject reminder : objects) {
                             Date remindDate = reminder.getDate("time");
                             boolean complted  = reminder.getBoolean("complete");
@@ -349,31 +353,86 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
 
                                 } catch (JSONException e1) {
                                     e1.printStackTrace();
+                                    if (hud.isShowing()) {
+                                        hud.dismiss();
+                                    }
                                 }
 
                                 taskModels.add(taskModel);
                             }
                         }
-                        if (Utils.isSameDay(showDate, new Date())){
-                            ParseQuery<ParseObject> medicationQuery = ParseQuery.getQuery("Medication");
-                            medicationQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
-                            medicationQuery.findInBackground(new FindCallback<ParseObject>() {
-                                @Override
-                                public void done(List<ParseObject> objects, ParseException e) {
-                                    if (e == null) {
-                                        Log.d("score", "Retrieved " + objects.size() + " scores");
-                                        if (objects.size() > 0) {
-                                            for (ParseObject medication : objects) {
-                                                JSONArray medicationTimes = medication.getJSONArray("times");
-                                                String medicationName = medication.getString("name");
-                                                int index = 0;
-                                                for (int i = 0; i < medicationTimes.length(); i++) {
-                                                    index = index + 1;
+                    }else{
+                        isFetching = false;
+                    }
+                    if (Utils.isSameDay(showDate, new Date())){
+                        ParseQuery<ParseObject> medicationQuery = ParseQuery.getQuery("Medication");
+                        medicationQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+                        medicationQuery.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> objects, ParseException e) {
+                                if (e == null) {
+                                    Log.d("score", "Retrieved " + objects.size() + " scores");
+                                    if (objects.size() > 0) {
+                                        for (ParseObject medication : objects) {
+                                            JSONArray medicationTimes = medication.getJSONArray("times");
+                                            String medicationName = medication.getString("name");
+                                            int index = 0;
+                                            for (int i = 0; i < medicationTimes.length(); i++) {
+                                                index = index + 1;
+                                                try {
+                                                    String time = medicationTimes.getString(i);
+                                                    SimpleDateFormat dateFormat = new SimpleDateFormat("h:mma");
                                                     try {
-                                                        String time = medicationTimes.getString(i);
-                                                        SimpleDateFormat dateFormat = new SimpleDateFormat("h:mma");
+                                                        Date timeDate = dateFormat.parse(time);
+                                                        String string = String.format("%s - %s", time, medicationName);
+                                                        SimpleDateFormat datehourFormat = new SimpleDateFormat("h");
+                                                        String hourString = datehourFormat.format(timeDate);
+                                                        SimpleDateFormat dateminFormat = new SimpleDateFormat("mm");
+                                                        String minString = dateminFormat.format(timeDate);
+                                                        SimpleDateFormat apm = new SimpleDateFormat("a");
+                                                        String apmString = apm.format(timeDate);
+                                                        Calendar calendar = Calendar.getInstance();
+                                                        calendar.set(Calendar.HOUR, Integer.parseInt(hourString));
+                                                        calendar.set(Calendar.MINUTE, Integer.parseInt(minString));
+                                                        calendar.set(Calendar.AM_PM, (apmString.equals("AM") ? Calendar.AM : Calendar.PM));
+                                                        Date newDate = calendar.getTime();
+                                                        TaskModel taskModel = new TaskModel();
+                                                        taskModel.setCompleted(false);
+                                                        taskModel.setDate(newDate);
+                                                        taskModel.setId(medication.getObjectId());
+                                                        taskModel.setReminder(true);
+                                                        taskModel.setName(string);
+                                                        taskModel.setIndex(index);
+                                                        String taskId = medication.getObjectId();
+
+                                                        if (ParseUser.getCurrentUser().get("completedDict") != null) {
+                                                            JSONObject completedDict = ParseUser.getCurrentUser().getJSONObject("completedDict");
+                                                            SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+                                                            String ds = df.format(showDate);
+                                                            if (completedDict.has(ds)) {
+                                                                JSONArray completedIds = completedDict.getJSONArray(ds);
+                                                                ArrayList<String> ids = new ArrayList<>();
+                                                                for (int j = 0; j < completedIds.length(); j++) {
+                                                                    ids.add(completedIds.getString(j));
+                                                                }
+                                                                int ii = taskModel.getIndex();
+                                                                if (ids.contains(String.format("%s-%s", taskId, ii))) {
+                                                                    taskModel.setCompleted(true);
+                                                                }
+
+                                                            }
+                                                        }
+
+                                                        taskModels.add(taskModel);
+
+                                                    } catch (java.text.ParseException e1) {
+                                                        if (hud.isShowing()) {
+                                                            hud.dismiss();
+                                                        }
+                                                        e1.printStackTrace();
+                                                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("h:mm a");
                                                         try {
-                                                            Date timeDate = dateFormat.parse(time);
+                                                            Date timeDate = dateFormat1.parse(time);
                                                             String string = String.format("%s - %s", time, medicationName);
                                                             SimpleDateFormat datehourFormat = new SimpleDateFormat("h");
                                                             String hourString = datehourFormat.format(timeDate);
@@ -392,95 +451,62 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
                                                             taskModel.setId(medication.getObjectId());
                                                             taskModel.setReminder(true);
                                                             taskModel.setName(string);
-                                                            taskModel.setIndex(index);
-                                                            String taskId = medication.getObjectId();
-
-                                                            if (ParseUser.getCurrentUser().get("completedDict") != null) {
-                                                                JSONObject completedDict = ParseUser.getCurrentUser().getJSONObject("completedDict");
-                                                                SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-                                                                String ds = df.format(showDate);
-                                                                if (completedDict.has(ds)) {
-                                                                    JSONArray completedIds = completedDict.getJSONArray(ds);
-                                                                    ArrayList<String> ids = new ArrayList<>();
-                                                                    for (int j = 0; j < completedIds.length(); j++) {
-                                                                        ids.add(completedIds.getString(j));
-                                                                    }
-                                                                    int ii = taskModel.getIndex();
-                                                                    if (ids.contains(String.format("%s-%s", taskId, ii))) {
-                                                                        taskModel.setCompleted(true);
-                                                                    }
-
-                                                                }
-                                                            }
-
+                                                            taskModel.setIndex(0);
                                                             taskModels.add(taskModel);
-
-                                                        } catch (java.text.ParseException e1) {
-                                                            e1.printStackTrace();
-                                                            SimpleDateFormat dateFormat1 = new SimpleDateFormat("h:mm a");
-                                                            try {
-                                                                Date timeDate = dateFormat1.parse(time);
-                                                                String string = String.format("%s - %s", time, medicationName);
-                                                                SimpleDateFormat datehourFormat = new SimpleDateFormat("h");
-                                                                String hourString = datehourFormat.format(timeDate);
-                                                                SimpleDateFormat dateminFormat = new SimpleDateFormat("mm");
-                                                                String minString = dateminFormat.format(timeDate);
-                                                                SimpleDateFormat apm = new SimpleDateFormat("a");
-                                                                String apmString = apm.format(timeDate);
-                                                                Calendar calendar = Calendar.getInstance();
-                                                                calendar.set(Calendar.HOUR, Integer.parseInt(hourString));
-                                                                calendar.set(Calendar.MINUTE, Integer.parseInt(minString));
-                                                                calendar.set(Calendar.AM_PM, (apmString.equals("AM") ? Calendar.AM : Calendar.PM));
-                                                                Date newDate = calendar.getTime();
-                                                                TaskModel taskModel = new TaskModel();
-                                                                taskModel.setCompleted(false);
-                                                                taskModel.setDate(newDate);
-                                                                taskModel.setId(medication.getObjectId());
-                                                                taskModel.setReminder(true);
-                                                                taskModel.setName(string);
-                                                                taskModel.setIndex(0);
-                                                                taskModels.add(taskModel);
-                                                            } catch (java.text.ParseException e2) {
-                                                                e2.printStackTrace();
-
+                                                        } catch (java.text.ParseException e2) {
+                                                            if (hud.isShowing()) {
+                                                                hud.dismiss();
                                                             }
+                                                            e2.printStackTrace();
 
                                                         }
 
-                                                    } catch (JSONException e1) {
-                                                        e1.printStackTrace();
                                                     }
+
+                                                } catch (JSONException e1) {
+                                                    if (hud.isShowing()) {
+                                                        hud.dismiss();
+                                                    }
+                                                    e1.printStackTrace();
                                                 }
                                             }
-                                            isFetching = false;
-                                            Collections.sort(taskModels, new Utils.CustomComparator());
-                                            taskAdapter.setmItems(taskModels);
-
-                                        }else{
-                                            isFetching = false;
-                                            Collections.sort(taskModels, new Utils.CustomComparator());
-                                            taskAdapter.setmItems(taskModels);
                                         }
-
-                                    } else {
                                         isFetching = false;
-                                        Log.d("score", "Error: " + e.getMessage());
-                                    }
-                                }
-                            });
+                                        Collections.sort(taskModels, new Utils.CustomComparator());
+                                        taskAdapter.setmItems(taskModels);
 
-                        }else{
-                            isFetching = false;
-                            Collections.sort(taskModels, new Utils.CustomComparator());
-                            taskAdapter.setmItems(taskModels);
-                        }
+                                    }else{
+                                        isFetching = false;
+                                        Collections.sort(taskModels, new Utils.CustomComparator());
+                                        taskAdapter.setmItems(taskModels);
+                                    }
+
+                                } else {
+                                    isFetching = false;
+                                    Log.d("score", "Error: " + e.getMessage());
+                                }
+                                if (hud.isShowing()) {
+                                    hud.dismiss();
+                                }
+
+                            }
+                        });
 
                     }else{
                         isFetching = false;
+                        Collections.sort(taskModels, new Utils.CustomComparator());
+                        taskAdapter.setmItems(taskModels);
                     }
+                    if (hud.isShowing()) {
+                        hud.dismiss();
+                    }
+
                 } else {
                     isFetching = false;
                     Log.d("score", "Error: " + e.getMessage());
+                    if (hud.isShowing()) {
+                        hud.dismiss();
+                    }
                 }
             }
         });

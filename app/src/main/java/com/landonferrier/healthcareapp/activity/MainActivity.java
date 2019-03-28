@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public HomeViewPagerAdapter homeViewPagerAdapter;
     public DashboardPagerAdapter dashboardPagerAdapter;
     MenuItem prevMenuItem;
+    public static int previousCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,20 +52,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateViewPager() {
         if (Objects.requireNonNull(ParseUser.getCurrentUser().getJSONArray("surgeryIds")).length() > 0) {
-            bnve.getMenu().clear();
-            bnve.inflateMenu(R.menu.navigation);
-            dashboardPagerAdapter = new DashboardPagerAdapter(getSupportFragmentManager());
-            viewPager.setAdapter(dashboardPagerAdapter);
-            viewPager.setOffscreenPageLimit(5);
+            if (previousCount != 5) {
+                bnve.getMenu().clear();
+                bnve.inflateMenu(R.menu.navigation);
+                dashboardPagerAdapter = new DashboardPagerAdapter(getSupportFragmentManager());
+                viewPager.setAdapter(dashboardPagerAdapter);
+                viewPager.setOffscreenPageLimit(5);
+                previousCount = 5;
+            }
         }else{
-            bnve.getMenu().clear();
-            bnve.inflateMenu(R.menu.navigation_init);
-            homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager());
-            viewPager.setAdapter(homeViewPagerAdapter);
-            viewPager.setOffscreenPageLimit(3);
+            if (previousCount != 3) {
+                bnve.getMenu().clear();
+                bnve.inflateMenu(R.menu.navigation_init);
+                homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager());
+                viewPager.setAdapter(homeViewPagerAdapter);
+                viewPager.setOffscreenPageLimit(3);
+                previousCount = 3;
+            }
         }
 
-        viewPager.setCurrentItem(0);
+        viewPager.setCurrentItem(0, false);
+        if (prevMenuItem != null)
+            prevMenuItem.setChecked(false);
+        else
+            bnve.getMenu().getItem(0).setChecked(false);
+
+        bnve.getMenu().getItem(0).setChecked(true);
+        prevMenuItem = bnve.getMenu().getItem(0);
     }
     private void setUpViewPager() {
 
@@ -79,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 if (prevMenuItem != null)
                     prevMenuItem.setChecked(false);
                 else
-                    bnve.getMenu().getItem(0).setChecked(false);
+                    bnve.getMenu().getItem(position).setChecked(false);
 
                 bnve.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = bnve.getMenu().getItem(position);

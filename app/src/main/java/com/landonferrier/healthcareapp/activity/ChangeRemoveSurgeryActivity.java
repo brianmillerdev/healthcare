@@ -217,7 +217,7 @@ public class ChangeRemoveSurgeryActivity extends AppCompatActivity implements Vi
                                                 hud.dismiss();
                                             }
                                             if (e == null) {
-                                                EventBus.getDefault().post(new EventPush("updateSurgery", "Surgery"));
+                                                EventBus.getDefault().post(new EventPush("updateCurrentSurgery", "Surgery"));
                                                 finish();
                                             }else{
                                                 Toast.makeText(ChangeRemoveSurgeryActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();

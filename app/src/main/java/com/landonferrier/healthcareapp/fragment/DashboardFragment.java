@@ -34,10 +34,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DashboardFragment extends BaseFragment {
-    @BindView(R.id.btn_info)
-    ImageView btnInfo;
-    @BindView(R.id.btn_profile)
-    ImageView btnProfile;
+//    @BindView(R.id.btn_info)
+//    ImageView btnInfo;
+//    @BindView(R.id.btn_profile)
+//    ImageView btnProfile;
     @BindView(R.id.btn_find_surgery)
     CustomFontTextView btnFindSurgery;
 
@@ -67,8 +67,6 @@ public class DashboardFragment extends BaseFragment {
     @SuppressLint("DefaultLocale")
     public void initView() {
         btnFindSurgery.setOnClickListener(this);
-        btnInfo.setOnClickListener(this);
-        btnProfile.setOnClickListener(this);
     }
 
 
@@ -76,13 +74,13 @@ public class DashboardFragment extends BaseFragment {
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
-            case R.id.btn_info:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), HelpActivity.class));
-                break;
-            case R.id.btn_profile:
-                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), ProfileActivity.class));
-
-                break;
+//            case R.id.btn_info:
+//                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), HelpActivity.class));
+//                break;
+//            case R.id.btn_profile:
+//                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), ProfileActivity.class));
+//
+//                break;
             case R.id.btn_find_surgery:
                 Intent intent = new Intent(getActivity(), SurgeryActivity.class);
                 intent.putExtra("type", "new");

@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.models.TaskModel;
+import com.landonferrier.healthcareapp.views.AutofitTextView;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
 import com.parse.ParseObject;
 
@@ -40,18 +41,18 @@ public class RemindersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
-        public  CustomFontTextView tvName;
-        public  CustomFontTextView tvTime;
-        public  CustomFontTextView tvDate;
+        public  AutofitTextView tvName;
+        public  AutofitTextView tvTime;
+        public  AutofitTextView tvDate;
 
         private CustomFontTextView deleteLayout;
 
 
         public SimpleViewHolder(View view) {
             super(view);
-            tvName = (CustomFontTextView) view.findViewById(R.id.tv_reminder_name);
-            tvTime = (CustomFontTextView) view.findViewById(R.id.tv_time);
-            tvDate = (CustomFontTextView) view.findViewById(R.id.tv_date);
+            tvName = (AutofitTextView) view.findViewById(R.id.tv_reminder_name);
+            tvTime = (AutofitTextView) view.findViewById(R.id.tv_time);
+            tvDate = (AutofitTextView) view.findViewById(R.id.tv_date);
             deleteLayout = (CustomFontTextView) view.findViewById(R.id.btn_delete);
         }
 
