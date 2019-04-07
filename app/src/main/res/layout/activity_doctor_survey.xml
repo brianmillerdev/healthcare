@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity"
+    android:background="@color/colorBackground">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_bar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorWhite">
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/rating_your_primary_doctor"
+                android:textColor="@color/colorGreen"
+                app:font_style="semi"
+                android:textSize="18sp"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="48dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorBackground">
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/scheduling_ease"
+                    android:textColor="@color/colorPrimary"
+                    app:font_style="medium"
+                    android:textSize="18sp"
+                    android:layout_margin="16dp" />
+
+                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                    android:id="@+id/scheduling_ease_rating_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:rating="0"
+                    android:progressDrawable="@drawable/ic_star_fill"
+                    app:mrb_progressTint="@color/colorPrimary"
+                    app:mrb_fillBackgroundStars="false"
+                    android:layout_margin="16dp"
+                    android:padding="8dp"
+                    android:stepSize="1"
+                    style="@style/RatingBar"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorWhite">
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/overall_doctor_visit"
+                    android:textColor="@color/colorPrimary"
+                    app:font_style="medium"
+                    android:textSize="18sp"
+                    android:layout_margin="16dp" />
+
+                <com.landonferrier.healthcareapp.views.CustomFontEditText
+                    android:id="@+id/edt_overall_doctor_visit"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text=""
+                    android:hint="@string/enter_here"
+                    android:textColor="@color/colorPrimary"
+                    app:font_style="medium"
+                    android:textColorHint="@color/colorgray"
+                    android:textCursorDrawable="@drawable/cursor"
+                    android:textSize="18sp"
+                    android:background="@color/transparent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"/>
+
+                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                    android:id="@+id/overall_doctor_visit_rating_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:rating="0"
+                    android:progressDrawable="@drawable/ic_star_fill"
+                    app:mrb_progressTint="@color/colorPrimary"
+                    app:mrb_fillBackgroundStars="false"
+                    android:layout_marginBottom="16dp"
+                    android:padding="8dp"
+                    android:stepSize="1"
+                    style="@style/RatingBar"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorBackground">
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/professionalism"
+                    android:textColor="@color/colorPrimary"
+                    app:font_style="medium"
+                    android:textSize="18sp"
+                    android:layout_margin="16dp" />
+
+
+                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                    android:id="@+id/professionalism_rating_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:rating="0"
+                    android:progressDrawable="@drawable/ic_star_fill"
+                    app:mrb_progressTint="@color/colorPrimary"
+                    app:mrb_fillBackgroundStars="false"
+                    android:layout_margin="16dp"
+                    android:padding="8dp"
+                    android:stepSize="1"
+                    style="@style/RatingBar"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorWhite">
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/knowledge"
+                    android:textColor="@color/colorPrimary"
+                    app:font_style="medium"
+                    android:textSize="18sp"
+                    android:layout_margin="16dp" />
+
+
+                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                    android:id="@+id/knowledge_rating_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:rating="0"
+                    android:progressDrawable="@drawable/ic_star_fill"
+                    app:mrb_progressTint="@color/colorPrimary"
+                    app:mrb_fillBackgroundStars="false"
+                    android:layout_margin="16dp"
+                    android:padding="8dp"
+                    android:stepSize="1"
+                    style="@style/RatingBar"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorBackground">
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accessibility"
+                    android:textColor="@color/colorPrimary"
+                    app:font_style="medium"
+                    android:textSize="18sp"
+                    android:layout_margin="16dp" />
+
+
+                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                    android:id="@+id/accessibility_rating_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:rating="0"
+                    android:progressDrawable="@drawable/ic_star_fill"
+                    app:mrb_progressTint="@color/colorPrimary"
+                    app:mrb_fillBackgroundStars="false"
+                    android:layout_margin="16dp"
+                    android:padding="8dp"
+                    android:stepSize="1"
+                    style="@style/RatingBar"/>
+
+            </LinearLayout>
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:text="@string/submit"
+                app:font_style="bold"
+                android:textAllCaps="true"
+                android:background="@drawable/btn_normal"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="48dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_action_bar"/>
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:scaleType="center"
+            android:src="@drawable/arrowhead_thin_outline_to_the_left"
+            android:tint="@color/colorWhite"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorWhite"
+            app:font_style="semi"
+            android:textSize="16sp"
+            android:text="@string/doctor_survey"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:layout_below="@+id/top_bar"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/complete_survey"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>

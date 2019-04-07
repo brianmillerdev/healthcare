@@ -36,6 +36,7 @@ import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,6 +47,9 @@ import butterknife.ButterKnife;
 public class RemindersFragment extends BaseFragment implements RemindersAdapter.OnItemSelectedListener {
     @BindView(R.id.rc_reminders)
     SlidingItemMenuRecyclerView rcReminders;
+
+    @BindView(R.id.btn_add_reminder)
+    ImageView btnAddRemionder;
 
     RemindersAdapter mAdapter;
     public KProgressHUD hud;
@@ -89,19 +93,21 @@ public class RemindersFragment extends BaseFragment implements RemindersAdapter.
 
     @SuppressLint("DefaultLocale")
     public void initView() {
-//        btnAdd.setOnClickListener(this);
+        btnAddRemionder.setOnClickListener(this);
+        fetchReminders();
+
     }
 
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
-//        switch (v.getId()) {
-//            case R.id.btn_add:
-//                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), AddReminderActivity.class));
-//                break;
-//
-//        }
+        switch (v.getId()) {
+            case R.id.btn_add_reminder:
+                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), AddReminderActivity.class));
+                break;
+
+        }
     }
     @Override
     public void onAttach(Context context) {

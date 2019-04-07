@@ -40,6 +40,8 @@ import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.activity.AddJournalActivity;
 import com.landonferrier.healthcareapp.activity.AddMedicationActivity;
 import com.landonferrier.healthcareapp.activity.AddReminderActivity;
+import com.landonferrier.healthcareapp.activity.HelpActivity;
+import com.landonferrier.healthcareapp.activity.ProfileActivity;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
 import com.landonferrier.healthcareapp.views.materialnavigationdrawer.elements.Element;
 import com.landonferrier.healthcareapp.views.materialnavigationdrawer.elements.MaterialAccount;
@@ -91,7 +93,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
 
     private MaterialDrawerLayout layout;
     private ActionBar actionBar;
-    private MaterialActionBarDrawerToggle pulsante;
+    public MaterialActionBarDrawerToggle pulsante;
     private ImageView statusBar;
     private Toolbar toolbar;
     private RelativeLayout content;
@@ -119,7 +121,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
     private List<String> childTitleStack;
 
     // current pointers
-    private MaterialSection currentSection;
+    public MaterialSection currentSection;
     private MaterialAccount currentAccount;
 
     private CharSequence title;
@@ -809,14 +811,14 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
         if (this.title.equals("Dashboard")) {
-            MenuItem item = menu.findItem(R.id.menu_add).setEnabled(false);
-            item.setIcon(R.drawable.ic_empty);
-            item.setTitle("");
+            getMenuInflater().inflate(R.menu.dashboard_menu, menu);
+        }else if (this.title.equals("Reminders")){
+            getMenuInflater().inflate(R.menu.reminders_menu, menu);
+        }else if (this.title.equals("Journal") || this.title.equals("Medications")) {
+            getMenuInflater().inflate(R.menu.add_menu, menu);
         }else{
-            MenuItem item = menu.findItem(R.id.menu_add).setEnabled(true);
-            item.setIcon(R.drawable.ic_add);
+            getMenuInflater().inflate(R.menu.main_menu, menu);
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -839,12 +841,17 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
                 return true;
             }else{
                 if (this.title.equals("Reminders")) {
-                    startActivity(new Intent(this, AddReminderActivity.class));
-                }else if (this.title.equals("Surgery Info")) {
+//                    startActivity(new Intent(this, AddReminderActivity.class));
                 }else if (this.title.equals("Journal")) {
                     startActivity(new Intent(this, AddJournalActivity.class));
                 }else if (this.title.equals("Medications")) {
                     startActivity(new Intent(this, AddMedicationActivity.class));
+                }else if (this.title.equals("Dashboard")) {
+                    if (item.getItemId() == R.id.menu_profile) {
+                        startActivity(new Intent(this, ProfileActivity.class));
+                    }else if (item.getItemId() == R.id.menu_help) {
+                        startActivity(new Intent(this, HelpActivity.class));
+                    }
                 }
 
             }
@@ -856,14 +863,19 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
                     toolbarToggleListener.onClick(null);
                     return true;
                 case R.id.menu_add:
-                    if (this.title.equals("Reminders")) {
-                        startActivity(new Intent(this, AddReminderActivity.class));
-                    }else if (this.title.equals("Surgery Info")) {
-                    }else if (this.title.equals("Journal")) {
+                    if (this.title.equals("Journal")) {
                         startActivity(new Intent(this, AddJournalActivity.class));
                     }else if (this.title.equals("Medications")) {
                         startActivity(new Intent(this, AddMedicationActivity.class));
                     }
+                    return true;
+                case R.id.menu_edit:
+                    return true;
+                case R.id.menu_profile:
+                    startActivity(new Intent(this, ProfileActivity.class));
+                    return true;
+                case R.id.menu_help:
+                    startActivity(new Intent(this, HelpActivity.class));
                     return true;
             }
 
@@ -1097,7 +1109,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
         isCurrentFragmentChild = false;
     }
 
-    private void setFragment(Fragment fragment,String title, Fragment oldFragment) {
+    public void setFragment(Fragment fragment,String title, Fragment oldFragment) {
         setFragment(fragment,title,oldFragment,false);
     }
 
@@ -1144,7 +1156,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
     }
 
 
-    private void afterFragmentSetted(Fragment fragment,String title) {
+    public void afterFragmentSetted(Fragment fragment,String title) {
         // remove the last child from the stack
         if(!isCurrentFragmentChild) {
             childFragmentStack.remove(childFragmentStack.size() - 1);
@@ -1358,7 +1370,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
         }
     }
 
-    private void syncSectionsState(MaterialSection section) {
+    public void syncSectionsState(MaterialSection section) {
         currentSection = section;
 
         // search in first list
@@ -1722,7 +1734,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
         View view = new View(this);
         // height 1 px
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,1);
-        params.setMargins(0,(int) (16 * density), 16 , (int) (8 * density));
+        params.setMargins(0,(int) (8 * density), 16 , (int) (8 * density));
 
         sections.addView(view, params);
 

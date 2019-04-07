@@ -14,7 +14,7 @@
     <RelativeLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="?attr/actionBarSize">
 
         <ImageView
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="@color/colorWhite"
-            app:font_style="bold"
+            app:font_style="semi"
             android:textSize="18sp"
             android:textAllCaps="true"
             android:text="@string/terms_of_service"/>

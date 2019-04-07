@@ -38,11 +38,12 @@
                     android:background="@drawable/bg_edittext"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
+                    android:textColorHint="@color/colorgray"
+                    android:textCursorDrawable="@drawable/cursor"
                     android:lines="1"
                     android:maxLines="1"
                     android:inputType="textCapSentences"
                     android:imeOptions="actionNext"
-                    android:textCursorDrawable="@drawable/cursor"
                     android:layout_marginTop="48dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"/>
@@ -74,6 +75,7 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:textSize="16sp"
+                    android:textColorHint="@color/colorgray"
                     android:textCursorDrawable="@drawable/cursor"
                     android:gravity="top"
                     android:inputType="textCapSentences"
@@ -84,9 +86,10 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <com.landonferrier.healthcareapp.views.CustomFontTextView
                     android:layout_width="wrap_content"
@@ -103,7 +106,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:orientation="horizontal"
-                    android:layout_marginTop="48dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/bg_edittext"
@@ -112,26 +115,191 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:font_style="bold"
-                        android:text="@string/current_pain_level"
+                        android:text="Right Arm Pain"
                         android:textSize="14sp"
                         android:textColor="@color/colorgray"
                         android:layout_gravity="center"
                         android:gravity="center_vertical"/>
 
                     <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_pain_level"
+                        android:id="@+id/tv_right_arm_pain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
                         android:gravity="end"
-                        android:text="10 MAXIMUM"
+                        android:text="0 NOPAIN"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:font_style="bold" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_edittext"
+                    >
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:font_style="bold"
+                        android:text="Left Arm Pain"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorgray"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_left_arm_pain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:gravity="end"
+                        android:text="0 NOPAIN"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:font_style="bold" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_edittext"
+                    >
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:font_style="bold"
+                        android:text="Right Leg Pain"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorgray"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_right_leg_pain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:gravity="end"
+                        android:text="0 NOPAIN"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:font_style="bold" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_edittext"
+                    >
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:font_style="bold"
+                        android:text="Left Leg Pain"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorgray"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_left_leg_pain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:gravity="end"
+                        android:text="0 NOPAIN"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:font_style="bold" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_edittext"
+                    >
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:font_style="bold"
+                        android:text="Back Pain"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorgray"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_back_pain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:gravity="end"
+                        android:text="0 NOPAIN"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:font_style="bold" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_edittext"
+                    >
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:font_style="bold"
+                        android:text="Neck Pain"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorgray"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_neck_pain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:gravity="end"
+                        android:text="0 NOPAIN"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp"
                         app:font_style="bold" />
 
                 </LinearLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -197,7 +365,7 @@
     <RelativeLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="?attr/actionBarSize">
 
         <ImageView
             android:layout_width="match_parent"
@@ -221,7 +389,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="@color/colorWhite"
-            app:font_style="bold"
+            app:font_style="semi"
             android:textSize="18sp"
             android:textAllCaps="true"
             android:text="@string/add_joural_entry"/>

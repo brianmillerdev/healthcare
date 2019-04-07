@@ -38,6 +38,7 @@
                 android:lines="1"
                 android:maxLines="1"
                 android:inputType="textCapSentences"
+                android:textColorHint="@color/colorgray"
                 android:textCursorDrawable="@drawable/cursor"
                 android:layout_marginTop="48dp"
                 android:layout_marginStart="16dp"
@@ -57,7 +58,73 @@
             app:picker_visibleItemCount="7"
             />
 
+        <LinearLayout
+            android:id="@+id/btn_hospital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/item_ripple"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
 
+            <ImageView
+                android:id="@+id/iv_hospital"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/item_checkbox"
+                android:scaleType="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:id="@+id/tv_hospital"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:font_style="medium"
+                android:text="@string/hospital_stay"
+                android:textSize="16sp"
+                android:textColor="@color/item_check_color"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_doctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/item_ripple"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:id="@+id/iv_doctor"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/item_checkbox"
+                android:scaleType="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:id="@+id/tv_doctor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:font_style="medium"
+                android:text="@string/doctors_appointment"
+                android:textSize="16sp"
+                android:textColor="@color/item_check_color"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"/>
+
+        </LinearLayout>
 
         <com.landonferrier.healthcareapp.views.CustomFontTextView
             android:id="@+id/btn_save"
@@ -82,7 +149,7 @@
     <RelativeLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="?attr/actionBarSize">
 
         <ImageView
             android:layout_width="match_parent"
@@ -106,7 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="@color/colorWhite"
-            app:font_style="bold"
+            app:font_style="semi"
             android:textSize="18sp"
             android:textAllCaps="true"
             android:text="@string/add_reminder"/>

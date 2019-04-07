@@ -464,7 +464,7 @@ public class MaterialSection<Fragment> implements View.OnTouchListener, View.OnC
 
     // private methods
 
-    private void afterClick() {
+    public void afterClick() {
         isSelected = true;
 
         if (hasSectionColor) {

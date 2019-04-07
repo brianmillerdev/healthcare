@@ -108,6 +108,7 @@ public class SurgeryInfoFragment extends BaseFragment implements SurgeryInfoAdap
     @SuppressLint("DefaultLocale")
     public void initView() {
         tvDate.setOnClickListener(this);
+        fetchSurgeryInfo();
     }
 
 

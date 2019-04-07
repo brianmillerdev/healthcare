@@ -9,14 +9,9 @@
         android:id="@+id/topview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@+id/top_bar">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/actionbar_bg">
-
-        </RelativeLayout>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,8 +61,10 @@
         android:layout_marginBottom="16dp"/>
 
     <RelativeLayout
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/actionbar_bg">
 
         <ImageView
             android:id="@+id/btn_back"
@@ -84,7 +81,7 @@
         <com.landonferrier.healthcareapp.views.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:font_style="bold"
+            app:font_style="semi"
             android:textColor="@color/colorWhite"
             android:text="@string/surgeries"
             android:textAllCaps="true"

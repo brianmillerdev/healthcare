@@ -3,6 +3,7 @@ package com.landonferrier.healthcareapp.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
@@ -44,6 +45,24 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
     @BindView(R.id.tvTitle)
     public CustomFontTextView tvTitle;
 
+    @BindView(R.id.btn_hospital)
+    public LinearLayout btnHospital;
+
+    @BindView(R.id.iv_hospital)
+    public ImageView ivHospital;
+
+    @BindView(R.id.tv_hospital)
+    public CustomFontTextView tvHospital;
+
+    @BindView(R.id.btn_doctor)
+    public LinearLayout btnDoctor;
+
+    @BindView(R.id.iv_doctor)
+    public ImageView ivDoctor;
+
+    @BindView(R.id.tv_doctor)
+    public CustomFontTextView tvDoctor;
+
     ParseObject reminder;
     String reminderId = "";
 
@@ -55,6 +74,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         ButterKnife.bind(this);
         btnBack.setOnClickListener(this);
         btnSave.setOnClickListener(this);
+        btnHospital.setOnClickListener(this);
+        btnDoctor.setOnClickListener(this);
         hud = KProgressHUD.create(this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setCancellable(true)
@@ -92,6 +113,14 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
             case R.id.btn_save:
                 createReminder();
                 break;
+            case R.id.btn_hospital:
+                ivHospital.setSelected(!ivHospital.isSelected());
+                tvHospital.setSelected(!tvHospital.isSelected());
+                break;
+            case R.id.btn_doctor:
+                ivDoctor.setSelected(!ivDoctor.isSelected());
+                tvDoctor.setSelected(!tvDoctor.isSelected());
+                break;
         }
     }
 
@@ -102,6 +131,10 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
             dateAndTimePicker.selectDate(cal);
+            ivDoctor.setSelected(reminder.getBoolean("isDoctorAppt"));
+            tvDoctor.setSelected(reminder.getBoolean("isDoctorAppt"));
+            tvHospital.setSelected(reminder.getBoolean("isHospitalStay"));
+            ivHospital.setSelected(reminder.getBoolean("isHospitalStay"));
         }
     }
 
@@ -116,6 +149,9 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         reminder.put("creatorId", ParseUser.getCurrentUser().getObjectId());
         reminder.put("active", true);
         reminder.put("complete", false);
+        reminder.put("isDoctorAppt", ivDoctor.isSelected());
+        reminder.put("isHospitalStay", ivHospital.isSelected());
+
         if ( ParseUser.getCurrentUser().get("currentSurgeryId") != null){
             String surgeryId = ParseUser.getCurrentUser().getString("currentSurgeryId");
             assert surgeryId != null;
@@ -149,6 +185,8 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
             hud.show();
             reminder.put("name", edtReminderName.getText().toString());
             reminder.put("time", dateAndTimePicker.getDate());
+            reminder.put("isDoctorAppt", ivDoctor.isSelected());
+            reminder.put("isHospitalStay", ivHospital.isSelected());
             reminder.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {

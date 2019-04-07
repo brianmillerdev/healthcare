@@ -89,7 +89,7 @@ public class MedicationsFragment extends BaseFragment implements MedicationAdapt
 
     @SuppressLint("DefaultLocale")
     public void initView() {
-//        btnAdd.setOnClickListener(this);
+        fetchMedications();
     }
 
     public void fetchMedications() {

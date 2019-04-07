@@ -8,6 +8,7 @@ import android.text.format.DateFormat;
 import android.view.inputmethod.InputMethodManager;
 
 import com.landonferrier.healthcareapp.activity.MainActivity;
+import com.landonferrier.healthcareapp.activity.MainDrawerActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -99,7 +100,7 @@ public class Helper {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				activity.startActivity(new Intent(activity, MainActivity.class));
+				activity.startActivity(new Intent(activity, MainDrawerActivity.class));
 				activity.finish();
 			}
 		});

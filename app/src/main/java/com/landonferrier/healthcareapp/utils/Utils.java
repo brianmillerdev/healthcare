@@ -198,4 +198,17 @@ public class Utils {
                 cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
     }
 
+    public static boolean isYesterday(Date date) {
+        Calendar c1 = Calendar.getInstance(); // today
+        c1.add(Calendar.DAY_OF_YEAR, -1); // yesterday
+
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(date); // your date
+
+        if (c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR)
+                && c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR)) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -21,6 +22,7 @@ import com.landonferrier.healthcareapp.models.TaskModel;
 import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.utils.Utils;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
+import com.parse.CountCallback;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -28,6 +30,7 @@ import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,6 +39,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -46,6 +50,7 @@ import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,6 +59,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapter.OnItemSelectedListener {
+    private String TAG = DashboardSurgeryFragment.class.getName();
+
+
     @BindView(R.id.tv_surgery_name)
     CustomFontTextView tvSurgeryName;
     @BindView(R.id.tv_surgery_date)
@@ -66,6 +74,15 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
     ImageView btnRight;
     @BindView(R.id.rc_tasks)
     RecyclerView rcTasks;
+
+    @BindView(R.id.view_surveys)
+    LinearLayout viewSurveys;
+
+    @BindView(R.id.tv_have_survey)
+    CustomFontTextView tvSurvey;
+
+    @BindView(R.id.tv_expire_date)
+    CustomFontTextView tvExpireDate;
 
     @BindView(R.id.view_current_surgery)
     RelativeLayout viewCurrentSurgery;
@@ -96,15 +113,12 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
         btnRight.setOnClickListener(this);
         viewCurrentSurgery.setOnClickListener(this);
         rcTasks.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider));
-        rcTasks.addItemDecoration(dividerItemDecoration);
 
         taskAdapter = new TaskAdapter(getContext(), taskModels, this);
         rcTasks.setAdapter(taskAdapter);
 
         tvTaskTitle.setText(Utils.getFormattedDate(getContext(), showDate.getTime()));
-        getMedications();
+        getReminders();
         initView();
         return view;
     }
@@ -163,6 +177,7 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
                 }
             });
         }
+        fetchSurveys();
     }
 
 
@@ -170,12 +185,6 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
-//            case R.id.btn_info:
-//                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), HelpActivity.class));
-//                break;
-//            case R.id.btn_profile:
-//                Objects.requireNonNull(getActivity()).startActivity(new Intent(getActivity(), ProfileActivity.class));
-//                break;
             case R.id.btn_left_arrow:
                 fintPreviousDate();
                 break;
@@ -199,6 +208,11 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
         isFetching = true;
         ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
         reminderQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+        if (ParseUser.getCurrentUser().get("currentSurgeryId") != null) {
+            String surgeryId = ParseUser.getCurrentUser().getString("currentSurgeryId");
+            reminderQuery.whereEqualTo("surgeryId", surgeryId);
+        }
+        Date showDateAtStart = showDate;
         reminderQuery.whereLessThan("time", showDate).orderByDescending("time");
         reminderQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -207,21 +221,22 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
                     Log.d("score", "Retrieved " + objects.size() + " scores");
                     if (objects.size() > 0) {
                         Date newDate = objects.get(0).getDate("time");
-                        if (new Date().after(newDate) && showDate.after(new Date()) && !Utils.isSameDay(showDate, new Date())) {
+                        if (showDateAtStart.after(new Date()) && new Date().after(newDate) && !Utils.isSameDay(showDate, new Date())) {
                             showDate = new Date();
                         }else{
                             showDate = newDate;
                         }
                         tvTaskTitle.setText(Utils.getFormattedDate(getContext(), showDate.getTime()));
-                        getMedications();
+                        getReminders();
                     }else{
                         isFetching = false;
-                        getMedications();
+                        showDate = new Date();
+                        tvTaskTitle.setText(Utils.getFormattedDate(getContext(), showDate.getTime()));
+                        getReminders();
                     }
                 } else {
                     isFetching = false;
                     Log.d("score", "Error: " + e.getMessage());
-                    getMedications();
                 }
             }
         });
@@ -238,6 +253,11 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
         isFetching = true;
         ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
         reminderQuery.whereEqualTo("creatorId", ParseUser.getCurrentUser().getObjectId());
+        if (ParseUser.getCurrentUser().get("currentSurgeryId") != null) {
+            String surgeryId = ParseUser.getCurrentUser().getString("currentSurgeryId");
+            reminderQuery.whereEqualTo("surgeryId", surgeryId);
+        }
+        Date showDateAtStart = showDate;
         reminderQuery.whereGreaterThan("time", showDate).orderByAscending("time");
         reminderQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -246,21 +266,22 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
                     Log.d("score", "Retrieved " + objects.size() + " scores");
                     if (objects.size() > 0) {
                         Date newDate = objects.get(0).getDate("time");
-                        if (new Date().after(showDate) && newDate.after(new Date()) && !Utils.isSameDay(showDate, new Date())) {
+                        if (new Date().after(showDateAtStart) && newDate.after(new Date()) && !Utils.isSameDay(showDate, new Date())) {
                             showDate = new Date();
                         }else{
                             showDate = newDate;
                         }
                         tvTaskTitle.setText(Utils.getFormattedDate(getContext(), showDate.getTime()));
-                        getMedications();
+                        getReminders();
                     }else{
                         isFetching = false;
-                        getMedications();
+                        showDate = new Date();
+                        tvTaskTitle.setText(Utils.getFormattedDate(getContext(), showDate.getTime()));
+                        getReminders();
                     }
                 } else {
                     isFetching = false;
                     Log.d("score", "Error: " + e.getMessage());
-                    getMedications();
                 }
             }
         });
@@ -268,7 +289,7 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
 
     }
 
-    public void getMedications() {
+    public void getReminders() {
         ParseQuery<ParseObject> reminderQuery = ParseQuery.getQuery("Reminder");
         ParseQuery<ParseObject> pastReminderQuery = ParseQuery.getQuery("Reminder");
         pastReminderQuery.whereLessThan("time", new Date());
@@ -392,9 +413,13 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
                                                         SimpleDateFormat apm = new SimpleDateFormat("a");
                                                         String apmString = apm.format(timeDate);
                                                         Calendar calendar = Calendar.getInstance();
-                                                        calendar.set(Calendar.HOUR, Integer.parseInt(hourString));
-                                                        calendar.set(Calendar.MINUTE, Integer.parseInt(minString));
                                                         calendar.set(Calendar.AM_PM, (apmString.equals("AM") ? Calendar.AM : Calendar.PM));
+                                                        if (apmString.equals("AM") && Integer.parseInt(hourString) == 12) {
+                                                            calendar.set(Calendar.HOUR, 0);
+                                                        }else{
+                                                            calendar.set(Calendar.HOUR, Integer.parseInt(hourString));
+                                                        }
+                                                        calendar.set(Calendar.MINUTE, Integer.parseInt(minString));
                                                         Date newDate = calendar.getTime();
                                                         TaskModel taskModel = new TaskModel();
                                                         taskModel.setCompleted(false);
@@ -592,7 +617,158 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
             }
 
         }
+    }
+
+    public void fetchSurveys() {
+        viewSurveys.setVisibility(View.GONE);
+        String userId = ParseUser.getCurrentUser().getObjectId();
+        ParseQuery<ParseObject> hospitalQuery = ParseQuery.getQuery("Reminder");
+        hospitalQuery.whereEqualTo("creatorId", userId);
+        hospitalQuery.whereEqualTo("isHospitalStay", true);
+
+        ParseQuery<ParseObject> doctorQuery = ParseQuery.getQuery("Reminder");
+        doctorQuery.whereEqualTo("creatorId", userId);
+        doctorQuery.whereEqualTo("isDoctorAppt", true);
+
+        List<ParseQuery<ParseObject>> queries = new ArrayList<>();
+        queries.add(hospitalQuery);
+        queries.add(doctorQuery);
+        ParseQuery<ParseObject> compoundQuery = ParseQuery.or(queries);
+
+        compoundQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    for (ParseObject reminder : objects) {
+                        boolean isHospitalStay = reminder.getBoolean("isHospitalStay");
+                        boolean isDoctorAppt = reminder.getBoolean("isDoctorAppt");
+
+                        if (isHospitalStay) {
+                            Date reminderDate = reminder.getDate("time");
+                            if (Utils.isYesterday(reminderDate)) {
+                                String reminderId = reminder.getObjectId();
+                                ParseQuery<ParseObject> hQuery = ParseQuery.getQuery("SurveyHospital");
+                                hQuery.whereEqualTo("reminderId", reminder);
+                                hQuery.whereEqualTo("user", ParseUser.getCurrentUser());
+
+                                hQuery.countInBackground(new CountCallback() {
+                                    @Override
+                                    public void done(int count, ParseException e) {
+                                        if (e == null) {
+                                            if (count != 0) {
+                                                hQuery.getFirstInBackground(new GetCallback<ParseObject>() {
+                                                    @Override
+                                                    public void done(ParseObject object, ParseException e) {
+                                                        if (e == null && object != null) {
+                                                            Date expiration = object.getDate("expirationDate");
+                                                            if (expiration.after(new Date())) {
+                                                                showSurveyView(object);
+                                                            }else{
+                                                                Log.e(TAG, e.getLocalizedMessage());
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                            }else{
+                                                Calendar calendar = Calendar.getInstance();
+                                                calendar.add(Calendar.DAY_OF_YEAR, 7);
+                                                Date expiration = calendar.getTime();
+
+                                                ParseObject newSurvey = new ParseObject("SurveyHospital");
+                                                newSurvey.put("reminderId", reminderId);
+                                                newSurvey.put("user", ParseUser.getCurrentUser());
+                                                newSurvey.put("completed", false);
+                                                newSurvey.put("expirationDate", expiration);
+
+                                                newSurvey.saveInBackground(new SaveCallback() {
+                                                    @Override
+                                                    public void done(ParseException e) {
+                                                        if (e == null) {
+                                                            showSurveyView(newSurvey);
+                                                        }else{
+                                                            Log.e(TAG, e.getLocalizedMessage());
+                                                        }
+                                                    }
+                                                });
 
 
+                                            }
+                                        }else{
+                                            Log.e(TAG, e.getLocalizedMessage());
+                                        }
+                                    }
+                                });
+
+                            }
+                        }else {
+                            Date reminderDate = reminder.getDate("time");
+                            if (Utils.isYesterday(reminderDate)) {
+                                String reminderId = reminder.getObjectId();
+                                ParseQuery<ParseObject> hQuery = ParseQuery.getQuery("SurveyDoctor");
+                                hQuery.whereEqualTo("reminderId", reminder);
+                                hQuery.whereEqualTo("user", ParseUser.getCurrentUser());
+
+                                hQuery.countInBackground(new CountCallback() {
+                                    @Override
+                                    public void done(int count, ParseException e) {
+                                        if (e == null) {
+                                            if (count != 0) {
+                                                hQuery.getFirstInBackground(new GetCallback<ParseObject>() {
+                                                    @Override
+                                                    public void done(ParseObject object, ParseException e) {
+                                                        if (e == null && object != null) {
+                                                            Date expiration = object.getDate("expirationDate");
+                                                            if (expiration.after(new Date())) {
+                                                                showSurveyView(object);
+                                                            }
+                                                        }else{
+                                                            Log.e(TAG, e.getLocalizedMessage());
+                                                        }
+                                                    }
+                                                });
+                                            }else{
+                                                Calendar calendar = Calendar.getInstance();
+                                                calendar.add(Calendar.DAY_OF_YEAR, 7);
+                                                Date expiration = calendar.getTime();
+
+                                                ParseObject newSurvey = new ParseObject("SurveyDoctor");
+                                                newSurvey.put("reminderId", reminderId);
+                                                newSurvey.put("user", ParseUser.getCurrentUser());
+                                                newSurvey.put("completed", false);
+                                                newSurvey.put("expirationDate", expiration);
+
+                                                newSurvey.saveInBackground(new SaveCallback() {
+                                                    @Override
+                                                    public void done(ParseException e) {
+                                                        if (e == null) {
+                                                            showSurveyView(newSurvey);
+                                                        }else{
+                                                            Log.e(TAG, e.getLocalizedMessage());
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }else{
+                                            Log.e(TAG, e.getLocalizedMessage());
+                                        }
+                                    }
+                                });
+
+                            }
+                        }
+                    }
+                }else{
+                    Log.e(TAG, e.getLocalizedMessage());
+                }
+            }
+        });
+    }
+
+    public void showSurveyView(ParseObject survey) {
+        viewSurveys.setVisibility(View.VISIBLE);
+        Date expirdate = survey.getDate("expirationDate");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/y");
+        String dateString = dateFormat.format(expirdate);
+        tvExpireDate.setText(String.format("Please answer by %s", dateString));
     }
 }

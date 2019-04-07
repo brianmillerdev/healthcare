@@ -9,18 +9,16 @@
     <RelativeLayout
         android:id="@+id/topview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/bg_dashboard"
+            android:src="@drawable/bg_surgery"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:adjustViewBounds="true"
-            android:layout_marginTop="24dp"/>
+            android:adjustViewBounds="true"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -56,9 +54,9 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text=""
-                app:font_style="bold"
+                app:font_style="medium"
                 android:textColor="@color/colorWhite"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:layout_marginStart="16dp"/>
@@ -69,9 +67,9 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text=""
-                app:font_style="bold"
+                app:font_style="semi"
                 android:textColor="@color/colorWhite"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_gravity="end|center_vertical"
                 android:gravity="end|center_vertical"
                 android:layout_marginEnd="16dp"/>
@@ -90,12 +88,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/today_s_tasks"
-            app:font_style="bold"
+            app:font_style="medium"
             android:layout_centerInParent="true"
             android:textColor="@color/colorPrimary"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:layout_toStartOf="@+id/btn_right_arrow"
             android:layout_toEndOf="@+id/btn_left_arrow"/>
 
@@ -127,7 +125,40 @@
         android:id="@+id/rc_tasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/view_selector"/>
+        android:layout_below="@+id/view_selector"
+        android:layout_above="@+id/view_surveys"/>
+
+    <LinearLayout
+        android:id="@+id/view_surveys"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone">
+
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tv_have_survey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            app:font_style="semi"
+            android:text="You have a new survey!"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"/>
+        <com.landonferrier.healthcareapp.views.CustomFontTextView
+            android:id="@+id/tv_expire_date"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            app:font_style="medium"
+            android:text="Please answer by 4/9/2019"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
 
 
 </RelativeLayout>

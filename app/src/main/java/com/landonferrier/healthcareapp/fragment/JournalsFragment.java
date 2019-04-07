@@ -93,7 +93,7 @@ public class JournalsFragment extends BaseFragment implements JournalsAdapter.On
 
     @SuppressLint("DefaultLocale")
     public void initView() {
-//        btnAdd.setOnClickListener(this);
+        fetchJournals();
     }
 
 

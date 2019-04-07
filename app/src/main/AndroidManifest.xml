@@ -77,6 +77,13 @@
         <activity android:name=".activity.ImageViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".activity.HospitalStaySurveyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".activity.DoctorSurveyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".activity.SelectSurgeryDetailActivity" />
     </application>
 
     <meta-data

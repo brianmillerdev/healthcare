@@ -74,8 +74,23 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
     @BindView(R.id.edt_entry)
     public CustomFontEditText edtJournalEntry;
 
-    @BindView(R.id.tv_pain_level)
-    public CustomFontTextView tvPainLevel;
+    @BindView(R.id.tv_right_arm_pain)
+    public CustomFontTextView tvRightArmPain;
+
+    @BindView(R.id.tv_left_arm_pain)
+    public CustomFontTextView tvLeftArmPain;
+
+    @BindView(R.id.tv_right_leg_pain)
+    public CustomFontTextView tvRightLegPain;
+
+    @BindView(R.id.tv_left_leg_pain)
+    public CustomFontTextView tvLeftLegPain;
+
+    @BindView(R.id.tv_back_pain)
+    public CustomFontTextView tvBackPain;
+
+    @BindView(R.id.tv_neck_pain)
+    public CustomFontTextView tvNeckPain;
 
     @BindView(R.id.tv_photos)
     public CustomFontTextView tvPhotos;
@@ -100,6 +115,8 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
     PhotosAdapter mAdapter;
     int selectedPainIndex = 0;
 
+    ArrayList<CustomFontTextView> painViews = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +129,18 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
                 .setDimAmount(0.5f);
         btnBack.setOnClickListener(this);
         btnSave.setOnClickListener(this);
-        tvPainLevel.setOnClickListener(this);
+        tvRightArmPain.setOnClickListener(listener);
+        tvLeftArmPain.setOnClickListener(listener);
+        tvRightLegPain.setOnClickListener(listener);
+        tvLeftLegPain.setOnClickListener(listener);
+        tvBackPain.setOnClickListener(listener);
+        tvNeckPain.setOnClickListener(listener);
+        painViews.add(tvRightArmPain);
+        painViews.add(tvLeftArmPain);
+        painViews.add(tvRightLegPain);
+        painViews.add(tvLeftLegPain);
+        painViews.add(tvBackPain);
+        painViews.add(tvNeckPain);
         rcPhotos.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false));
         mAdapter = new PhotosAdapter(this, photos, this);
         rcPhotos.setAdapter(mAdapter);
@@ -123,7 +151,12 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
         if (!journalId.equals("")) {
             btnSave.setVisibility(View.GONE);
             tvTitle.setText(R.string.journla_entry);
-            tvPainLevel.setClickable(false);
+            tvRightArmPain.setClickable(false);
+            tvLeftArmPain.setClickable(false);
+            tvRightLegPain.setClickable(false);
+            tvLeftLegPain.setClickable(false);
+            tvBackPain.setClickable(false);
+            tvNeckPain.setClickable(false);
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Journal");
             query.getInBackground(journalId, new GetCallback<ParseObject>() {
                 public void done(ParseObject object, ParseException e) {
@@ -139,6 +172,16 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    private View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (v.getClass().equals(CustomFontTextView.class)) {
+                CustomFontTextView cfv = (CustomFontTextView) v;
+                showSelector(cfv);
+            }
+        }
+    };
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -148,9 +191,6 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
             case R.id.btn_save:
                 createJournal();
                 break;
-            case R.id.tv_pain_level:
-                showSelector();
-                break;
         }
     }
 
@@ -158,7 +198,13 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
         if (journal != null) {
             edtJournalTitle.setText(journal.getString("name"));
             edtJournalEntry.setText(journal.getString("text"));
-            tvPainLevel.setText(journal.getString("pain"));
+            tvRightArmPain.setText(journal.getString("rightArmPain"));
+            tvLeftArmPain.setText(journal.getString("leftArmPain"));
+            tvRightLegPain.setText(journal.getString("rightLegPain"));
+            tvLeftLegPain.setText(journal.getString("leftLegPain"));
+            tvBackPain.setText(journal.getString("backPain"));
+            tvNeckPain.setText(journal.getString("neckPain"));
+
             fetchImages();
         }
     }
@@ -198,7 +244,13 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
         journal = new ParseObject("Journal");
         journal.put("name", edtJournalTitle.getText().toString());
         journal.put("text", edtJournalEntry.getText().toString());
-        journal.put("pain", tvPainLevel.getText().toString());
+        journal.put("rightArmPain", tvRightArmPain.getText().toString());
+        journal.put("leftArmPain", tvLeftArmPain.getText().toString());
+        journal.put("rightLegPain", tvRightLegPain.getText().toString());
+        journal.put("leftLegPain", tvLeftLegPain.getText().toString());
+        journal.put("backPain", tvBackPain.getText().toString());
+        journal.put("neckPain", tvNeckPain.getText().toString());
+
         journal.put("creatorId", ParseUser.getCurrentUser().getObjectId());
         journal.put("date", new Date());
         if ( ParseUser.getCurrentUser().get("currentSurgeryId") != null){
@@ -272,7 +324,12 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
             }
             journal.put("name", edtJournalTitle.getText().toString());
             journal.put("text", edtJournalEntry.getText().toString());
-            journal.put("pain", tvPainLevel.getText().toString());
+            journal.put("rightArmPain", tvRightArmPain.getText().toString());
+            journal.put("leftArmPain", tvLeftArmPain.getText().toString());
+            journal.put("rightLegPain", tvRightLegPain.getText().toString());
+            journal.put("leftLegPain", tvLeftLegPain.getText().toString());
+            journal.put("backPain", tvBackPain.getText().toString());
+            journal.put("neckPain", tvNeckPain.getText().toString());
             hud.show();
             journal.saveInBackground(new SaveCallback() {
                 @Override
@@ -333,7 +390,7 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-    public void showSelector(){
+    public void showSelector(CustomFontTextView cfv){
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
         adb.setSingleChoiceItems(items, selectedPainIndex, new DialogInterface.OnClickListener() {
 
@@ -345,7 +402,7 @@ public class AddJournalActivity extends AppCompatActivity implements View.OnClic
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         selectedPainIndex = n;
-                        tvPainLevel.setText(items[n]);
+                        cfv.setText(items[n]);
                         dialog.dismiss();
                         d.dismiss();
                     }

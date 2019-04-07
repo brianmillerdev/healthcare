@@ -135,10 +135,8 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         TaskModel model = mItems.get(position);
         SimpleViewHolder holder = (SimpleViewHolder) viewHolder;
-//        holder.onBindeViewHolder(model, listener);
         if (model.isCompleted()) {
             holder.ivCheck.setImageResource(R.drawable.icon_checkbox_selected);
-//            holder.ivCheck.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
             holder.tvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else {
             holder.ivCheck.setImageResource(R.drawable.icon_checkbox_gray);
@@ -147,6 +145,11 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 holder.ivCheck.setImageResource(R.drawable.icon_checkbox_red);
                 holder.tvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.colorRed));
             }
+        }
+        if ((position % 2) == 0) {
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorBackground));
+        }else{
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorWhite));
         }
         holder.ivCheck.setOnClickListener(new View.OnClickListener() {
             @Override

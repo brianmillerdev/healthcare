@@ -2,6 +2,7 @@ package com.landonferrier.healthcareapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -9,6 +10,7 @@ import com.jay.widget.StickyHeadersLinearLayoutManager;
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.adapter.JournalsAdapter;
 import com.landonferrier.healthcareapp.adapter.SurgeryAdapter;
+import com.landonferrier.healthcareapp.adapter.SurgeryTypeAdapter;
 import com.landonferrier.healthcareapp.models.TaskModel;
 import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.views.CustomFontEditText;
@@ -35,7 +37,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SurgeryActivity extends AppCompatActivity implements View.OnClickListener, SurgeryAdapter.OnItemSelectedListener {
+public class SurgeryActivity extends AppCompatActivity implements View.OnClickListener, SurgeryTypeAdapter.OnItemSelectedListener {
 
     @BindView(R.id.btn_back)
     public ImageView btnBack;
@@ -51,8 +53,11 @@ public class SurgeryActivity extends AppCompatActivity implements View.OnClickLi
     ArrayList<ParseObject> userSurgeries = new ArrayList<>();
     ParseObject selectedSurgery;
 
-    SurgeryAdapter mAdapter;
+//    SurgeryAdapter mAdapter;
+    SurgeryTypeAdapter mAdapter;
     String type = "current";
+    private String TAG = SurgeryActivity.class.getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,11 +74,12 @@ public class SurgeryActivity extends AppCompatActivity implements View.OnClickLi
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
         rcSurgery.addItemDecoration(dividerItemDecoration);
         rcSurgery.setHasFixedSize(false);
-        mAdapter = new SurgeryAdapter(this, surgeries, this);
+        mAdapter = new SurgeryTypeAdapter(this, surgeries, this);
         rcSurgery.setAdapter(mAdapter);
         mAdapter.setType(type);
 
-        fetchSurgeries();
+//        fetchSurgeries();
+        fetchTypes();
     }
 
     @Override
@@ -89,6 +95,23 @@ public class SurgeryActivity extends AppCompatActivity implements View.OnClickLi
                 startActivityForResult(intent, 200);
                 break;
         }
+    }
+
+    public void fetchTypes() {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("SurgeryType");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    surgeries.clear();
+                    surgeries.addAll(objects);
+                    mAdapter.setmItems(surgeries);
+
+                }else{
+                    Log.e(TAG, e.getLocalizedMessage());
+                }
+            }
+        });
     }
 
     public void fetchSurgeries() {
@@ -118,19 +141,9 @@ public class SurgeryActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void onEdit(ParseObject object, int position) {
-
-    }
-
-    @Override
-    public void onDelete(ParseObject object, int position) {
-
-    }
-
-    @Override
     public void onSelect(ParseObject object, int position) {
         selectedSurgery = object;
-        mAdapter.setSelectedSurgery(object);
+//        mAdapter.setSelectedSurgery(object);
     }
 
     @Override

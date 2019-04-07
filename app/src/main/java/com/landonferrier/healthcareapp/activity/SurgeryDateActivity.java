@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,7 +67,14 @@ public class SurgeryDateActivity extends AppCompatActivity implements View.OnCli
         if (surgeryId.equals("")) {
             finish();
         }
-
+        Calendar minCalendar = Calendar.getInstance();
+        minCalendar.add(Calendar.YEAR, -25);
+        Date minDate = minCalendar.getTime();
+        Calendar maxCalendar = Calendar.getInstance();
+        maxCalendar.add(Calendar.YEAR, 5);
+        Date maxDate = minCalendar.getTime();
+        dateAndTimePicker.setMinDate(minDate);
+        dateAndTimePicker.setMaxDate(maxDate);
 
     }
 

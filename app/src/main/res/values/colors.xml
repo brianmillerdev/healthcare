@@ -8,7 +8,9 @@
     <color name="colorgray">#808080</color>
     <color name="colorRed">#FF0000</color>
     <color name="colorText">#252525</color>
+    <color name="colorDarkGray">#555555</color>
     <color name="colorActionBar">#F4F6F8</color>
+    <color name="colorItemRipple">#808080</color>
     <color name="colorRipple">#80F4F6F8</color>
     <color name="colorLine">#3F000000</color>
     <color name="colorDisabled">#CECECF</color>
