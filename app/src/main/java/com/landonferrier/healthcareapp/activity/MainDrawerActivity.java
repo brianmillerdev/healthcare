@@ -11,13 +11,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.landonferrier.healthcareapp.R;
+import com.landonferrier.healthcareapp.fragment.ComplicationsChecklistFragment;
 import com.landonferrier.healthcareapp.fragment.DashboardFragment;
 import com.landonferrier.healthcareapp.fragment.DashboardSurgeryFragment;
 import com.landonferrier.healthcareapp.fragment.JournalsFragment;
 import com.landonferrier.healthcareapp.fragment.MedicationsFragment;
+import com.landonferrier.healthcareapp.fragment.PostOpSurgicalChecklistFragment;
+import com.landonferrier.healthcareapp.fragment.PreOpSurgicalChecklistFragment;
 import com.landonferrier.healthcareapp.fragment.RemindersFragment;
 import com.landonferrier.healthcareapp.fragment.SurgeryInfoFragment;
-import com.landonferrier.healthcareapp.fragment.SurgicalChecklistFragment;
 import com.landonferrier.healthcareapp.fragment.SurveysFragment;
 import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.views.AutofitTextView;
@@ -68,21 +70,23 @@ public class MainDrawerActivity extends MaterialNavigationDrawer implements View
              surgeryInfoSection = newSection("Surgery Info",R.drawable.ic_surgery_info, new SurgeryInfoFragment());
             this.addSection(surgeryInfoSection);//.setSectionColor(Color.parseColor("#03a9f4")));
 
-            this.addDivisor1();
+//            this.addDivisor1();
             this.addSection(newSection("Patient Survey",R.drawable.ic_patient_survey,new SurveysFragment()));//.setSectionColor(Color.parseColor("#03a9f4")));
             this.addDivisor1();
             this.addSubheader("Checklist");
             this.addDivisor();
-            MaterialSection surgicalSection = newSection("Surgical",R.drawable.ic_checked, new SurgicalChecklistFragment());
-            MaterialSection complicationsSection = newSection("Complications",R.drawable.ic_checked, listener);
-            this.addSection(surgicalSection);//.setSectionColor(Color.parseColor("#03a9f4")));
+            MaterialSection preSugical = newSection("Pre-op Surgical",R.drawable.ic_checked, new PreOpSurgicalChecklistFragment());
+            MaterialSection postSurgical = newSection("Post-op Surgical",R.drawable.ic_checked, new PostOpSurgicalChecklistFragment());
+            MaterialSection complicationsSection = newSection("Complications",R.drawable.ic_checked, new ComplicationsChecklistFragment());
+            this.addSection(preSugical);//.setSectionColor(Color.parseColor("#03a9f4")));
+            this.addSection(postSurgical);
             this.addSection(complicationsSection);
         }else{
             this.addSection(newSection("Home", R.drawable.ic_home,new DashboardFragment()));//.setSectionColor(Color.parseColor("#9c27b0")));
             this.addSection(newSection("Reminders",R.drawable.ic_reminder,new RemindersFragment()));//.setSectionColor(Color.parseColor("#03a9f4")));
             this.addSection(newSection("Medications",R.drawable.ic_medications,new MedicationsFragment()));//.setSectionColor(Color.parseColor("#03a9f4")));
-
-            this.addDivisor1();
+//
+//            this.addDivisor1();
             this.addSection(newSection("Patient Survey",R.drawable.ic_patient_survey,new SurveysFragment()));//.setSectionColor(Color.parseColor("#03a9f4")));
         }
 

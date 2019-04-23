@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.google.gson.JsonObject;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.activity.HelpActivity;
@@ -78,11 +79,8 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
     @BindView(R.id.view_surveys)
     LinearLayout viewSurveys;
 
-    @BindView(R.id.tv_have_survey)
-    CustomFontTextView tvSurvey;
-
-    @BindView(R.id.tv_expire_date)
-    CustomFontTextView tvExpireDate;
+    @BindView(R.id.tv_date)
+    CustomFontTextView tvDate;
 
     @BindView(R.id.view_current_surgery)
     RelativeLayout viewCurrentSurgery;
@@ -177,7 +175,8 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
                 }
             });
         }
-        fetchSurveys();
+//        fetchSurveys();
+        showDayLabel();
     }
 
 
@@ -769,6 +768,48 @@ public class DashboardSurgeryFragment extends BaseFragment implements TaskAdapte
         Date expirdate = survey.getDate("expirationDate");
         SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/y");
         String dateString = dateFormat.format(expirdate);
-        tvExpireDate.setText(String.format("Please answer by %s", dateString));
+//        tvExpireDate.setText(String.format("Please answer by %s", dateString));
+    }
+
+    public void showDayLabel() {
+        if (ParseUser.getCurrentUser().getString("currentSurgeryId") != null) {
+            String currentSurgeryId = ParseUser.getCurrentUser().getString("currentSurgeryId");
+            if (ParseUser.getCurrentUser().getJSONObject("surgeryDates") != null) {
+                JSONObject surgeryDate = ParseUser.getCurrentUser().getJSONObject("surgeryDates");
+
+                if (surgeryDate.has(currentSurgeryId)) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+                    try {
+                        Date date = dateFormat.parse(surgeryDate.getString(currentSurgeryId));
+
+                        boolean isFuture = date.after(showDate);
+                        String beforeAfter = isFuture ? "to" : "after";
+                        Calendar cal1 = Calendar.getInstance();
+                        Calendar cal2 = Calendar.getInstance();
+                        cal1.setTime(showDate);
+                        cal2.setTime(date);
+                        long numOfDaysDifference = (cal1.getTimeInMillis() - cal2.getTimeInMillis()) / (24 * 60 * 60 * 1000);
+                        String dayString = Math.abs(numOfDaysDifference) > 1 ? "days" : "day";
+                        String numDaysString = (numOfDaysDifference+"").replace("-", "");
+
+                        String formattedString = numDaysString+""+dayString+" "+beforeAfter+" surgery";
+
+                        if (Math.abs(numOfDaysDifference) == 0) {
+
+                            formattedString = "0 days to surgery";
+                        }
+
+                        viewSurveys.setVisibility(View.VISIBLE);
+                        tvDate.setText(formattedString);
+
+                    } catch (java.text.ParseException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        }
     }
 }

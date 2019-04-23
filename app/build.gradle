@@ -7,8 +7,8 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 4
-        versionName "1.03"
+        versionCode 6
+        versionName "1.05"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "A-OK-$versionName")
     }
@@ -19,13 +19,24 @@ android {
 
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
+
+    }
+    signingConfigs {
+        release {
+            storeFile file('/Volumes/Vmware/SourceTree/HealthCare/healthcare_android/keystore')
+            storePassword 'health'
+            keyAlias 'aok'
+            keyPassword 'health'
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+
     }
 
     compileOptions {

@@ -20,6 +20,26 @@ public class Helper {
 
 	private static Helper helperInstance;
 
+
+	public static String surgeryTypeFor(String id) {
+
+		if (id.equals(Constants.surgeryIdLumbarStenosis)) {
+
+			return SurgeryType.LumbarStenosis;
+		} else if (id.equals(Constants.surgeryIdLumbarFusion)) {
+
+			return SurgeryType.LumbarFusion;
+		} else if (id.equals(Constants.surgeryIdLumbarDisectomy)) {
+
+			return SurgeryType.LumbarDisectomy;
+		} else if (id.equals(Constants.surgeryIdLumbarAnteriorCervicalDiscectomyFusion)) {
+
+			return SurgeryType.ACDF;
+		}
+
+		return "";
+	}
+
 	private Helper() {
 
 	}

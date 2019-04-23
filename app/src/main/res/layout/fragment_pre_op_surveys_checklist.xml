@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_1_month_before_surgery"
+                app:font_style="semi"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="36dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorgray"
+                android:layout_marginStart="16dp"/>
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/surgery_scheduler_information"
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"/>
+
+            <com.landonferrier.healthcareapp.views.CustomFontEditText
+                android:id="@+id/edt_scheduler_name"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text=""
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:hint="@string/enter_name_here"
+                android:textColorHint="@color/colorgray"
+                android:textCursorDrawable="@drawable/cursor"
+                android:maxLines="1"
+                android:inputType="textCapWords"
+                android:background="@color/transparent"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:ignore="RtlSymmetry" />
+
+            <com.landonferrier.healthcareapp.views.CustomFontEditText
+                android:id="@+id/edt_scheduler_number"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text=""
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/colorgray"
+                android:textCursorDrawable="@drawable/cursor"
+                android:maxLines="1"
+                android:hint="@string/enter_number_here"
+                android:background="@color/transparent"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                tools:ignore="RtlSymmetry" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/cb_completed_surgery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_completed_surgery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/completed_call_with_the_surgery_scheduler"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/have_you_finalized_a_date_for_surgery"
+                app:font_style="semi"
+                android:textColor="@color/colorDarkGray"
+                android:textSize="14sp"
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="16dp"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/cb_date_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/item_checkbox"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_date_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                        app:font_style="semi"
+                        android:textColor="@color/item_check_color"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp">
+
+                    <ImageView
+                        android:id="@+id/cb_date_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/item_checkbox"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_date_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        app:font_style="semi"
+                        android:textColor="@color/item_check_color"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/have_you_scheduled_a_visit_with_your_pcp"
+                app:font_style="semi"
+                android:textColor="@color/colorDarkGray"
+                android:textSize="14sp"
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="16dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/cb_pcp_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/item_checkbox"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_pcp_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                        app:font_style="semi"
+                        android:textColor="@color/item_check_color"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp">
+
+                    <ImageView
+                        android:id="@+id/cb_pcp_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/item_checkbox"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_pcp_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        app:font_style="semi"
+                        android:textColor="@color/item_check_color"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_1_week_before_surgery"
+                app:font_style="semi"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="36dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorgray"
+                android:layout_marginStart="16dp"/>
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hospital_information"
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"/>
+
+            <com.landonferrier.healthcareapp.views.CustomFontEditText
+                android:id="@+id/edt_hospital_name"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text=""
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:hint="@string/enter_name_here"
+                android:background="@color/transparent"
+                android:textSize="16sp"
+                android:inputType="textCapWords"
+                android:textColorHint="@color/colorgray"
+                android:textCursorDrawable="@drawable/cursor"
+                android:maxLines="1"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:ignore="RtlSymmetry" />
+
+            <com.landonferrier.healthcareapp.views.CustomFontEditText
+                android:id="@+id/edt_hospital_number"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text=""
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:hint="@string/enter_number_here"
+                android:background="@color/transparent"
+                android:textSize="16sp"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/colorgray"
+                android:textCursorDrawable="@drawable/cursor"
+                android:maxLines="1"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:ignore="RtlSymmetry" />
+
+            <com.landonferrier.healthcareapp.views.CustomFontEditText
+                android:id="@+id/edt_pre_registration_number"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text=""
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:hint="@string/enter_preegistraion_number_here"
+                android:background="@color/transparent"
+                android:textSize="16sp"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/colorgray"
+                android:textCursorDrawable="@drawable/cursor"
+                android:maxLines="1"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:ignore="RtlSymmetry" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/cb_pcp_cardiologist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_pcp_cardiologist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pre_op_approval_from_pcp_cardiologist"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pcp_information"
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"/>
+
+            <com.landonferrier.healthcareapp.views.CustomFontEditText
+                android:id="@+id/edt_pcp_name"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text=""
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:hint="@string/enter_name_here"
+                android:background="@color/transparent"
+                android:textSize="16sp"
+                android:inputType="textCapWords"
+                android:textColorHint="@color/colorgray"
+                android:textCursorDrawable="@drawable/cursor"
+                android:maxLines="1"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:ignore="RtlSymmetry" />
+
+            <com.landonferrier.healthcareapp.views.CustomFontEditText
+                android:id="@+id/edt_pcp_number"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text=""
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:hint="@string/enter_number_here"
+                android:background="@color/transparent"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/colorgray"
+                android:textCursorDrawable="@drawable/cursor"
+                android:maxLines="1"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:ignore="RtlSymmetry" />
+
+            <com.landonferrier.healthcareapp.views.AutofitTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/have_you_found_a_place_to_stay_before_after_your_surgery"
+                android:maxLines="1"
+                app:font_style="medium"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="8dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/cb_found_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/item_checkbox"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_found_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                        app:font_style="semi"
+                        android:textColor="@color/item_check_color"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp">
+
+                    <ImageView
+                        android:id="@+id/cb_found_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/item_checkbox"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                    <com.landonferrier.healthcareapp.views.CustomFontTextView
+                        android:id="@+id/tv_found_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        app:font_style="semi"
+                        android:textColor="@color/item_check_color"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <com.landonferrier.healthcareapp.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_1_day_before_surgery"
+                app:font_style="semi"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="36dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorgray"
+                android:layout_marginStart="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/cb_eat_light_meal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_eat_light_meal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eat_a_light_meal"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/cb_drink_lots_fluids"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_drink_lots_fluids"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/drink_lots_of_fluids"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="36dp">
+
+                <ImageView
+                    android:id="@+id/cb_dont_midnight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_dont_midnight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/do_not_eat_or_drink_anything_after_midnight"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

@@ -160,7 +160,7 @@ public class DoctorSurveyActivity extends AppCompatActivity implements View.OnCl
         mHandler.postDelayed(mUpdateMicStatusTimer, 2000);
 
         overlayView.setVisibility(View.VISIBLE);
-        Animation myFadeInAnimation = AnimationUtils.loadAnimation(null, R.anim.alpha_anim);
+        Animation myFadeInAnimation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.alpha_anim);
         ivCompleted.startAnimation(myFadeInAnimation);
     }
 

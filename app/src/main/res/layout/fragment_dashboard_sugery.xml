@@ -138,26 +138,26 @@
         android:visibility="gone">
 
         <com.landonferrier.healthcareapp.views.CustomFontTextView
-            android:id="@+id/tv_have_survey"
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             app:font_style="semi"
-            android:text="You have a new survey!"
+            android:text=""
             android:textSize="18sp"
             android:textColor="@color/colorPrimary"/>
-        <com.landonferrier.healthcareapp.views.CustomFontTextView
-            android:id="@+id/tv_expire_date"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            app:font_style="medium"
-            android:text="Please answer by 4/9/2019"
-            android:textSize="14sp"
-            android:textColor="@color/colorPrimary"/>
+        <!--<com.landonferrier.healthcareapp.views.CustomFontTextView-->
+            <!--android:id="@+id/tv_expire_date"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--app:font_style="medium"-->
+            <!--android:text="Please answer by 4/9/2019"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textColor="@color/colorPrimary"/>-->
     </LinearLayout>
 
 
