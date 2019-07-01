@@ -50,17 +50,21 @@ public class SelectSurgeryDetailActivity extends AppCompatActivity implements Vi
 
 //    SurgeryAdapter mAdapter;
     SurgeryTypeAdapter mAdapter;
-    String type = "current";
+    String type = "";
     private String TAG = SelectSurgeryDetailActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_surgery);
+        setContentView(R.layout.activity_select_surgery_detail);
         ButterKnife.bind(this);
         btnBack.setOnClickListener(this);
         if (getIntent().getStringExtra("type") != null) {
             type = getIntent().getStringExtra("type");
+            String name = getIntent().getStringExtra("name");
+            tvTitle.setText(name);
+        } else {
+            finish();
         }
 
         rcSurgery.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
@@ -70,7 +74,6 @@ public class SelectSurgeryDetailActivity extends AppCompatActivity implements Vi
         rcSurgery.setHasFixedSize(false);
         mAdapter = new SurgeryTypeAdapter(this, surgeries, this);
         rcSurgery.setAdapter(mAdapter);
-        mAdapter.setType(type);
 
         fetchSurgeries();
     }
@@ -90,23 +93,6 @@ public class SelectSurgeryDetailActivity extends AppCompatActivity implements Vi
         }
     }
 
-    public void fetchTypes() {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("SurgeryType");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    surgeries.clear();
-                    surgeries.addAll(objects);
-                    mAdapter.setmItems(surgeries);
-
-                }else{
-                    Log.e(TAG, e.getLocalizedMessage());
-                }
-            }
-        });
-    }
-
     public void fetchSurgeries() {
         ParseQuery<ParseObject> surgeryQuery = ParseQuery.getQuery("Surgery");
         surgeryQuery.orderByAscending("sortingIndex");
@@ -120,6 +106,8 @@ public class SelectSurgeryDetailActivity extends AppCompatActivity implements Vi
             }
         }
         surgeryQuery.whereNotContainedIn("objectId", ids);
+        surgeryQuery.whereContains("typeId", type);
+
         surgeryQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -136,7 +124,14 @@ public class SelectSurgeryDetailActivity extends AppCompatActivity implements Vi
     @Override
     public void onSelect(ParseObject object, int position) {
         selectedSurgery = object;
-//        mAdapter.setSelectedSurgery(object);
+        String id = selectedSurgery.getObjectId();
+        String name = selectedSurgery.getString("name");
+        Intent intent = new Intent();
+        intent.putExtra("id", id);
+        intent.putExtra("name", name);
+        setResult(RESULT_OK, intent);
+        finish();
+
     }
 
     @Override

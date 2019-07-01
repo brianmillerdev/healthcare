@@ -111,14 +111,14 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
     private LinearLayout bottomSections;
 
     // Lists
-    private List<MaterialSection> sectionList;
-    private List<MaterialSection> bottomSectionList;
-    private List<MaterialAccount> accountManager;
-    private List<MaterialSection> accountSectionList;
-    private List<MaterialSubheader> subheaderList;
-    private List<Element> elementsList;
-    private List<Fragment> childFragmentStack;
-    private List<String> childTitleStack;
+    public List<MaterialSection> sectionList;
+    public List<MaterialSection> bottomSectionList;
+    public List<MaterialAccount> accountManager;
+    public List<MaterialSection> accountSectionList;
+    public List<MaterialSubheader> subheaderList;
+    public List<Element> elementsList;
+    public List<Fragment> childFragmentStack;
+    public List<String> childTitleStack;
 
     // current pointers
     public MaterialSection currentSection;
@@ -209,7 +209,8 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
             }
         }
     };
-    private View.OnClickListener accountSwitcherListener = new View.OnClickListener() {
+
+    public View.OnClickListener accountSwitcherListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if(!drawerTouchLocked) {
@@ -220,7 +221,9 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
 
                 if (!accountSwitcher) {
                     // si cambia l'icona del pulsante || Change the icon of the button
-                    userButtonSwitcher.setImageResource(R.drawable.ic_arrow_drop_up_white_24dp);
+                    if (userButtonSwitcher != null) {
+                        userButtonSwitcher.setImageResource(R.drawable.ic_arrow_drop_up_white_24dp);
+                    }
 
                     for (MaterialAccount account : accountManager) {
                         // si inseriscono tutti gli account ma non quello attualmente in uso || Add all account without the current one
@@ -237,7 +240,9 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
                     // si attiva l'account switcher per annotare che si visualizzano gli account. || accountSwitcher is enabled for checking the account list is showed.
                     accountSwitcher = true;
                 } else {
-                    userButtonSwitcher.setImageResource(R.drawable.ic_arrow_drop_down_white_24dp);
+                    if (userButtonSwitcher != null) {
+                        userButtonSwitcher.setImageResource(R.drawable.ic_arrow_drop_down_white_24dp);
+                    }
 
                     int indexSection = 0 ,indexSubheader = 0;
                     for(Element element : elementsList) {
@@ -320,6 +325,90 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
             }
         }
     };
+
+    public void refreshSections() {
+        sections.removeAllViews();
+        bottomSections.removeAllViews();
+        int indexSection = 0 ,indexSubheader = 0;
+        for(Element element : elementsList) {
+            switch(element.getType()) {
+                case Element.TYPE_SECTION:
+                    MaterialSection section = sectionList.get(indexSection);
+                    indexSection++;
+                    LinearLayout.LayoutParams paramSection = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (48 * density));
+                    sections.addView(section.getView(), paramSection);
+                    break;
+                case Element.TYPE_DIVISOR:
+                    View view = LayoutInflater.from(this).inflate(R.layout.item_divisor,content, false);
+                    sections.addView(view);
+                    break;
+                case Element.TYPE_DIVISOR2:
+                    View view2 = new View(this);
+                    // height 1 px
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,1);
+                    params.setMargins(0,(int) (8 * density), 16 , (int) (8 * density));
+                    sections.addView(view2,params);
+                    break;
+                case Element.TYPE_SUBHEADER:
+                    MaterialSubheader subheader = subheaderList.get(indexSubheader);
+                    indexSubheader++;
+                    sections.addView(subheader.getView());
+                    break;
+                case Element.TYPE_BOTTOM_SECTION:
+                    break; // le bottom section vengono gestite dopo l'inserimento degli altri elementi
+            }
+        }
+
+        int width = drawer.getWidth();
+        int heightCover = 0;
+        switch(drawerHeaderType) {
+            default:
+            case DRAWERHEADER_ACCOUNTS:
+            case DRAWERHEADER_IMAGE:
+            case DRAWERHEADER_CUSTOM:
+                // si fa il rapporto in 16 : 9 || 16:9 rate
+                heightCover = (9 * width) / 16;
+                break;
+            case DRAWERHEADER_NO_HEADER:
+                break;
+        }
+
+        // adding status bar height
+        if(Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP) {
+            heightCover += (int) (24 * density); // on lollipop status bar is only 24 dp height
+        }
+        else {
+            heightCover += (int) (25 * density);
+        }
+
+        int heightDrawer = (int) (( ( 8 + 8 ) * density ) + 1 + heightCover + sections.getHeight() + ((density * 48) * bottomSectionList.size()) +  (subheaderList.size() * (35 * density)));
+
+        View divisor = new View(MaterialNavigationDrawer.this);
+        divisor.setBackgroundColor(Color.parseColor("#00000000"));
+
+        // si aggiungono le bottom sections
+        if (heightDrawer >= Utils.getScreenHeight(MaterialNavigationDrawer.this)) {
+
+            LinearLayout.LayoutParams paramDivisor = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,1);
+            paramDivisor.setMargins(0,(int) (8 * density), 0 , (int) (8 * density));
+            sections.addView(divisor,paramDivisor);
+
+            for (MaterialSection section : bottomSectionList) {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (48 * density));
+                sections.addView(section.getView(), params);
+            }
+        } else {
+            LinearLayout.LayoutParams paramDivisor = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,1);
+            bottomSections.addView(divisor,paramDivisor);
+
+            for (MaterialSection section : bottomSectionList) {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (48 * density));
+                bottomSections.addView(section.getView(), params);
+            }
+        }
+
+    }
+
     private MaterialSectionListener accountSectionListener = new MaterialSectionListener() {
         @Override
         public void onClick(MaterialSection section) {
@@ -908,7 +997,9 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
     public void setTitle(CharSequence title) {
         if (title.equals("Home")) {
             this.title = "Dashboard";
-        }else{
+        }else if (title.equals("Reminders/Appointments")) {
+            this.title = "Reminders";
+        } else {
             this.title = title;
         }
 //        this.getSupportActionBar().setTitle(title);
@@ -1739,7 +1830,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends AppCompatActivi
         sections.addView(view, params);
 
         // add the element to the list
-        elementsList.add(new Element(Element.TYPE_DIVISOR,view));
+        elementsList.add(new Element(Element.TYPE_DIVISOR2,view));
     }
 
     public void addSubheader(CharSequence title) {

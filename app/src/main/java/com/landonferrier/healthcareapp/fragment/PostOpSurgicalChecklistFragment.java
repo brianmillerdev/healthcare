@@ -33,7 +33,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -43,83 +45,147 @@ import butterknife.ButterKnife;
 public class PostOpSurgicalChecklistFragment extends BaseFragment {
 
 
-    @BindView(R.id.cb_checked_docter_yes)
-    ImageView cbCheckedDocterYes;
+    @BindView(R.id.cb_checked_in_one_week)
+    ImageView cbCheckedInOneWeek;
 
-    @BindView(R.id.tv_checked_docter_yes)
-    CustomFontTextView tvCheckedDocterYes;
+    @BindView(R.id.tv_checked_in_one_week)
+    CustomFontTextView tvCheckedInOneWeek;
 
-    @BindView(R.id.cb_checked_docter_no)
-    ImageView cbCheckedDocterNo;
+    @BindView(R.id.view_checked_in_one_week)
+    LinearLayout viewCheckedInOneWeek;
 
-    @BindView(R.id.tv_checked_docter_no)
-    CustomFontTextView tvCheckedDocterNo;
+    @BindView(R.id.cb_checked_in_3_week)
+    ImageView cbCheckedInThreeWeek;
 
-    @BindView(R.id.cb_following_direction_yes)
-    ImageView cbFollowingDirectionYes;
+    @BindView(R.id.tv_checked_in_3_week)
+    CustomFontTextView tvCheckedInThreeWeek;
 
-    @BindView(R.id.tv_following_direction_yes)
-    CustomFontTextView tvFollowingDirectionYes;
+    @BindView(R.id.view_checked_in_3_week)
+    LinearLayout viewCheckedInThreeWeek;
 
-    @BindView(R.id.cb_following_direction_no)
-    ImageView cbFollowingDirectionNo;
+    @BindView(R.id.cb_checked_in_6_week)
+    ImageView cbCheckedInSixWeek;
 
-    @BindView(R.id.tv_following_direction_no)
-    CustomFontTextView tvFollowingDirectionNo;
+    @BindView(R.id.tv_checked_in_6_week)
+    CustomFontTextView tvCheckedInSixWeek;
 
-    @BindView(R.id.cb_scheduled_first_yes)
-    ImageView cbScheduledFirstYes;
+    @BindView(R.id.view_checked_in_6_week)
+    LinearLayout viewCheckedInSixWeek;
 
-    @BindView(R.id.tv_scheduled_first_yes)
-    CustomFontTextView tvScheduledFirstYes;
+    @BindView(R.id.cb_checked_in_3_month)
+    ImageView cbCheckedInThreeMonth;
 
-    @BindView(R.id.cb_scheduled_first_no)
-    ImageView cbScheduledFirstNo;
+    @BindView(R.id.tv_checked_in_3_month)
+    CustomFontTextView tvCheckedInThreeMonth;
 
-    @BindView(R.id.tv_scheduled_first_no)
-    CustomFontTextView tvScheduledFirstNo;
+    @BindView(R.id.view_checked_in_3_month)
+    LinearLayout viewCheckedInThreeMonth;
 
-    @BindView(R.id.cb_first_appointment_yes)
-    ImageView cbFirstAppointmentYes;
+    @BindView(R.id.cb_checked_in_6_month)
+    ImageView cbCheckedInSixMonth;
 
-    @BindView(R.id.tv_first_appointment_yes)
-    CustomFontTextView tvFirstAppointmentYes;
+    @BindView(R.id.tv_checked_in_6_month)
+    CustomFontTextView tvCheckedInSixMonth;
 
-    @BindView(R.id.cb_first_appointment_no)
-    ImageView cbFirstAppointmentNo;
+    @BindView(R.id.view_checked_in_6_month)
+    LinearLayout viewCheckedInSixMonth;
 
-    @BindView(R.id.tv_first_appointment_no)
-    CustomFontTextView tvFirstAppointmentNo;
 
-    @BindView(R.id.tv_date)
-    CustomFontTextView tvDate;
+    @BindView(R.id.cb_confirmed_order_one_week)
+    ImageView cbConfirmedOrderOneWeek;
 
-    @BindView(R.id.edt_schedule_post_op)
-    CustomFontEditText edtSchedulePostop;
+    @BindView(R.id.tv_confirmed_order_one_week)
+    CustomFontTextView tvConfirmedOrderOneWeek;
 
-    @BindView(R.id.tv_email)
-    CustomFontTextView tvEmail;
+    @BindView(R.id.view_confirmed_order_one_week)
+    LinearLayout viewConfirmedOrderOneWeek;
 
-    @BindView(R.id.ll_email)
-    LinearLayout llEmail;
+    @BindView(R.id.cb_confirmed_order_3_week)
+    ImageView cbConfirmedOrderThreeWeek;
 
-    @BindView(R.id.cb_email_yes)
-    ImageView cbEmailYes;
+    @BindView(R.id.tv_confirmed_order_3_week)
+    CustomFontTextView tvConfirmedOrderThreeWeek;
 
-    @BindView(R.id.tv_email_yes)
-    CustomFontTextView tvEmailYes;
+    @BindView(R.id.view_confirmed_order_3_week)
+    LinearLayout viewConfirmedOrderThreeWeek;
 
-    @BindView(R.id.cb_email_no)
-    ImageView cbEmailNo;
+    @BindView(R.id.cb_confirmed_order_6_week)
+    ImageView cbConfirmedOrderSixWeek;
 
-    @BindView(R.id.tv_email_no)
-    CustomFontTextView tvEmailNo;
+    @BindView(R.id.tv_confirmed_order_6_week)
+    CustomFontTextView tvConfirmedOrderSixWeek;
 
-    @BindView(R.id.tv_address)
-    CustomFontTextView tvAddress;
+    @BindView(R.id.view_confirmed_order_6_week)
+    LinearLayout viewConfirmedOrderSixWeek;
 
-    @BindView(R.id.edt_address)
-    CustomFontEditText edtAddress;
+    @BindView(R.id.cb_confirmed_order_3_month)
+    ImageView cbConfirmedOrderThreeMonth;
+
+    @BindView(R.id.tv_confirmed_order_3_month)
+    CustomFontTextView tvConfirmedOrderThreeMonth;
+
+    @BindView(R.id.view_confirmed_order_3_month)
+    LinearLayout viewConfirmedOrderThreeMonth;
+
+    @BindView(R.id.cb_confirmed_order_6_month)
+    ImageView cbConfirmedOrderSixMonth;
+
+    @BindView(R.id.tv_confirmed_order_6_month)
+    CustomFontTextView tvConfirmedOrderSixMonth;
+
+    @BindView(R.id.view_confirmed_order_6_month)
+    LinearLayout viewConfirmedOrderSixMonth;
+
+
+
+    @BindView(R.id.cb_scheduled_order_one_week)
+    ImageView cbScheduledOrderOneWeek;
+
+    @BindView(R.id.tv_scheduled_order_one_week)
+    CustomFontTextView tvScheduledOrderOneWeek;
+
+    @BindView(R.id.view_scheduled_order_one_week)
+    LinearLayout viewScheduledOrderOneWeek;
+
+    @BindView(R.id.cb_scheduled_order_3_week)
+    ImageView cbScheduledOrderThreeWeek;
+
+    @BindView(R.id.tv_scheduled_order_3_week)
+    CustomFontTextView tvScheduledOrderThreeWeek;
+
+    @BindView(R.id.view_scheduled_order_3_week)
+    LinearLayout viewScheduledOrderThreeWeek;
+
+    @BindView(R.id.cb_scheduled_order_6_week)
+    ImageView cbScheduledOrderSixWeek;
+
+    @BindView(R.id.tv_scheduled_order_6_week)
+    CustomFontTextView tvScheduledOrderSixWeek;
+
+    @BindView(R.id.view_scheduled_order_6_week)
+    LinearLayout viewScheduledOrderSixWeek;
+
+    @BindView(R.id.cb_scheduled_order_3_month)
+    ImageView cbScheduledOrderThreeMonth;
+
+    @BindView(R.id.tv_scheduled_order_3_month)
+    CustomFontTextView tvScheduledOrderThreeMonth;
+
+    @BindView(R.id.view_scheduled_order_3_month)
+    LinearLayout viewScheduledOrderThreeMonth;
+
+    @BindView(R.id.cb_scheduled_order_6_month)
+    ImageView cbScheduledOrderSixMonth;
+
+    @BindView(R.id.tv_scheduled_order_6_month)
+    CustomFontTextView tvScheduledOrderSixMonth;
+
+    @BindView(R.id.view_scheduled_order_6_month)
+    LinearLayout viewScheduledOrderSixMonth;
+
+
+
+
 
     public String surgeryType = "";
 
@@ -202,8 +268,6 @@ public class PostOpSurgicalChecklistFragment extends BaseFragment {
 
                 sel = sel < 0 ? 0 : sel;
                 current = clean;
-                edtSchedulePostop.setText(current);
-                edtSchedulePostop.setSelection(sel < current.length() ? sel : current.length());
             }
 
         }
@@ -217,117 +281,143 @@ public class PostOpSurgicalChecklistFragment extends BaseFragment {
 
     @SuppressLint("DefaultLocale")
     public void initView() {
-        cbCheckedDocterNo.setSelected(false);
-        cbCheckedDocterYes.setSelected(false);
-        cbScheduledFirstNo.setSelected(false);
-        cbScheduledFirstYes.setSelected(false);
-        cbFirstAppointmentYes.setSelected(false);
-        cbFirstAppointmentNo.setSelected(false);
-        cbFollowingDirectionNo.setSelected(false);
-        cbFollowingDirectionYes.setSelected(false);
-        cbEmailYes.setSelected(false);
-        cbEmailNo.setSelected(false);
+        cbCheckedInOneWeek.setSelected(false);
+        cbCheckedInThreeWeek.setSelected(false);
+        cbCheckedInSixWeek.setSelected(false);
+        cbCheckedInThreeMonth.setSelected(false);
+        cbCheckedInSixMonth.setSelected(false);
+
+        cbConfirmedOrderOneWeek.setSelected(false);
+        cbConfirmedOrderThreeWeek.setSelected(false);
+        cbConfirmedOrderSixWeek.setSelected(false);
+        cbConfirmedOrderThreeMonth.setSelected(false);
+        cbConfirmedOrderSixMonth.setSelected(false);
+
+        cbScheduledOrderOneWeek.setSelected(false);
+        cbScheduledOrderThreeWeek.setSelected(false);
+        cbScheduledOrderSixWeek.setSelected(false);
+        cbScheduledOrderThreeMonth.setSelected(false);
+        cbScheduledOrderSixMonth.setSelected(false);
+
         fetchSurveys();
 
-        edtSchedulePostop.addTextChangedListener(tw);
-
-        cbCheckedDocterYes.setOnClickListener(new View.OnClickListener() {
+        cbCheckedInOneWeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cbCheckedDocterYes.setSelected(true);
-                tvCheckedDocterYes.setSelected(true);
-                cbCheckedDocterNo.setSelected(false);
-                tvCheckedDocterNo.setSelected(false);
+                cbCheckedInOneWeek.setSelected(!cbCheckedInOneWeek.isSelected());
+                tvCheckedInOneWeek.setSelected(cbCheckedInOneWeek.isSelected());
             }
         });
 
-        cbCheckedDocterNo.setOnClickListener(new View.OnClickListener() {
+        cbCheckedInThreeWeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cbCheckedDocterYes.setSelected(false);
-                tvCheckedDocterYes.setSelected(false);
-                cbCheckedDocterNo.setSelected(true);
-                tvCheckedDocterNo.setSelected(true);
+                cbCheckedInThreeWeek.setSelected(!cbCheckedInThreeWeek.isSelected());
+                tvCheckedInThreeWeek.setSelected(cbCheckedInThreeWeek.isSelected());
             }
         });
 
-        cbFollowingDirectionYes.setOnClickListener(new View.OnClickListener() {
+        cbCheckedInSixWeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cbFollowingDirectionYes.setSelected(true);
-                tvFollowingDirectionYes.setSelected(true);
-                cbFollowingDirectionNo.setSelected(false);
-                tvFollowingDirectionNo.setSelected(false);
+                cbCheckedInSixWeek.setSelected(!cbCheckedInSixWeek.isSelected());
+                tvCheckedInSixWeek.setSelected(cbCheckedInSixWeek.isSelected());
             }
         });
 
-        cbFollowingDirectionNo.setOnClickListener(new View.OnClickListener() {
+        cbCheckedInThreeMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cbFollowingDirectionYes.setSelected(false);
-                tvFollowingDirectionYes.setSelected(false);
-                cbFollowingDirectionNo.setSelected(true);
-                tvFollowingDirectionNo.setSelected(true);
+                cbCheckedInThreeMonth.setSelected(!cbCheckedInThreeMonth.isSelected());
+                tvCheckedInThreeMonth.setSelected(cbCheckedInThreeMonth.isSelected());
             }
         });
 
-        cbScheduledFirstYes.setOnClickListener(new View.OnClickListener() {
+        cbCheckedInSixMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cbScheduledFirstYes.setSelected(true);
-                tvScheduledFirstYes.setSelected(true);
-                cbScheduledFirstNo.setSelected(false);
-                tvScheduledFirstNo.setSelected(false);
+                cbCheckedInSixMonth.setSelected(!cbCheckedInSixMonth.isSelected());
+                tvCheckedInSixMonth.setSelected(cbCheckedInSixMonth.isSelected());
             }
         });
 
-        cbScheduledFirstNo.setOnClickListener(new View.OnClickListener() {
+        cbConfirmedOrderOneWeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cbScheduledFirstYes.setSelected(false);
-                tvScheduledFirstYes.setSelected(false);
-                cbScheduledFirstNo.setSelected(true);
-                tvScheduledFirstNo.setSelected(true);
+                cbConfirmedOrderOneWeek.setSelected(!cbConfirmedOrderOneWeek.isSelected());
+                tvConfirmedOrderOneWeek.setSelected(cbConfirmedOrderOneWeek.isSelected());
             }
         });
 
-        cbFirstAppointmentYes.setOnClickListener(new View.OnClickListener() {
+        cbConfirmedOrderThreeWeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cbFirstAppointmentYes.setSelected(true);
-                tvFirstAppointmentYes.setSelected(true);
-                cbFirstAppointmentNo.setSelected(false);
-                tvFirstAppointmentNo.setSelected(false);
+                cbConfirmedOrderThreeWeek.setSelected(!cbConfirmedOrderThreeWeek.isSelected());
+                tvConfirmedOrderThreeWeek.setSelected(cbConfirmedOrderThreeWeek.isSelected());
             }
         });
 
-        cbFirstAppointmentNo.setOnClickListener(new View.OnClickListener() {
+        cbConfirmedOrderSixWeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cbFirstAppointmentYes.setSelected(false);
-                tvFirstAppointmentYes.setSelected(false);
-                cbFirstAppointmentNo.setSelected(true);
-                tvFirstAppointmentNo.setSelected(true);
+                cbConfirmedOrderSixWeek.setSelected(!cbConfirmedOrderSixWeek.isSelected());
+                tvConfirmedOrderSixWeek.setSelected(cbConfirmedOrderSixWeek.isSelected());
             }
         });
 
-        cbEmailYes.setOnClickListener(new View.OnClickListener() {
+        cbConfirmedOrderThreeMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cbEmailYes.setSelected(true);
-                tvEmailYes.setSelected(true);
-                cbEmailNo.setSelected(false);
-                tvEmailNo.setSelected(false);
+                cbConfirmedOrderThreeMonth.setSelected(!cbConfirmedOrderThreeMonth.isSelected());
+                tvConfirmedOrderThreeMonth.setSelected(cbConfirmedOrderThreeMonth.isSelected());
             }
         });
 
-        cbEmailNo.setOnClickListener(new View.OnClickListener() {
+        cbConfirmedOrderSixMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cbEmailYes.setSelected(false);
-                tvEmailYes.setSelected(false);
-                cbEmailNo.setSelected(true);
-                tvEmailNo.setSelected(true);
+                cbConfirmedOrderSixMonth.setSelected(!cbConfirmedOrderSixMonth.isSelected());
+                tvConfirmedOrderSixMonth.setSelected(cbConfirmedOrderSixMonth.isSelected());
+            }
+        });
+
+        cbScheduledOrderOneWeek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cbScheduledOrderOneWeek.setSelected(!cbScheduledOrderOneWeek.isSelected());
+                tvScheduledOrderOneWeek.setSelected(cbScheduledOrderOneWeek.isSelected());
+            }
+        });
+
+        cbScheduledOrderThreeWeek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cbScheduledOrderThreeWeek.setSelected(!cbScheduledOrderThreeWeek.isSelected());
+                tvScheduledOrderThreeWeek.setSelected(cbScheduledOrderThreeWeek.isSelected());
+            }
+        });
+
+        cbScheduledOrderSixWeek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cbScheduledOrderSixWeek.setSelected(!cbScheduledOrderSixWeek.isSelected());
+                tvScheduledOrderSixWeek.setSelected(cbScheduledOrderSixWeek.isSelected());
+            }
+        });
+
+        cbScheduledOrderThreeMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cbScheduledOrderThreeMonth.setSelected(!cbScheduledOrderThreeMonth.isSelected());
+                tvScheduledOrderThreeMonth.setSelected(cbScheduledOrderThreeMonth.isSelected());
+            }
+        });
+
+        cbScheduledOrderSixMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cbScheduledOrderSixMonth.setSelected(!cbScheduledOrderSixMonth.isSelected());
+                tvScheduledOrderSixMonth.setSelected(cbScheduledOrderSixMonth.isSelected());
             }
         });
 
@@ -421,7 +511,37 @@ public class PostOpSurgicalChecklistFragment extends BaseFragment {
                         checklist.put("hasFollowedDirections", false);
                         checklist.put("hasScheduledVisit", false);
                         checklist.put("hasHadFirstPostAppt", false);
+                        checklist.put("scheduledPostopDate", "");
+                        checklist.put("facilityAddress", "");
+                        checklist.put("hasEmail", false);
 
+                        Map<String, Map<String, Boolean>> newData = new HashMap<>();
+                        Map<String, Boolean> checkedInData = new HashMap<>();
+                        checkedInData.put("oneWeekAfter", false);
+                        checkedInData.put("threeWeeksAfter", false);
+                        checkedInData.put("sixWeeksAfter", false);
+                        checkedInData.put("threeMonthsAfter", false);
+                        checkedInData.put("sixMonthsAfter", false);
+
+                        Map<String, Boolean> confirmedOrderData = new HashMap<>();
+                        confirmedOrderData.put("oneWeekAfter", false);
+                        confirmedOrderData.put("threeWeeksAfter", false);
+                        confirmedOrderData.put("sixWeeksAfter", false);
+                        confirmedOrderData.put("threeMonthsAfter", false);
+                        confirmedOrderData.put("sixMonthsAfter", false);
+
+                        Map<String, Boolean> scheduledOrderData = new HashMap<>();
+                        scheduledOrderData.put("oneWeekAfter", false);
+                        scheduledOrderData.put("threeWeeksAfter", false);
+                        scheduledOrderData.put("sixWeeksAfter", false);
+                        scheduledOrderData.put("threeMonthsAfter", false);
+                        scheduledOrderData.put("sixMonthsAfter", false);
+
+                        newData.put("hasCheckedIn", checkedInData);
+                        newData.put("hasConfirmedOrder", confirmedOrderData);
+                        newData.put("hasScheduledOrder", scheduledOrderData);
+
+                        checklist.put("data", newData);
                         checklist.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
@@ -445,119 +565,172 @@ public class PostOpSurgicalChecklistFragment extends BaseFragment {
                 hud.dismiss();
             }
         }
-        boolean hasCheckedIn = checklist.getBoolean("hasCheckedIn");
 
-        if (hasCheckedIn) {
-            cbCheckedDocterYes.setSelected(true);
-            tvCheckedDocterYes.setSelected(true);
-            cbCheckedDocterNo.setSelected(false);
-            tvCheckedDocterNo.setSelected(false);
-        }else{
-            cbCheckedDocterYes.setSelected(false);
-            tvCheckedDocterYes.setSelected(false);
-            cbCheckedDocterNo.setSelected(true);
-            tvCheckedDocterNo.setSelected(true);
-        }
+        Map<String, Map<String, Boolean>> data = new HashMap<>();
+        if (checklist.has("data")) {
+            data = checklist.getMap("data");
+            if (data != null) {
+                Map<String, Boolean> hasCheckedIn = data.get("hasCheckedIn");
+                if (hasCheckedIn != null ) {
+                    if (hasCheckedIn.containsKey("oneWeekAfter")) {
+                        cbCheckedInOneWeek.setSelected(hasCheckedIn.get("oneWeekAfter"));
+                        tvCheckedInOneWeek.setSelected(hasCheckedIn.get("oneWeekAfter"));
+                        viewCheckedInOneWeek.setVisibility(View.VISIBLE);
+                    } else {
+                        viewCheckedInOneWeek.setVisibility(View.GONE);
+                    }
+                    if (hasCheckedIn.containsKey("threeWeeksAfter")) {
+                        cbCheckedInThreeWeek.setSelected(hasCheckedIn.get("threeWeeksAfter"));
+                        tvCheckedInThreeWeek.setSelected(hasCheckedIn.get("threeWeeksAfter"));
+                        viewCheckedInThreeWeek.setVisibility(View.VISIBLE);
+                    } else {
+                        viewCheckedInThreeWeek.setVisibility(View.GONE);
+                    }
+                    if (hasCheckedIn.containsKey("sixWeeksAfter")) {
+                        cbCheckedInSixWeek.setSelected(hasCheckedIn.get("sixWeeksAfter"));
+                        tvCheckedInSixWeek.setSelected(hasCheckedIn.get("sixWeeksAfter"));
+                        viewCheckedInSixWeek.setVisibility(View.VISIBLE);
+                    } else {
+                        viewCheckedInSixWeek.setVisibility(View.GONE);
+                    }
+                    if (hasCheckedIn.containsKey("threeMonthsAfter")) {
+                        cbCheckedInThreeMonth.setSelected(hasCheckedIn.get("threeMonthsAfter"));
+                        tvCheckedInThreeMonth.setSelected(hasCheckedIn.get("threeMonthsAfter"));
+                        viewCheckedInThreeMonth.setVisibility(View.VISIBLE);
+                    } else {
+                        viewCheckedInThreeMonth.setVisibility(View.GONE);
+                    }
+                    if (hasCheckedIn.containsKey("sixMonthsAfter")) {
+                        cbCheckedInSixMonth.setSelected(hasCheckedIn.get("sixMonthsAfter"));
+                        tvCheckedInSixMonth.setSelected(hasCheckedIn.get("sixMonthsAfter"));
+                        viewCheckedInSixMonth.setVisibility(View.VISIBLE);
+                    } else {
+                        viewCheckedInSixMonth.setVisibility(View.GONE);
+                    }
+                }
 
-        boolean hasFollowedDirections = checklist.getBoolean("hasFollowedDirections");
+                Map<String, Boolean> hasConfirmedOrder = data.get("hasConfirmedOrder");
+                if (hasConfirmedOrder != null ) {
+                    if (hasConfirmedOrder.containsKey("oneWeekAfter")) {
+                        cbConfirmedOrderOneWeek.setSelected(hasConfirmedOrder.get("oneWeekAfter"));
+                        tvConfirmedOrderOneWeek.setSelected(hasConfirmedOrder.get("oneWeekAfter"));
+                        viewConfirmedOrderOneWeek.setVisibility(View.VISIBLE);
+                    } else {
+                        viewConfirmedOrderOneWeek.setVisibility(View.GONE);
+                    }
+                    if (hasConfirmedOrder.containsKey("threeWeeksAfter")) {
+                        cbConfirmedOrderThreeWeek.setSelected(hasConfirmedOrder.get("threeWeeksAfter"));
+                        tvConfirmedOrderThreeWeek.setSelected(hasConfirmedOrder.get("threeWeeksAfter"));
+                        viewConfirmedOrderThreeWeek.setVisibility(View.VISIBLE);
+                    } else {
+                        viewConfirmedOrderThreeWeek.setVisibility(View.GONE);
+                    }
+                    if (hasConfirmedOrder.containsKey("sixWeeksAfter")) {
+                        cbConfirmedOrderSixWeek.setSelected(hasConfirmedOrder.get("sixWeeksAfter"));
+                        tvConfirmedOrderSixWeek.setSelected(hasConfirmedOrder.get("sixWeeksAfter"));
+                        viewConfirmedOrderSixWeek.setVisibility(View.VISIBLE);
+                    } else {
+                        viewConfirmedOrderSixWeek.setVisibility(View.GONE);
+                    }
+                    if (hasConfirmedOrder.containsKey("threeMonthsAfter")) {
+                        cbConfirmedOrderThreeMonth.setSelected(hasConfirmedOrder.get("threeMonthsAfter"));
+                        tvConfirmedOrderThreeMonth.setSelected(hasConfirmedOrder.get("threeMonthsAfter"));
+                        viewConfirmedOrderThreeMonth.setVisibility(View.VISIBLE);
+                    } else {
+                        viewConfirmedOrderThreeMonth.setVisibility(View.GONE);
+                    }
+                    if (hasConfirmedOrder.containsKey("sixMonthsAfter")) {
+                        cbConfirmedOrderSixMonth.setSelected(hasConfirmedOrder.get("sixMonthsAfter"));
+                        tvConfirmedOrderSixMonth.setSelected(hasConfirmedOrder.get("sixMonthsAfter"));
+                        viewConfirmedOrderSixMonth.setVisibility(View.VISIBLE);
+                    } else {
+                        viewConfirmedOrderSixMonth.setVisibility(View.GONE);
+                    }
+                }
 
-        if (hasFollowedDirections) {
-            cbFollowingDirectionYes.setSelected(true);
-            tvFollowingDirectionYes.setSelected(true);
-            cbFollowingDirectionNo.setSelected(false);
-            tvFollowingDirectionNo.setSelected(false);
-        }else{
-            cbFollowingDirectionYes.setSelected(false);
-            tvFollowingDirectionYes.setSelected(false);
-            cbFollowingDirectionNo.setSelected(true);
-            tvFollowingDirectionNo.setSelected(true);
-        }
-
-        boolean hasScheduledVisit = checklist.getBoolean("hasScheduledVisit");
-
-        if (hasScheduledVisit) {
-            cbScheduledFirstYes.setSelected(true);
-            tvScheduledFirstYes.setSelected(true);
-            cbScheduledFirstNo.setSelected(false);
-            tvScheduledFirstNo.setSelected(false);
-        }else{
-            cbScheduledFirstYes.setSelected(false);
-            tvScheduledFirstYes.setSelected(false);
-            cbScheduledFirstNo.setSelected(true);
-            tvScheduledFirstNo.setSelected(true);
-        }
-
-        if (surgeryType.equals(SurgeryType.LumbarFusion) || surgeryType.equals(SurgeryType.ACDF)) {
-
-            boolean hasScheduledDate = checklist.has("scheduledPostopDate");
-            if (hasScheduledDate) {
-                tvDate.setVisibility(View.VISIBLE);
-                edtSchedulePostop.setVisibility(View.VISIBLE);
-                edtSchedulePostop.setText(checklist.getString("scheduledPostopDate"));
-            }
-
-            if (checklist.has("hasEmail")) {
-                tvEmail.setVisibility(View.VISIBLE);
-                llEmail.setVisibility(View.VISIBLE);
-                boolean hasEmail = checklist.getBoolean("hasEmail");
-                if (hasEmail) {
-                    cbEmailYes.setSelected(true);
-                    tvEmailYes.setSelected(true);
-                    cbEmailNo.setSelected(false);
-                    tvEmailNo.setSelected(false);
-                }else{
-                    cbEmailYes.setSelected(false);
-                    tvEmailYes.setSelected(false);
-                    cbEmailNo.setSelected(true);
-                    tvEmailNo.setSelected(true);
+                Map<String, Boolean> hasScheduledOrder = data.get("hasScheduledOrder");
+                if (hasScheduledOrder != null ) {
+                    if (hasScheduledOrder.containsKey("oneWeekAfter")) {
+                        cbScheduledOrderOneWeek.setSelected(hasScheduledOrder.get("oneWeekAfter"));
+                        tvScheduledOrderOneWeek.setSelected(hasScheduledOrder.get("oneWeekAfter"));
+                        viewScheduledOrderOneWeek.setVisibility(View.VISIBLE);
+                    } else {
+                        viewScheduledOrderOneWeek.setVisibility(View.GONE);
+                    }
+                    if (hasScheduledOrder.containsKey("threeWeeksAfter")) {
+                        cbScheduledOrderThreeWeek.setSelected(hasScheduledOrder.get("threeWeeksAfter"));
+                        tvScheduledOrderThreeWeek.setSelected(hasScheduledOrder.get("threeWeeksAfter"));
+                        viewScheduledOrderThreeWeek.setVisibility(View.VISIBLE);
+                    } else {
+                        viewScheduledOrderThreeWeek.setVisibility(View.GONE);
+                    }
+                    if (hasScheduledOrder.containsKey("sixWeeksAfter")) {
+                        cbScheduledOrderSixWeek.setSelected(hasScheduledOrder.get("sixWeeksAfter"));
+                        tvScheduledOrderSixWeek.setSelected(hasScheduledOrder.get("sixWeeksAfter"));
+                        viewScheduledOrderSixWeek.setVisibility(View.VISIBLE);
+                    } else {
+                        viewScheduledOrderSixWeek.setVisibility(View.GONE);
+                    }
+                    if (hasScheduledOrder.containsKey("threeMonthsAfter")) {
+                        cbScheduledOrderThreeMonth.setSelected(hasScheduledOrder.get("threeMonthsAfter"));
+                        tvScheduledOrderThreeMonth.setSelected(hasScheduledOrder.get("threeMonthsAfter"));
+                        viewScheduledOrderThreeMonth.setVisibility(View.VISIBLE);
+                    } else {
+                        viewScheduledOrderThreeMonth.setVisibility(View.GONE);
+                    }
+                    if (hasScheduledOrder.containsKey("sixMonthsAfter")) {
+                        cbScheduledOrderSixMonth.setSelected(hasScheduledOrder.get("sixMonthsAfter"));
+                        tvScheduledOrderSixMonth.setSelected(hasScheduledOrder.get("sixMonthsAfter"));
+                        viewScheduledOrderSixMonth.setVisibility(View.VISIBLE);
+                    } else {
+                        viewScheduledOrderSixMonth.setVisibility(View.GONE);
+                    }
                 }
 
             }
-
-            boolean hasFacilityAddress = checklist.has("facilityAddress");
-            if (hasFacilityAddress) {
-                tvAddress.setVisibility(View.VISIBLE);
-                edtAddress.setVisibility(View.VISIBLE);
-                edtAddress.setText(checklist.getString("facilityAddress"));
-            }
-
-        } else {
-            tvDate.setVisibility(View.GONE);
-            edtSchedulePostop.setVisibility(View.GONE);
-            tvEmail.setVisibility(View.GONE);
-            llEmail.setVisibility(View.GONE);
-            edtAddress.setVisibility(View.GONE);
-            tvAddress.setVisibility(View.GONE);
-        }
-
-        boolean hasHadFirstPostAppt = checklist.getBoolean("hasHadFirstPostAppt");
-
-        if (hasHadFirstPostAppt) {
-            cbFirstAppointmentYes.setSelected(true);
-            tvFirstAppointmentYes.setSelected(true);
-            cbFirstAppointmentNo.setSelected(false);
-            tvFirstAppointmentNo.setSelected(false);
-        }else{
-            cbFirstAppointmentYes.setSelected(false);
-            tvFirstAppointmentYes.setSelected(false);
-            cbFirstAppointmentNo.setSelected(true);
-            tvFirstAppointmentNo.setSelected(true);
         }
 
     }
 
     public void saveChecklist(){
 
-        checklist.put("hasCheckedIn", cbCheckedDocterYes.isSelected());
-        checklist.put("hasFollowedDirections", cbFollowingDirectionYes.isSelected());
-        checklist.put("hasScheduledVisit", cbScheduledFirstYes.isSelected());
-        checklist.put("hasHadFirstPostAppt", cbFirstAppointmentYes.isSelected());
-        if (surgeryType.equals(SurgeryType.LumbarFusion) || surgeryType.equals(SurgeryType.ACDF)) {
-            checklist.put("hasEmail", cbEmailYes.isSelected());
-            checklist.put("facilityAddress", edtAddress.getText().toString());
-            checklist.put("scheduledPostopDate", edtSchedulePostop.getText().toString());
-        }
+//        checklist.put("hasCheckedIn", cbCheckedDocterYes.isSelected());
+//        checklist.put("hasFollowedDirections", cbFollowingDirectionYes.isSelected());
+//        checklist.put("hasScheduledVisit", cbScheduledFirstYes.isSelected());
+//        checklist.put("hasHadFirstPostAppt", cbFirstAppointmentYes.isSelected());
+//        if (surgeryType.equals(SurgeryType.LumbarFusion) || surgeryType.equals(SurgeryType.ACDF)) {
+//            checklist.put("hasEmail", cbEmailYes.isSelected());
+//            checklist.put("facilityAddress", edtAddress.getText().toString());
+//            checklist.put("scheduledPostopDate", edtSchedulePostop.getText().toString());
+//        }
 
+        Map<String, Map<String, Boolean>> newData = new HashMap<>();
+        Map<String, Boolean> checkedInData = new HashMap<>();
+        checkedInData.put("oneWeekAfter", cbCheckedInOneWeek.isSelected());
+        checkedInData.put("threeWeeksAfter", cbCheckedInThreeWeek.isSelected());
+        checkedInData.put("sixWeeksAfter", cbCheckedInSixWeek.isSelected());
+        checkedInData.put("threeMonthsAfter", cbCheckedInThreeMonth.isSelected());
+        checkedInData.put("sixMonthsAfter", cbCheckedInSixMonth.isSelected());
+
+        Map<String, Boolean> confirmedOrderData = new HashMap<>();
+        confirmedOrderData.put("oneWeekAfter", cbConfirmedOrderOneWeek.isSelected());
+        confirmedOrderData.put("threeWeeksAfter", cbConfirmedOrderThreeWeek.isSelected());
+        confirmedOrderData.put("sixWeeksAfter", cbConfirmedOrderSixWeek.isSelected());
+        confirmedOrderData.put("threeMonthsAfter", cbConfirmedOrderThreeMonth.isSelected());
+        confirmedOrderData.put("sixMonthsAfter", cbConfirmedOrderSixMonth.isSelected());
+
+        Map<String, Boolean> scheduledOrderData = new HashMap<>();
+        scheduledOrderData.put("oneWeekAfter", cbScheduledOrderOneWeek.isSelected());
+        scheduledOrderData.put("threeWeeksAfter", cbScheduledOrderThreeWeek.isSelected());
+        scheduledOrderData.put("sixWeeksAfter", cbScheduledOrderSixWeek.isSelected());
+        scheduledOrderData.put("threeMonthsAfter", cbScheduledOrderThreeMonth.isSelected());
+        scheduledOrderData.put("sixMonthsAfter", cbScheduledOrderSixMonth.isSelected());
+
+        newData.put("hasCheckedIn", checkedInData);
+        newData.put("hasConfirmedOrder", confirmedOrderData);
+        newData.put("hasScheduledOrder", scheduledOrderData);
+
+        checklist.put("data", newData);
 
         checklist.saveInBackground();
 

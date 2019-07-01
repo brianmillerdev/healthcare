@@ -16,1636 +16,674 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_hoarse_voice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hoarse_voice"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
-                android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
-
             <LinearLayout
                 android:id="@+id/ll_hoarse_voice"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_hoarse_voice_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_hoarse_voice_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_hoarse_voice_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_hoarse_voice_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_difficulty_swallowing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/difficulty_swallowing"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_hoarse_voice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_hoarse_voice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hoarse_voice"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_difficulty_swallowing"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_difficulty_swallowing_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_difficulty_swallowing_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_difficulty_swallowing_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_difficulty_swallowing_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_numbness"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_difficulty_swallowing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_difficulty_swallowing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/difficulty_swallowing"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_new_numbness"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_new_numbness_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_new_numbness_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_new_numbness_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_new_numbness_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_infection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/infection"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_new_numbness"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_new_numbness"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_numbness"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_infection"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_infection_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_infection_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_infection_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_infection_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/spinal_fluid_leak"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_infection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_infection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/infection"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_spinal_fluid_leak"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_spinal_fluid_leak_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_spinal_fluid_leak_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_spinal_fluid_leak_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_spinal_fluid_leak_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/spinal_fluid_leak_requiring_further_surgery"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_spinal_fluid_leak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_spinal_fluid_leak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spinal_fluid_leak"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_spinal_fluid_leak_requiring_further_surgery"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_spinal_fluid_leak_requiring_further_surgery_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_spinal_fluid_leak_requiring_further_surgery_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_spinal_fluid_leak_requiring_further_surgery_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_spinal_fluid_leak_requiring_further_surgery_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_weakness"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_spinal_fluid_leak_requiring_further_surgery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_spinal_fluid_leak_requiring_further_surgery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spinal_fluid_leak_requiring_further_surgery"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_new_weakness"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_new_weakness_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_new_weakness_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_new_weakness_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_new_weakness_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_balance_problems"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_new_weakness"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_new_weakness"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_weakness"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_new_balance_problems"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_new_balance_problems_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_new_balance_problems_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_new_balance_problems_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_new_balance_problems_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_bladder_incontinence"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_new_balance_problems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_new_balance_problems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_balance_problems"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_new_bladder_incontinence"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_new_bladder_incontinence_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_new_bladder_incontinence_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_new_bladder_incontinence_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_new_bladder_incontinence_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_bowel_incontinence"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_new_bladder_incontinence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_new_bladder_incontinence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_bladder_incontinence"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_new_bowel_incontinence"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_new_bowel_incontinence_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_new_bowel_incontinence_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_new_bowel_incontinence_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_new_bowel_incontinence_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/paralysis"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_new_bowel_incontinence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_new_bowel_incontinence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_bowel_incontinence"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_paralysis"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_paralysis_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_paralysis_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_paralysis_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_paralysis_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bladder_infection"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_paralysis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_paralysis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/paralysis"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_bladder_infection"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_bladder_infection_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_bladder_infection_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_bladder_infection_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_bladder_infection_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pneumonia"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_bladder_infection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_bladder_infection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bladder_infection"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_pneumonia"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_pneumonia_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_pneumonia_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_pneumonia_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_pneumonia_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/heart_attack"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_pneumonia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_pneumonia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pneumonia"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_heart_attack"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_heart_attack_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_heart_attack_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_heart_attack_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_heart_attack_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/stroke"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_heart_attack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_heart_attack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/heart_attack"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_stroke"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_stroke_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_stroke_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_stroke_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_stroke_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/blood_clot_in_leg_or_legs"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_stroke"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_stroke"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stroke"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_blood_clot_in_leg_or_legs"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_blood_clot_in_leg_or_legs_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_blood_clot_in_leg_or_legs_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_blood_clot_in_leg_or_legs_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_blood_clot_in_leg_or_legs_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/worse_pain_after_surgery_in_new_or_different_location_not_surgical_soft_tissue_pain"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_blood_clot_in_leg_or_legs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_blood_clot_in_leg_or_legs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/blood_clot_in_leg_or_legs"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_worse_pain_after_surger"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_worse_pain_after_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_worse_pain_after_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_worse_pain_after_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_worse_pain_after_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_recurrent_or_new_disc_herniation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/recurrent_or_new_disc_herniation"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_worse_pain_after_surger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_worse_pain_after_surger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/worse_pain_after_surgery_in_new_or_different_location_not_surgical_soft_tissue_pain"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_recurrent_or_new_disc_herniation"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_recurrent_or_new_disc_herniation_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_recurrent_or_new_disc_herniation_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_recurrent_or_new_disc_herniation_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_recurrent_or_new_disc_herniation_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_needing_a_subsequent_fusion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/needing_a_subsequent_fusion"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_recurrent_or_new_disc_herniation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_recurrent_or_new_disc_herniation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recurrent_or_new_disc_herniation"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_needing_a_subsequent_fusion"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/cb_needing_a_subsequent_fusion_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_needing_a_subsequent_fusion_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_needing_a_subsequent_fusion_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_needing_a_subsequent_fusion_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_failure_to_fuse_on_x_ray_or_ct_scan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/failure_to_fuse_on_x_ray_or_ct_scan"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
                 android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/cb_needing_a_subsequent_fusion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_needing_a_subsequent_fusion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/needing_a_subsequent_fusion"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_failure_to_fuse_on_x_ray_or_ct_scan"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/cb_failure_to_fuse_on_x_ray_or_ct_scan"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
 
-                    <ImageView
-                        android:id="@+id/cb_failure_to_fuse_on_x_ray_or_ct_scan_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_failure_to_fuse_on_x_ray_or_ct_scan_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_failure_to_fuse_on_x_ray_or_ct_scan"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_failure_to_fuse_on_x_ray_or_ct_scan_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_failure_to_fuse_on_x_ray_or_ct_scan_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
+                    android:text="@string/failure_to_fuse_on_x_ray_or_ct_scan"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
             </LinearLayout>
 
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_screw_or_hardware_loosening"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/screw_or_hardware_loosening"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
-                android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
 
             <LinearLayout
                 android:id="@+id/ll_screw_or_hardware_loosening"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/cb_screw_or_hardware_loosening"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
 
-                    <ImageView
-                        android:id="@+id/cb_screw_or_hardware_loosening_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_screw_or_hardware_loosening_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_screw_or_hardware_loosening"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_screw_or_hardware_loosening_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_screw_or_hardware_loosening_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
+                    android:text="@string/screw_or_hardware_loosening"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
             </LinearLayout>
 
-
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_broken_screw_s_or_rod_s"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/broken_screw_s_or_rod_s"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
-                android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
 
             <LinearLayout
                 android:id="@+id/ll_broken_screw_s_or_rod_s"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/cb_broken_screw_s_or_rod_s"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
 
-                    <ImageView
-                        android:id="@+id/cb_broken_screw_s_or_rod_s_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_broken_screw_s_or_rod_s_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_broken_screw_s_or_rod_s"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_broken_screw_s_or_rod_s_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_broken_screw_s_or_rod_s_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-
+                    android:text="@string/broken_screw_s_or_rod_s"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
             </LinearLayout>
 
 
-            <com.landonferrier.healthcareapp.views.CustomFontTextView
-                android:id="@+id/tv_broken_plate_or_screws"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/broken_plate_or_screws"
-                app:font_style="semi"
-                android:textColor="@color/colorDarkGray"
-                android:textSize="14sp"
-                android:layout_marginStart="16dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="16dp"/>
-
             <LinearLayout
                 android:id="@+id/ll_broken_plate_or_screws"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/cb_broken_plate_or_screws"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:src="@drawable/item_checkbox"
+                    android:clickable="true"
+                    android:focusable="true"/>
 
-                    <ImageView
-                        android:id="@+id/cb_broken_plate_or_screws_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_broken_plate_or_screws_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <com.landonferrier.healthcareapp.views.CustomFontTextView
+                    android:id="@+id/tv_broken_plate_or_screws"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="16dp">
-
-                    <ImageView
-                        android:id="@+id/cb_broken_plate_or_screws_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/item_checkbox"
-                        android:clickable="true"
-                        android:focusable="true"/>
-
-                    <com.landonferrier.healthcareapp.views.CustomFontTextView
-                        android:id="@+id/tv_broken_plate_or_screws_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"
-                        app:font_style="semi"
-                        android:textColor="@color/item_check_color"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
+                    android:text="@string/broken_plate_or_screws"
+                    app:font_style="medium"
+                    android:textColor="@color/item_check_color"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center_vertical"/>
             </LinearLayout>
 
             <View

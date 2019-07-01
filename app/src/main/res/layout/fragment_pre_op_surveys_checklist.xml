@@ -296,6 +296,26 @@
                 tools:ignore="RtlSymmetry" />
 
             <com.landonferrier.healthcareapp.views.CustomFontEditText
+                android:id="@+id/edt_hospital_address"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text=""
+                app:font_style="medium"
+                android:textColor="@color/colorPrimary"
+                android:hint="@string/enter_address_here"
+                android:background="@color/transparent"
+                android:textSize="16sp"
+                android:inputType="textCapWords"
+                android:textColorHint="@color/colorgray"
+                android:textCursorDrawable="@drawable/cursor"
+                android:maxLines="1"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:ignore="RtlSymmetry" />
+
+            <com.landonferrier.healthcareapp.views.CustomFontEditText
                 android:id="@+id/edt_hospital_number"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"

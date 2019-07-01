@@ -45,6 +45,9 @@ public class PreOpSurgicalChecklistFragment extends BaseFragment {
     @BindView(R.id.edt_hospital_name)
     CustomFontEditText edtHospitalName;
 
+    @BindView(R.id.edt_hospital_address)
+    CustomFontEditText edtHospitalAddress;
+
     @BindView(R.id.edt_hospital_number)
     CustomFontEditText edtHospitalNumber;
 
@@ -358,6 +361,7 @@ public class PreOpSurgicalChecklistFragment extends BaseFragment {
                         checklist.put("hasFinalizedDate", false);
                         checklist.put("hasScheduledVisit", false);
                         checklist.put("hospitalName", "");
+                        checklist.put("hospitalAddress", "");
                         checklist.put("hospitalPhone", "");
                         checklist.put("preregistrationNumber", "");
                         checklist.put("preopApproval", false);
@@ -429,9 +433,11 @@ public class PreOpSurgicalChecklistFragment extends BaseFragment {
 
 
         String hospitalName = checklist.getString("hospitalName");
+        String hospitalAddress = checklist.getString("hospitalAddress");
         String hospitalPhone = checklist.getString("hospitalPhone");
         String preregistrationNumber = checklist.getString("preregistrationNumber");
         edtHospitalName.setText(hospitalName);
+        edtHospitalAddress.setText(hospitalAddress);
         edtHospitalNumber.setText(hospitalPhone);
         edtPreRegistrationNumber.setText(preregistrationNumber);
 
@@ -492,6 +498,7 @@ public class PreOpSurgicalChecklistFragment extends BaseFragment {
         checklist.put("schedulerName", edtSchedulerName.getText().toString());
         checklist.put("schedulerNumber", edtSchedulerNumber.getText().toString());
         checklist.put("hospitalName", edtHospitalName.getText().toString());
+        checklist.put("hospitalAddress", edtHospitalAddress.getText().toString());
         checklist.put("hospitalPhone", edtHospitalNumber.getText().toString());
         checklist.put("preregistrationNumber", edtPreRegistrationNumber.getText().toString());
         checklist.put("pcpName", edtPCPName.getText().toString());

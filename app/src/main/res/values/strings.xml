@@ -104,6 +104,10 @@
     <string name="drink_lots_of_fluids">Drink lots of fluids</string>
     <string name="eat_a_light_meal">Eat a light meal</string>
     <string name="_1_week_after_surgery">1 Week After Surgery</string>
+    <string name="_3_week_after_surgery">3 Weeks After Surgery</string>
+    <string name="_6_week_after_surgery">6 Weeks After Surgery</string>
+    <string name="_3_month_after_surgery">3 Months After Surgery</string>
+    <string name="_6_month_after_surgery">6 Months After Surgery</string>
     <string name="have_you_checked_in_with_your_docter_about_your_procedure">Have you checked in with your docter about your procedure?</string>
     <string name="have_you_been_following_your_post_op_directions_as_suggested_by_your_doctor">Have you been following your post-op directions as suggested by your doctor?</string>
     <string name="_2_weeks_after_surgery">2 Weeks After Surgery</string>
@@ -137,5 +141,9 @@
     <string name="hoarse_voice">Hoarse voice</string>
     <string name="broken_plate_or_screws">Broken plate or screws</string>
     <string name="difficulty_swallowing">Difficulty swallowing</string>
+    <string name="enter_address_here">Enter address here</string>
+    <string name="schedule_an_appointment_with_your_doctor">Schedule an appointment with your doctor</string>
+    <string name="if_you_were_told_to_get_post_op_imaging_done_schedule_that">If you were told to get post-op imaging done, schedule that</string>
+    <string name="confirm_with_surgeon_s_office_that_they_have_sent_over_imaging_order">Confirm with surgeon’s office that they have sent over imaging order</string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import com.landonferrier.healthcareapp.R;
 import com.landonferrier.healthcareapp.models.TaskModel;
+import com.landonferrier.healthcareapp.utils.Constants;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
 import com.parse.ParseObject;
 
@@ -24,6 +25,8 @@ public class SurgeryInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private int mCurrentItemId = 0;
     private OnItemSelectedListener listener;
     private ParseObject surgery;
+    private String type = Constants.neurosurgery;
+
     public void setmItems(ArrayList<String> models) {
         this.mItems = models;
         notifyDataSetChanged();
@@ -34,9 +37,17 @@ public class SurgeryInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         notifyDataSetChanged();
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public interface OnItemSelectedListener {
 
-        void onSelect(int position);
+        void onSelect(int position, String type);
     }
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
@@ -51,12 +62,12 @@ public class SurgeryInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvName = (CustomFontTextView) view.findViewById(R.id.tv_item_name);
         }
 
-        public void onBindeViewHolder(String model, OnItemSelectedListener listener) {
+        public void onBindeViewHolder(String model, OnItemSelectedListener listener, String type) {
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onSelect(getAdapterPosition());
+                    listener.onSelect(getAdapterPosition(), type);
                 }
             });
             tvName.setText( model);
@@ -90,7 +101,7 @@ public class SurgeryInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         String model = mItems.get(position);
             SimpleViewHolder holder = (SimpleViewHolder) viewHolder;
-            holder.onBindeViewHolder(model, listener);
+            holder.onBindeViewHolder(model, listener, type);
     }
 
     public void addItem(int position, String model) {

@@ -7,6 +7,7 @@ public class Element {
 
     public static final int TYPE_SECTION = 0;
     public static final int TYPE_DIVISOR = 1;
+    public static final int TYPE_DIVISOR2 = 4;
     public static final int TYPE_SUBHEADER = 2;
     public static final int TYPE_BOTTOM_SECTION = 3;
 

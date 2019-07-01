@@ -77,8 +77,7 @@ public class SurgeryActivity extends AppCompatActivity implements View.OnClickLi
         mAdapter = new SurgeryTypeAdapter(this, surgeries, this);
         rcSurgery.setAdapter(mAdapter);
         mAdapter.setType(type);
-
-//        fetchSurgeries();
+        btnSelectSurgery.setEnabled(false);
         fetchTypes();
     }
 
@@ -114,36 +113,13 @@ public class SurgeryActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-    public void fetchSurgeries() {
-        ParseQuery<ParseObject> surgeryQuery = ParseQuery.getQuery("Surgery");
-        surgeryQuery.orderByAscending("sortingIndex");
-        JSONArray surgeryIds = ParseUser.getCurrentUser().getJSONArray("surgeryIds");
-        List<String> ids = new ArrayList<>();
-        for (int i = 0; i < surgeryIds.length(); i++) {
-            try {
-                ids.add(surgeryIds.getString(i));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        surgeryQuery.whereNotContainedIn("objectId", ids);
-        surgeryQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    surgeries.clear();
-                    surgeries.addAll(objects);
-                    mAdapter.setmItems(surgeries);
-                }
-            }
-        });
-
-    }
-
     @Override
     public void onSelect(ParseObject object, int position) {
         selectedSurgery = object;
-//        mAdapter.setSelectedSurgery(object);
+        Intent currentSurgery = new Intent(SurgeryActivity.this, SelectSurgeryDetailActivity.class);
+        currentSurgery.putExtra("type", object.getObjectId());
+        currentSurgery.putExtra("name", object.getString("name"));
+        startActivityForResult(currentSurgery, 991);
     }
 
     @Override
@@ -153,6 +129,16 @@ public class SurgeryActivity extends AppCompatActivity implements View.OnClickLi
             if (resultCode == RESULT_OK) {
                 EventBus.getDefault().post(new EventPush("updateCurrentSurgery", "Surgery"));
                 finish();
+            }
+        } else if (requestCode == 991) {
+            if (resultCode == RESULT_OK) {
+                String id = data.getStringExtra("id");
+                String name = data.getStringExtra("name");
+                Intent intent = new Intent(SurgeryActivity.this, SurgeryDateActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("name", name);
+                startActivityForResult(intent, 200);
+
             }
         }
     }

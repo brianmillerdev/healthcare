@@ -20,6 +20,7 @@ import com.landonferrier.healthcareapp.activity.HelpActivity;
 import com.landonferrier.healthcareapp.activity.SurgeryInfoDetailActivity;
 import com.landonferrier.healthcareapp.adapter.RemindersAdapter;
 import com.landonferrier.healthcareapp.adapter.SurgeryInfoAdapter;
+import com.landonferrier.healthcareapp.utils.Constants;
 import com.landonferrier.healthcareapp.utils.EventPush;
 import com.landonferrier.healthcareapp.views.CustomFontTextView;
 import com.parse.FindCallback;
@@ -85,14 +86,9 @@ public class SurgeryInfoFragment extends BaseFragment implements SurgeryInfoAdap
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.divider));
         rcInfo.addItemDecoration(dividerItemDecoration);
-        infoItems.add("Description");
-        infoItems.add("Video");
-        infoItems.add("Pre-op Information");
-        infoItems.add("Post-op Information");
-        infoItems.add("FAQ");
-        infoItems.add("Red Flags");
         mAdapter = new SurgeryInfoAdapter(getContext(), infoItems, this);
 
+        rcInfo.setAdapter(mAdapter);
 
         initView();
 
@@ -175,8 +171,27 @@ public class SurgeryInfoFragment extends BaseFragment implements SurgeryInfoAdap
                         }
                     }
                     if (e == null) {
-                        rcInfo.setAdapter(mAdapter);
+                        String typeId = surgery.getString("typeId");
+                        infoItems = new ArrayList<>();
+                        if (typeId.equals(Constants.injection)) {
+                            infoItems.add("Description");
+                            infoItems.add("Video");
+                            infoItems.add("Pre-op Information");
+                            infoItems.add("FAQ");
+                            infoItems.add("Red Flags");
+                            mAdapter.setType(Constants.injection);
+                        } else {
+                            infoItems.add("Description");
+                            infoItems.add("Video");
+                            infoItems.add("Pre-op Information");
+                            infoItems.add("Post-op Information");
+                            infoItems.add("FAQ");
+                            infoItems.add("Red Flags");
+                            mAdapter.setType(Constants.neurosurgery);
+                        }
+                        mAdapter.setmItems(infoItems);
                         updateHeader();
+
                     }else{
                         Log.e("error", e.getLocalizedMessage());
                     }
@@ -223,20 +238,34 @@ public class SurgeryInfoFragment extends BaseFragment implements SurgeryInfoAdap
 
 
     @Override
-    public void onSelect(int position) {
+    public void onSelect(int position, String type) {
         String detail = "";
-        if (position == 0) {
-            detail = surgery.getString("description");
-        }else if (position == 1) {
-            detail = surgery.getString("videoLink");
-        }else if (position == 2) {
-            detail = surgery.getString("preopInformation");
-        }else if (position == 3) {
-            detail = surgery.getString("postopInformation");
-        }else if (position == 4) {
-            detail = surgery.getString("FAQ");
-        }else if (position == 5) {
-            detail = surgery.getString("redFlags");
+        if (type.equals(Constants.injection)) {
+            if (position == 0) {
+                detail = surgery.getString("description");
+            }else if (position == 1) {
+                detail = surgery.getString("videoLink");
+            }else if (position == 2) {
+                detail = surgery.getString("preopInformation");
+            }else if (position == 3) {
+                detail = surgery.getString("FAQ");
+            }else if (position == 4) {
+                detail = surgery.getString("redFlags");
+            }
+        } else {
+            if (position == 0) {
+                detail = surgery.getString("description");
+            }else if (position == 1) {
+                detail = surgery.getString("videoLink");
+            }else if (position == 2) {
+                detail = surgery.getString("preopInformation");
+            }else if (position == 3) {
+                detail = surgery.getString("postopInformation");
+            }else if (position == 4) {
+                detail = surgery.getString("FAQ");
+            }else if (position == 5) {
+                detail = surgery.getString("redFlags");
+            }
         }
 
         Intent intent = new Intent(getActivity(), SurgeryInfoDetailActivity.class);

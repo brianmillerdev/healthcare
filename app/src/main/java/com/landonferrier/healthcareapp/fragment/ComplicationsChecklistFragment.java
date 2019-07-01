@@ -40,30 +40,18 @@ import butterknife.ButterKnife;
 
 public class ComplicationsChecklistFragment extends BaseFragment {
 
-    @BindView(R.id.cb_new_numbness_yes)
-    ImageView cb_new_numbness_yes;
+    @BindView(R.id.cb_new_numbness)
+    ImageView cb_new_numbness;
 
-    @BindView(R.id.tv_new_numbness_yes)
-    CustomFontTextView tv_new_numbness_yes;
+    @BindView(R.id.tv_new_numbness)
+    CustomFontTextView tv_new_numbness;
 
-    @BindView(R.id.cb_new_numbness_no)
-    ImageView cb_new_numbness_no;
-
-    @BindView(R.id.tv_new_numbness_no)
-    CustomFontTextView tv_new_numbness_no;
+    @BindView(R.id.ll_new_numbness)
+    LinearLayout ll_new_numbness;
 
 
-    @BindView(R.id.cb_infection_yes)
-    ImageView cb_infection_yes;
-
-    @BindView(R.id.tv_infection_yes)
-    CustomFontTextView tv_infection_yes;
-
-    @BindView(R.id.cb_infection_no)
-    ImageView cb_infection_no;
-
-    @BindView(R.id.tv_infection_no)
-    CustomFontTextView tv_infection_no;
+    @BindView(R.id.cb_infection)
+    ImageView cb_infection;
 
     @BindView(R.id.tv_infection)
     CustomFontTextView tv_infection;
@@ -72,186 +60,144 @@ public class ComplicationsChecklistFragment extends BaseFragment {
     LinearLayout ll_infection;
 
 
-    @BindView(R.id.cb_spinal_fluid_leak_yes)
-    ImageView cb_spinal_fluid_leak_yes;
+    @BindView(R.id.cb_spinal_fluid_leak)
+    ImageView cb_spinal_fluid_leak;
 
-    @BindView(R.id.tv_spinal_fluid_leak_yes)
-    CustomFontTextView tv_spinal_fluid_leak_yes;
+    @BindView(R.id.tv_spinal_fluid_leak)
+    CustomFontTextView tv_spinal_fluid_leak;
 
-    @BindView(R.id.cb_spinal_fluid_leak_no)
-    ImageView cb_spinal_fluid_leak_no;
+    @BindView(R.id.ll_spinal_fluid_leak)
+    LinearLayout ll_spinal_fluid_leak;
 
-    @BindView(R.id.tv_spinal_fluid_leak_no)
-    CustomFontTextView tv_spinal_fluid_leak_no;
+    @BindView(R.id.cb_spinal_fluid_leak_requiring_further_surgery)
+    ImageView cb_spinal_fluid_leak_requiring_further_surgery;
 
+    @BindView(R.id.tv_spinal_fluid_leak_requiring_further_surgery)
+    CustomFontTextView tv_spinal_fluid_leak_requiring_further_surgery;
 
-    @BindView(R.id.cb_spinal_fluid_leak_requiring_further_surgery_yes)
-    ImageView cb_spinal_fluid_leak_requiring_further_surgery_yes;
+    @BindView(R.id.ll_spinal_fluid_leak_requiring_further_surgery)
+    LinearLayout ll_spinal_fluid_leak_requiring_further_surgery;
 
-    @BindView(R.id.tv_spinal_fluid_leak_requiring_further_surgery_yes)
-    CustomFontTextView tv_spinal_fluid_leak_requiring_further_surgery_yes;
 
-    @BindView(R.id.cb_spinal_fluid_leak_requiring_further_surgery_no)
-    ImageView cb_spinal_fluid_leak_requiring_further_surgery_no;
+    @BindView(R.id.cb_new_weakness)
+    ImageView cb_new_weakness;
 
-    @BindView(R.id.tv_spinal_fluid_leak_requiring_further_surgery_no)
-    CustomFontTextView tv_spinal_fluid_leak_requiring_further_surgery_no;
+    @BindView(R.id.tv_new_weakness)
+    CustomFontTextView tv_new_weakness;
 
+    @BindView(R.id.ll_new_weakness)
+    LinearLayout ll_new_weakness;
 
-    @BindView(R.id.cb_new_weakness_yes)
-    ImageView cb_new_weakness_yes;
 
-    @BindView(R.id.tv_new_weakness_yes)
-    CustomFontTextView tv_new_weakness_yes;
 
-    @BindView(R.id.cb_new_weakness_no)
-    ImageView cb_new_weakness_no;
+    @BindView(R.id.cb_new_balance_problems)
+    ImageView cb_new_balance_problems;
 
-    @BindView(R.id.tv_new_weakness_no)
-    CustomFontTextView tv_new_weakness_no;
+    @BindView(R.id.tv_new_balance_problems)
+    CustomFontTextView tv_new_balance_problems;
 
+    @BindView(R.id.ll_new_balance_problems)
+    LinearLayout ll_new_balance_problems;
 
-    @BindView(R.id.cb_new_balance_problems_yes)
-    ImageView cb_new_balance_problems_yes;
 
-    @BindView(R.id.tv_new_balance_problems_yes)
-    CustomFontTextView tv_new_balance_problems_yes;
+    @BindView(R.id.cb_new_bladder_incontinence)
+    ImageView cb_new_bladder_incontinence;
 
-    @BindView(R.id.cb_new_balance_problems_no)
-    ImageView cb_new_balance_problems_no;
+    @BindView(R.id.tv_new_bladder_incontinence)
+    CustomFontTextView tv_new_bladder_incontinence;
 
-    @BindView(R.id.tv_new_balance_problems_no)
-    CustomFontTextView tv_new_balance_problems_no;
+    @BindView(R.id.ll_new_bladder_incontinence)
+    LinearLayout ll_new_bladder_incontinence;
 
 
-    @BindView(R.id.cb_new_bladder_incontinence_yes)
-    ImageView cb_new_bladder_incontinence_yes;
 
-    @BindView(R.id.tv_new_bladder_incontinence_yes)
-    CustomFontTextView tv_new_bladder_incontinence_yes;
+    @BindView(R.id.cb_new_bowel_incontinence)
+    ImageView cb_new_bowel_incontinence;
 
-    @BindView(R.id.cb_new_bladder_incontinence_no)
-    ImageView cb_new_bladder_incontinence_no;
+    @BindView(R.id.tv_new_bowel_incontinence)
+    CustomFontTextView tv_new_bowel_incontinence;
 
-    @BindView(R.id.tv_new_bladder_incontinence_no)
-    CustomFontTextView tv_new_bladder_incontinence_no;
+    @BindView(R.id.ll_new_bowel_incontinence)
+    LinearLayout ll_new_bowel_incontinence;
 
 
-    @BindView(R.id.cb_new_bowel_incontinence_yes)
-    ImageView cb_new_bowel_incontinence_yes;
+    @BindView(R.id.cb_paralysis)
+    ImageView cb_paralysis;
 
-    @BindView(R.id.tv_new_bowel_incontinence_yes)
-    CustomFontTextView tv_new_bowel_incontinence_yes;
+    @BindView(R.id.tv_paralysis)
+    CustomFontTextView tv_paralysis;
 
-    @BindView(R.id.cb_new_bowel_incontinence_no)
-    ImageView cb_new_bowel_incontinence_no;
+    @BindView(R.id.ll_paralysis)
+    LinearLayout ll_paralysis;
 
-    @BindView(R.id.tv_new_bowel_incontinence_no)
-    CustomFontTextView tv_new_bowel_incontinence_no;
 
 
-    @BindView(R.id.cb_paralysis_yes)
-    ImageView cb_paralysis_yes;
+    @BindView(R.id.cb_bladder_infection)
+    ImageView cb_bladder_infection;
 
-    @BindView(R.id.tv_paralysis_yes)
-    CustomFontTextView tv_paralysis_yes;
+    @BindView(R.id.tv_bladder_infection)
+    CustomFontTextView tv_bladder_infection;
 
-    @BindView(R.id.cb_paralysis_no)
-    ImageView cb_paralysis_no;
+    @BindView(R.id.ll_bladder_infection)
+    LinearLayout ll_bladder_infection;
 
-    @BindView(R.id.tv_paralysis_no)
-    CustomFontTextView tv_paralysis_no;
 
 
-    @BindView(R.id.cb_bladder_infection_yes)
-    ImageView cb_bladder_infection_yes;
+    @BindView(R.id.cb_pneumonia)
+    ImageView cb_pneumonia;
 
-    @BindView(R.id.tv_bladder_infection_yes)
-    CustomFontTextView tv_bladder_infection_yes;
+    @BindView(R.id.tv_pneumonia)
+    CustomFontTextView tv_pneumonia;
 
-    @BindView(R.id.cb_bladder_infection_no)
-    ImageView cb_bladder_infection_no;
+    @BindView(R.id.ll_pneumonia)
+    LinearLayout ll_pneumonia;
 
-    @BindView(R.id.tv_bladder_infection_no)
-    CustomFontTextView tv_bladder_infection_no;
 
+    @BindView(R.id.cb_heart_attack)
+    ImageView cb_heart_attack;
 
-    @BindView(R.id.cb_pneumonia_yes)
-    ImageView cb_pneumonia_yes;
+    @BindView(R.id.tv_heart_attack)
+    CustomFontTextView tv_heart_attack;
 
-    @BindView(R.id.tv_pneumonia_yes)
-    CustomFontTextView tv_pneumonia_yes;
+    @BindView(R.id.ll_heart_attack)
+    LinearLayout ll_heart_attack;
 
-    @BindView(R.id.cb_pneumonia_no)
-    ImageView cb_pneumonia_no;
 
-    @BindView(R.id.tv_pneumonia_no)
-    CustomFontTextView tv_pneumonia_no;
 
+    @BindView(R.id.cb_stroke)
+    ImageView cb_stroke;
 
-    @BindView(R.id.cb_heart_attack_yes)
-    ImageView cb_heart_attack_yes;
+    @BindView(R.id.tv_stroke)
+    CustomFontTextView tv_stroke;
 
-    @BindView(R.id.tv_heart_attack_yes)
-    CustomFontTextView tv_heart_attack_yes;
+    @BindView(R.id.ll_stroke)
+    LinearLayout ll_stroke;
 
-    @BindView(R.id.cb_heart_attack_no)
-    ImageView cb_heart_attack_no;
 
-    @BindView(R.id.tv_heart_attack_no)
-    CustomFontTextView tv_heart_attack_no;
 
+    @BindView(R.id.cb_blood_clot_in_leg_or_legs)
+    ImageView cb_blood_clot_in_leg_or_legs;
 
-    @BindView(R.id.cb_stroke_yes)
-    ImageView cb_stroke_yes;
+    @BindView(R.id.tv_blood_clot_in_leg_or_legs)
+    CustomFontTextView tv_blood_clot_in_leg_or_legs;
 
-    @BindView(R.id.tv_stroke_yes)
-    CustomFontTextView tv_stroke_yes;
+    @BindView(R.id.ll_blood_clot_in_leg_or_legs)
+    LinearLayout ll_blood_clot_in_leg_or_legs;
 
-    @BindView(R.id.cb_stroke_no)
-    ImageView cb_stroke_no;
 
-    @BindView(R.id.tv_stroke_no)
-    CustomFontTextView tv_stroke_no;
 
+    @BindView(R.id.cb_worse_pain_after_surger)
+    ImageView cb_worse_pain_after;
 
-    @BindView(R.id.cb_blood_clot_in_leg_or_legs_yes)
-    ImageView cb_blood_clot_in_leg_or_legs_yes;
+    @BindView(R.id.tv_worse_pain_after_surger)
+    CustomFontTextView tv_worse_pain_after;
 
-    @BindView(R.id.tv_blood_clot_in_leg_or_legs_yes)
-    CustomFontTextView tv_blood_clot_in_leg_or_legs_yes;
+    @BindView(R.id.ll_worse_pain_after_surger)
+    LinearLayout ll_worse_pain_after_surger;
 
-    @BindView(R.id.cb_blood_clot_in_leg_or_legs_no)
-    ImageView cb_blood_clot_in_leg_or_legs_no;
 
-    @BindView(R.id.tv_blood_clot_in_leg_or_legs_no)
-    CustomFontTextView tv_blood_clot_in_leg_or_legs_no;
-
-
-    @BindView(R.id.cb_worse_pain_after_yes)
-    ImageView cb_worse_pain_after_yes;
-
-    @BindView(R.id.tv_worse_pain_after_yes)
-    CustomFontTextView tv_worse_pain_after_yes;
-
-    @BindView(R.id.cb_worse_pain_after_no)
-    ImageView cb_worse_pain_after_no;
-
-    @BindView(R.id.tv_worse_pain_after_no)
-    CustomFontTextView tv_worse_pain_after_no;
-
-
-    @BindView(R.id.cb_needing_a_subsequent_fusion_yes)
-    ImageView cb_needing_a_subsequent_fusion_yes;
-
-    @BindView(R.id.tv_needing_a_subsequent_fusion_yes)
-    CustomFontTextView tv_needing_a_subsequent_fusion_yes;
-
-    @BindView(R.id.cb_needing_a_subsequent_fusion_no)
-    ImageView cb_needing_a_subsequent_fusion_no;
-
-    @BindView(R.id.tv_needing_a_subsequent_fusion_no)
-    CustomFontTextView tv_needing_a_subsequent_fusion_no;
+    @BindView(R.id.cb_needing_a_subsequent_fusion)
+    ImageView cb_needing_a_subsequent_fusion;
 
     @BindView(R.id.tv_needing_a_subsequent_fusion)
     CustomFontTextView tv_needing_a_subsequent_fusion;
@@ -260,17 +206,10 @@ public class ComplicationsChecklistFragment extends BaseFragment {
     LinearLayout ll_needing_a_subsequent_fusion;
 
 
-    @BindView(R.id.cb_recurrent_or_new_disc_herniation_yes)
-    ImageView cb_recurrent_or_new_disc_herniation_yes;
 
-    @BindView(R.id.tv_recurrent_or_new_disc_herniation_yes)
-    CustomFontTextView tv_recurrent_or_new_disc_herniation_yes;
 
-    @BindView(R.id.cb_recurrent_or_new_disc_herniation_no)
-    ImageView cb_recurrent_or_new_disc_herniation_no;
-
-    @BindView(R.id.tv_recurrent_or_new_disc_herniation_no)
-    CustomFontTextView tv_recurrent_or_new_disc_herniation_no;
+    @BindView(R.id.cb_recurrent_or_new_disc_herniation)
+    ImageView cb_recurrent_or_new_disc_herniation;
 
     @BindView(R.id.tv_recurrent_or_new_disc_herniation)
     CustomFontTextView tv_recurrent_or_new_disc_herniation;
@@ -280,17 +219,8 @@ public class ComplicationsChecklistFragment extends BaseFragment {
 
 
 
-    @BindView(R.id.cb_failure_to_fuse_on_x_ray_or_ct_scan_yes)
-    ImageView cb_failure_to_fuse_on_x_ray_or_ct_scan_yes;
-
-    @BindView(R.id.tv_failure_to_fuse_on_x_ray_or_ct_scan_yes)
-    CustomFontTextView tv_failure_to_fuse_on_x_ray_or_ct_scan_yes;
-
-    @BindView(R.id.cb_failure_to_fuse_on_x_ray_or_ct_scan_no)
-    ImageView cb_failure_to_fuse_on_x_ray_or_ct_scan_no;
-
-    @BindView(R.id.tv_failure_to_fuse_on_x_ray_or_ct_scan_no)
-    CustomFontTextView tv_failure_to_fuse_on_x_ray_or_ct_scan_no;
+    @BindView(R.id.cb_failure_to_fuse_on_x_ray_or_ct_scan)
+    ImageView cb_failure_to_fuse_on_x_ray_or_ct_scan;
 
     @BindView(R.id.tv_failure_to_fuse_on_x_ray_or_ct_scan)
     CustomFontTextView tv_failure_to_fuse_on_x_ray_or_ct_scan;
@@ -300,17 +230,8 @@ public class ComplicationsChecklistFragment extends BaseFragment {
 
 
 
-    @BindView(R.id.cb_screw_or_hardware_loosening_yes)
-    ImageView cb_screw_or_hardware_loosening_yes;
-
-    @BindView(R.id.tv_screw_or_hardware_loosening_yes)
-    CustomFontTextView tv_screw_or_hardware_loosening_yes;
-
-    @BindView(R.id.cb_screw_or_hardware_loosening_no)
-    ImageView cb_screw_or_hardware_loosening_no;
-
-    @BindView(R.id.tv_screw_or_hardware_loosening_no)
-    CustomFontTextView tv_screw_or_hardware_loosening_no;
+    @BindView(R.id.cb_screw_or_hardware_loosening)
+    ImageView cb_screw_or_hardware_loosening;
 
     @BindView(R.id.tv_screw_or_hardware_loosening)
     CustomFontTextView tv_screw_or_hardware_loosening;
@@ -320,17 +241,8 @@ public class ComplicationsChecklistFragment extends BaseFragment {
 
 
 
-    @BindView(R.id.cb_broken_screw_s_or_rod_s_yes)
-    ImageView cb_broken_screw_s_or_rod_s_yes;
-
-    @BindView(R.id.tv_broken_screw_s_or_rod_s_yes)
-    CustomFontTextView tv_broken_screw_s_or_rod_s_yes;
-
-    @BindView(R.id.cb_broken_screw_s_or_rod_s_no)
-    ImageView cb_broken_screw_s_or_rod_s_no;
-
-    @BindView(R.id.tv_broken_screw_s_or_rod_s_no)
-    CustomFontTextView tv_broken_screw_s_or_rod_s_no;
+    @BindView(R.id.cb_broken_screw_s_or_rod_s)
+    ImageView cb_broken_screw_s_or_rod_s;
 
     @BindView(R.id.tv_broken_screw_s_or_rod_s)
     CustomFontTextView tv_broken_screw_s_or_rod_s;
@@ -340,17 +252,8 @@ public class ComplicationsChecklistFragment extends BaseFragment {
 
 
 
-    @BindView(R.id.cb_hoarse_voice_yes)
-    ImageView cb_hoarse_voice_yes;
-
-    @BindView(R.id.tv_hoarse_voice_yes)
-    CustomFontTextView tv_hoarse_voice_yes;
-
-    @BindView(R.id.cb_hoarse_voice_no)
-    ImageView cb_hoarse_voice_no;
-
-    @BindView(R.id.tv_hoarse_voice_no)
-    CustomFontTextView tv_hoarse_voice_no;
+    @BindView(R.id.cb_hoarse_voice)
+    ImageView cb_hoarse_voice;
 
     @BindView(R.id.tv_hoarse_voice)
     CustomFontTextView tv_hoarse_voice;
@@ -360,17 +263,8 @@ public class ComplicationsChecklistFragment extends BaseFragment {
 
 
 
-    @BindView(R.id.cb_broken_plate_or_screws_yes)
-    ImageView cb_broken_plate_or_screws_yes;
-
-    @BindView(R.id.tv_broken_plate_or_screws_yes)
-    CustomFontTextView tv_broken_plate_or_screws_yes;
-
-    @BindView(R.id.cb_broken_plate_or_screws_no)
-    ImageView cb_broken_plate_or_screws_no;
-
-    @BindView(R.id.tv_broken_plate_or_screws_no)
-    CustomFontTextView tv_broken_plate_or_screws_no;
+    @BindView(R.id.cb_broken_plate_or_screws)
+    ImageView cb_broken_plate_or_screws;
 
     @BindView(R.id.tv_broken_plate_or_screws)
     CustomFontTextView tv_broken_plate_or_screws;
@@ -380,23 +274,15 @@ public class ComplicationsChecklistFragment extends BaseFragment {
 
 
 
-    @BindView(R.id.cb_difficulty_swallowing_yes)
-    ImageView cb_difficulty_swallowing_yes;
-
-    @BindView(R.id.tv_difficulty_swallowing_yes)
-    CustomFontTextView tv_difficulty_swallowing_yes;
-
-    @BindView(R.id.cb_difficulty_swallowing_no)
-    ImageView cb_difficulty_swallowing_no;
-
-    @BindView(R.id.tv_difficulty_swallowing_no)
-    CustomFontTextView tv_difficulty_swallowing_no;
+    @BindView(R.id.cb_difficulty_swallowing)
+    ImageView cb_difficulty_swallowing;
 
     @BindView(R.id.tv_difficulty_swallowing)
     CustomFontTextView tv_difficulty_swallowing;
 
     @BindView(R.id.ll_difficulty_swallowing)
     LinearLayout ll_difficulty_swallowing;
+
 
     public String surgeryType = null;
 
@@ -431,558 +317,260 @@ public class ComplicationsChecklistFragment extends BaseFragment {
 
     @SuppressLint("DefaultLocale")
     public void initView() {
-        cb_new_numbness_yes.setSelected(false);
-        cb_new_numbness_no.setSelected(false);
+        cb_new_numbness.setSelected(false);
 
-        cb_infection_yes.setSelected(false);
-        cb_infection_no.setSelected(false);
+        cb_infection.setSelected(false);
 
-        cb_spinal_fluid_leak_yes.setSelected(false);
-        cb_spinal_fluid_leak_no.setSelected(false);
+        cb_spinal_fluid_leak.setSelected(false);
 
-        cb_spinal_fluid_leak_requiring_further_surgery_yes.setSelected(false);
-        cb_spinal_fluid_leak_requiring_further_surgery_no.setSelected(false);
+        cb_spinal_fluid_leak_requiring_further_surgery.setSelected(false);
 
-        cb_new_weakness_yes.setSelected(false);
-        cb_new_weakness_no.setSelected(false);
+        cb_new_weakness.setSelected(false);
 
-        cb_new_balance_problems_yes.setSelected(false);
-        cb_new_balance_problems_no.setSelected(false);
+        cb_new_balance_problems.setSelected(false);
 
-        cb_new_bladder_incontinence_yes.setSelected(false);
-        cb_new_bladder_incontinence_no.setSelected(false);
+        cb_new_bladder_incontinence.setSelected(false);
 
-        cb_new_bowel_incontinence_yes.setSelected(false);
-        cb_new_bowel_incontinence_no.setSelected(false);
+        cb_new_bowel_incontinence.setSelected(false);
 
-        cb_paralysis_yes.setSelected(false);
-        cb_paralysis_no.setSelected(false);
+        cb_paralysis.setSelected(false);
 
-        cb_bladder_infection_yes.setSelected(false);
-        cb_bladder_infection_no.setSelected(false);
+        cb_bladder_infection.setSelected(false);
 
-        cb_pneumonia_yes.setSelected(false);
-        cb_pneumonia_no.setSelected(false);
+        cb_pneumonia.setSelected(false);
 
-        cb_heart_attack_yes.setSelected(false);
-        cb_heart_attack_no.setSelected(false);
+        cb_heart_attack.setSelected(false);
 
-        cb_stroke_yes.setSelected(false);
-        cb_stroke_no.setSelected(false);
+        cb_stroke.setSelected(false);
 
-        cb_blood_clot_in_leg_or_legs_yes.setSelected(false);
-        cb_blood_clot_in_leg_or_legs_no.setSelected(false);
+        cb_blood_clot_in_leg_or_legs.setSelected(false);
 
-        cb_worse_pain_after_yes.setSelected(false);
-        cb_worse_pain_after_no.setSelected(false);
+        cb_worse_pain_after.setSelected(false);
 
-        cb_needing_a_subsequent_fusion_yes.setSelected(false);
-        cb_needing_a_subsequent_fusion_no.setSelected(false);
+        cb_needing_a_subsequent_fusion.setSelected(false);
 
-        cb_recurrent_or_new_disc_herniation_yes.setSelected(false);
-        cb_recurrent_or_new_disc_herniation_no.setSelected(false);
+        cb_recurrent_or_new_disc_herniation.setSelected(false);
 
-        cb_failure_to_fuse_on_x_ray_or_ct_scan_yes.setSelected(false);
-        cb_failure_to_fuse_on_x_ray_or_ct_scan_no.setSelected(false);
+        cb_failure_to_fuse_on_x_ray_or_ct_scan.setSelected(false);
 
-        cb_screw_or_hardware_loosening_yes.setSelected(false);
-        cb_screw_or_hardware_loosening_no.setSelected(false);
+        cb_screw_or_hardware_loosening.setSelected(false);
 
-        cb_broken_screw_s_or_rod_s_yes.setSelected(false);
-        cb_broken_screw_s_or_rod_s_no.setSelected(false);
+        cb_broken_screw_s_or_rod_s.setSelected(false);
 
-        cb_hoarse_voice_yes.setSelected(false);
-        cb_hoarse_voice_no.setSelected(false);
+        cb_hoarse_voice.setSelected(false);
 
-        cb_broken_plate_or_screws_yes.setSelected(false);
-        cb_broken_plate_or_screws_no.setSelected(false);
+        cb_broken_plate_or_screws.setSelected(false);
 
-        cb_difficulty_swallowing_yes.setSelected(false);
-        cb_difficulty_swallowing_no.setSelected(false);
+        cb_difficulty_swallowing.setSelected(false);
 
 
         fetchSurveys();
 
-        cb_new_numbness_yes.setOnClickListener(new View.OnClickListener() {
+        cb_new_numbness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_new_numbness_yes.setSelected(true);
-                tv_new_numbness_yes.setSelected(true);
-                cb_new_numbness_no.setSelected(false);
-                tv_new_numbness_no.setSelected(false);
+                cb_new_numbness.setSelected(!cb_new_numbness.isSelected());
+                tv_new_numbness.setSelected(cb_new_numbness.isSelected());
             }
         });
 
-        cb_new_numbness_no.setOnClickListener(new View.OnClickListener() {
+        cb_infection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_new_numbness_yes.setSelected(false);
-                tv_new_numbness_yes.setSelected(false);
-                cb_new_numbness_no.setSelected(true);
-                tv_new_numbness_no.setSelected(true);
-            }
-        });
-
-        cb_infection_yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_infection_yes.setSelected(true);
-                tv_infection_yes.setSelected(true);
-                cb_infection_no.setSelected(false);
-                tv_infection_no.setSelected(false);
-            }
-        });
-
-        cb_infection_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_infection_yes.setSelected(false);
-                tv_infection_yes.setSelected(false);
-                cb_infection_no.setSelected(true);
-                tv_infection_no.setSelected(true);
+                cb_infection.setSelected(!cb_infection.isSelected());
+                tv_infection.setSelected(cb_infection.isSelected());
             }
         });
 
 
-        cb_spinal_fluid_leak_yes.setOnClickListener(new View.OnClickListener() {
+        cb_spinal_fluid_leak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_spinal_fluid_leak_yes.setSelected(true);
-                tv_spinal_fluid_leak_yes.setSelected(true);
-                cb_spinal_fluid_leak_no.setSelected(false);
-                tv_spinal_fluid_leak_no.setSelected(false);
-            }
-        });
-
-        cb_spinal_fluid_leak_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_spinal_fluid_leak_yes.setSelected(false);
-                tv_spinal_fluid_leak_yes.setSelected(false);
-                cb_spinal_fluid_leak_no.setSelected(true);
-                tv_spinal_fluid_leak_no.setSelected(true);
+                cb_spinal_fluid_leak.setSelected(!cb_spinal_fluid_leak.isSelected());
+                tv_spinal_fluid_leak.setSelected(cb_spinal_fluid_leak.isSelected());
             }
         });
 
 
-        cb_spinal_fluid_leak_requiring_further_surgery_yes.setOnClickListener(new View.OnClickListener() {
+        cb_spinal_fluid_leak_requiring_further_surgery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_spinal_fluid_leak_requiring_further_surgery_yes.setSelected(true);
-                tv_spinal_fluid_leak_requiring_further_surgery_yes.setSelected(true);
-                cb_spinal_fluid_leak_requiring_further_surgery_no.setSelected(false);
-                tv_spinal_fluid_leak_requiring_further_surgery_no.setSelected(false);
-            }
-        });
-
-        cb_spinal_fluid_leak_requiring_further_surgery_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_spinal_fluid_leak_requiring_further_surgery_yes.setSelected(false);
-                tv_spinal_fluid_leak_requiring_further_surgery_yes.setSelected(false);
-                cb_spinal_fluid_leak_requiring_further_surgery_no.setSelected(true);
-                tv_spinal_fluid_leak_requiring_further_surgery_no.setSelected(true);
+                cb_spinal_fluid_leak_requiring_further_surgery.setSelected(!cb_spinal_fluid_leak_requiring_further_surgery.isSelected());
+                tv_spinal_fluid_leak_requiring_further_surgery.setSelected(cb_spinal_fluid_leak_requiring_further_surgery.isSelected());
             }
         });
 
 
-        cb_new_weakness_yes.setOnClickListener(new View.OnClickListener() {
+        cb_new_weakness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_new_weakness_yes.setSelected(true);
-                tv_new_weakness_yes.setSelected(true);
-                cb_new_weakness_no.setSelected(false);
-                tv_new_weakness_no.setSelected(false);
-            }
-        });
-
-        cb_new_weakness_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_new_weakness_yes.setSelected(false);
-                tv_new_weakness_yes.setSelected(false);
-                cb_new_weakness_no.setSelected(true);
-                tv_new_weakness_no.setSelected(true);
+                cb_new_weakness.setSelected(!cb_new_weakness.isSelected());
+                tv_new_weakness.setSelected(cb_new_weakness.isSelected());
             }
         });
 
 
-        cb_new_balance_problems_yes.setOnClickListener(new View.OnClickListener() {
+        cb_new_balance_problems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_new_balance_problems_yes.setSelected(true);
-                tv_new_balance_problems_yes.setSelected(true);
-                cb_new_balance_problems_no.setSelected(false);
-                tv_new_balance_problems_no.setSelected(false);
-            }
-        });
-
-        cb_new_balance_problems_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_new_balance_problems_yes.setSelected(false);
-                tv_new_balance_problems_yes.setSelected(false);
-                cb_new_balance_problems_no.setSelected(true);
-                tv_new_balance_problems_no.setSelected(true);
+                cb_new_balance_problems.setSelected(!cb_new_balance_problems.isSelected());
+                tv_new_balance_problems.setSelected(cb_new_balance_problems.isSelected());
             }
         });
 
 
-        cb_new_bladder_incontinence_yes.setOnClickListener(new View.OnClickListener() {
+        cb_new_bladder_incontinence.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_new_bladder_incontinence_yes.setSelected(true);
-                tv_new_bladder_incontinence_yes.setSelected(true);
-                cb_new_bladder_incontinence_no.setSelected(false);
-                tv_new_bladder_incontinence_no.setSelected(false);
-            }
-        });
-
-        cb_new_bladder_incontinence_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_new_bladder_incontinence_yes.setSelected(false);
-                tv_new_bladder_incontinence_yes.setSelected(false);
-                cb_new_bladder_incontinence_no.setSelected(true);
-                tv_new_bladder_incontinence_no.setSelected(true);
+                cb_new_bladder_incontinence.setSelected(!cb_new_bladder_incontinence.isSelected());
+                tv_new_bladder_incontinence.setSelected(cb_new_bladder_incontinence.isSelected());
             }
         });
 
 
-        cb_new_bowel_incontinence_yes.setOnClickListener(new View.OnClickListener() {
+        cb_new_bowel_incontinence.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_new_bowel_incontinence_yes.setSelected(true);
-                tv_new_bowel_incontinence_yes.setSelected(true);
-                cb_new_bowel_incontinence_no.setSelected(false);
-                tv_new_bowel_incontinence_no.setSelected(false);
-            }
-        });
-
-        cb_new_bowel_incontinence_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_new_bowel_incontinence_yes.setSelected(false);
-                tv_new_bowel_incontinence_yes.setSelected(false);
-                cb_new_bowel_incontinence_no.setSelected(true);
-                tv_new_bowel_incontinence_no.setSelected(true);
+                cb_new_bowel_incontinence.setSelected(!cb_new_bowel_incontinence.isSelected());
+                tv_new_bowel_incontinence.setSelected(cb_new_bowel_incontinence.isSelected());
             }
         });
 
 
-        cb_paralysis_yes.setOnClickListener(new View.OnClickListener() {
+        cb_paralysis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_paralysis_yes.setSelected(true);
-                tv_paralysis_yes.setSelected(true);
-                cb_paralysis_no.setSelected(false);
-                tv_paralysis_no.setSelected(false);
-            }
-        });
-
-        cb_paralysis_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_paralysis_yes.setSelected(false);
-                tv_paralysis_yes.setSelected(false);
-                cb_paralysis_no.setSelected(true);
-                tv_paralysis_no.setSelected(true);
+                cb_paralysis.setSelected(!cb_paralysis.isSelected());
+                tv_paralysis.setSelected(cb_paralysis.isSelected());
             }
         });
 
 
-        cb_bladder_infection_yes.setOnClickListener(new View.OnClickListener() {
+        cb_bladder_infection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_bladder_infection_yes.setSelected(true);
-                tv_bladder_infection_yes.setSelected(true);
-                cb_bladder_infection_no.setSelected(false);
-                tv_bladder_infection_no.setSelected(false);
-            }
-        });
-
-        cb_bladder_infection_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_bladder_infection_yes.setSelected(false);
-                tv_bladder_infection_yes.setSelected(false);
-                cb_bladder_infection_no.setSelected(true);
-                tv_bladder_infection_no.setSelected(true);
+                cb_bladder_infection.setSelected(!cb_bladder_infection.isSelected());
+                tv_bladder_infection.setSelected(cb_bladder_infection.isSelected());
             }
         });
 
 
-        cb_pneumonia_yes.setOnClickListener(new View.OnClickListener() {
+        cb_pneumonia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_pneumonia_yes.setSelected(true);
-                tv_pneumonia_yes.setSelected(true);
-                cb_pneumonia_no.setSelected(false);
-                tv_pneumonia_no.setSelected(false);
-            }
-        });
-
-        cb_pneumonia_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_pneumonia_yes.setSelected(false);
-                tv_pneumonia_yes.setSelected(false);
-                cb_pneumonia_no.setSelected(true);
-                tv_pneumonia_no.setSelected(true);
+                cb_pneumonia.setSelected(!cb_pneumonia.isSelected());
+                tv_pneumonia.setSelected(cb_pneumonia.isSelected());
             }
         });
 
 
-        cb_heart_attack_yes.setOnClickListener(new View.OnClickListener() {
+        cb_heart_attack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_heart_attack_yes.setSelected(true);
-                tv_heart_attack_yes.setSelected(true);
-                cb_heart_attack_no.setSelected(false);
-                tv_heart_attack_no.setSelected(false);
-            }
-        });
-
-        cb_heart_attack_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_heart_attack_yes.setSelected(false);
-                tv_heart_attack_yes.setSelected(false);
-                cb_heart_attack_no.setSelected(true);
-                tv_heart_attack_no.setSelected(true);
+                cb_heart_attack.setSelected(!cb_heart_attack.isSelected());
+                tv_heart_attack.setSelected(cb_heart_attack.isSelected());
             }
         });
 
 
-        cb_stroke_yes.setOnClickListener(new View.OnClickListener() {
+        cb_stroke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_stroke_yes.setSelected(true);
-                tv_stroke_yes.setSelected(true);
-                cb_stroke_no.setSelected(false);
-                tv_stroke_no.setSelected(false);
-            }
-        });
-
-        cb_stroke_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_stroke_yes.setSelected(false);
-                tv_stroke_yes.setSelected(false);
-                cb_stroke_no.setSelected(true);
-                tv_stroke_no.setSelected(true);
+                cb_stroke.setSelected(!cb_stroke.isSelected());
+                tv_stroke.setSelected(cb_stroke.isSelected());
             }
         });
 
 
-        cb_blood_clot_in_leg_or_legs_yes.setOnClickListener(new View.OnClickListener() {
+        cb_blood_clot_in_leg_or_legs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_blood_clot_in_leg_or_legs_yes.setSelected(true);
-                tv_blood_clot_in_leg_or_legs_yes.setSelected(true);
-                cb_blood_clot_in_leg_or_legs_no.setSelected(false);
-                tv_blood_clot_in_leg_or_legs_no.setSelected(false);
-            }
-        });
-
-        cb_blood_clot_in_leg_or_legs_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_blood_clot_in_leg_or_legs_yes.setSelected(false);
-                tv_blood_clot_in_leg_or_legs_yes.setSelected(false);
-                cb_blood_clot_in_leg_or_legs_no.setSelected(true);
-                tv_blood_clot_in_leg_or_legs_no.setSelected(true);
+                cb_blood_clot_in_leg_or_legs.setSelected(!cb_blood_clot_in_leg_or_legs.isSelected());
+                tv_blood_clot_in_leg_or_legs.setSelected(cb_blood_clot_in_leg_or_legs.isSelected());
             }
         });
 
 
-        cb_worse_pain_after_yes.setOnClickListener(new View.OnClickListener() {
+        cb_worse_pain_after.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_worse_pain_after_yes.setSelected(true);
-                tv_worse_pain_after_yes.setSelected(true);
-                cb_worse_pain_after_no.setSelected(false);
-                tv_worse_pain_after_no.setSelected(false);
-            }
-        });
-
-        cb_worse_pain_after_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_worse_pain_after_yes.setSelected(false);
-                tv_worse_pain_after_yes.setSelected(false);
-                cb_worse_pain_after_no.setSelected(true);
-                tv_worse_pain_after_no.setSelected(true);
+                cb_worse_pain_after.setSelected(!cb_worse_pain_after.isSelected());
+                tv_worse_pain_after.setSelected(cb_worse_pain_after.isSelected());
             }
         });
 
 
-        cb_needing_a_subsequent_fusion_yes.setOnClickListener(new View.OnClickListener() {
+        cb_needing_a_subsequent_fusion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_needing_a_subsequent_fusion_yes.setSelected(true);
-                tv_needing_a_subsequent_fusion_yes.setSelected(true);
-                cb_needing_a_subsequent_fusion_no.setSelected(false);
-                tv_needing_a_subsequent_fusion_no.setSelected(false);
-            }
-        });
-
-        cb_needing_a_subsequent_fusion_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_needing_a_subsequent_fusion_yes.setSelected(false);
-                tv_needing_a_subsequent_fusion_yes.setSelected(false);
-                cb_needing_a_subsequent_fusion_no.setSelected(true);
-                tv_needing_a_subsequent_fusion_no.setSelected(true);
+                cb_needing_a_subsequent_fusion.setSelected(!cb_needing_a_subsequent_fusion.isSelected());
+                tv_needing_a_subsequent_fusion.setSelected(cb_needing_a_subsequent_fusion.isSelected());
             }
         });
 
 
-        cb_recurrent_or_new_disc_herniation_yes.setOnClickListener(new View.OnClickListener() {
+        cb_recurrent_or_new_disc_herniation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_recurrent_or_new_disc_herniation_yes.setSelected(true);
-                tv_recurrent_or_new_disc_herniation_yes.setSelected(true);
-                cb_recurrent_or_new_disc_herniation_no.setSelected(false);
-                tv_recurrent_or_new_disc_herniation_no.setSelected(false);
-            }
-        });
-
-        cb_recurrent_or_new_disc_herniation_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_recurrent_or_new_disc_herniation_yes.setSelected(false);
-                tv_recurrent_or_new_disc_herniation_yes.setSelected(false);
-                cb_recurrent_or_new_disc_herniation_no.setSelected(true);
-                tv_recurrent_or_new_disc_herniation_no.setSelected(true);
+                cb_recurrent_or_new_disc_herniation.setSelected(!cb_recurrent_or_new_disc_herniation.isSelected());
+                tv_recurrent_or_new_disc_herniation.setSelected(cb_recurrent_or_new_disc_herniation.isSelected());
             }
         });
 
 
-        cb_failure_to_fuse_on_x_ray_or_ct_scan_yes.setOnClickListener(new View.OnClickListener() {
+        cb_failure_to_fuse_on_x_ray_or_ct_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_failure_to_fuse_on_x_ray_or_ct_scan_yes.setSelected(true);
-                tv_failure_to_fuse_on_x_ray_or_ct_scan_yes.setSelected(true);
-                cb_failure_to_fuse_on_x_ray_or_ct_scan_no.setSelected(false);
-                tv_failure_to_fuse_on_x_ray_or_ct_scan_no.setSelected(false);
-            }
-        });
-
-        cb_failure_to_fuse_on_x_ray_or_ct_scan_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_failure_to_fuse_on_x_ray_or_ct_scan_yes.setSelected(false);
-                tv_failure_to_fuse_on_x_ray_or_ct_scan_yes.setSelected(false);
-                cb_failure_to_fuse_on_x_ray_or_ct_scan_no.setSelected(true);
-                tv_failure_to_fuse_on_x_ray_or_ct_scan_no.setSelected(true);
+                cb_failure_to_fuse_on_x_ray_or_ct_scan.setSelected(!cb_failure_to_fuse_on_x_ray_or_ct_scan.isSelected());
+                tv_failure_to_fuse_on_x_ray_or_ct_scan.setSelected(cb_failure_to_fuse_on_x_ray_or_ct_scan.isSelected());
             }
         });
 
 
-        cb_screw_or_hardware_loosening_yes.setOnClickListener(new View.OnClickListener() {
+        cb_screw_or_hardware_loosening.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_screw_or_hardware_loosening_yes.setSelected(true);
-                tv_screw_or_hardware_loosening_yes.setSelected(true);
-                cb_screw_or_hardware_loosening_no.setSelected(false);
-                tv_screw_or_hardware_loosening_no.setSelected(false);
-            }
-        });
-
-        cb_screw_or_hardware_loosening_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_screw_or_hardware_loosening_yes.setSelected(false);
-                tv_screw_or_hardware_loosening_yes.setSelected(false);
-                cb_screw_or_hardware_loosening_no.setSelected(true);
-                tv_screw_or_hardware_loosening_no.setSelected(true);
+                cb_screw_or_hardware_loosening.setSelected(!cb_screw_or_hardware_loosening.isSelected());
+                tv_screw_or_hardware_loosening.setSelected(cb_screw_or_hardware_loosening.isSelected());
             }
         });
 
 
-        cb_broken_screw_s_or_rod_s_yes.setOnClickListener(new View.OnClickListener() {
+        cb_broken_screw_s_or_rod_s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_broken_screw_s_or_rod_s_yes.setSelected(true);
-                tv_broken_screw_s_or_rod_s_yes.setSelected(true);
-                cb_broken_screw_s_or_rod_s_no.setSelected(false);
-                tv_broken_screw_s_or_rod_s_no.setSelected(false);
-            }
-        });
-
-        cb_broken_screw_s_or_rod_s_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_broken_screw_s_or_rod_s_yes.setSelected(false);
-                tv_broken_screw_s_or_rod_s_yes.setSelected(false);
-                cb_broken_screw_s_or_rod_s_no.setSelected(true);
-                tv_broken_screw_s_or_rod_s_no.setSelected(true);
+                cb_broken_screw_s_or_rod_s.setSelected(!cb_broken_screw_s_or_rod_s.isSelected());
+                tv_broken_screw_s_or_rod_s.setSelected(cb_broken_screw_s_or_rod_s.isSelected());
             }
         });
 
 
-        cb_hoarse_voice_yes.setOnClickListener(new View.OnClickListener() {
+        cb_hoarse_voice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_hoarse_voice_yes.setSelected(true);
-                tv_hoarse_voice_yes.setSelected(true);
-                cb_hoarse_voice_no.setSelected(false);
-                tv_hoarse_voice_no.setSelected(false);
-            }
-        });
-
-        cb_hoarse_voice_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_hoarse_voice_yes.setSelected(false);
-                tv_hoarse_voice_yes.setSelected(false);
-                cb_hoarse_voice_no.setSelected(true);
-                tv_hoarse_voice_no.setSelected(true);
+                cb_hoarse_voice.setSelected(!cb_hoarse_voice.isSelected());
+                tv_hoarse_voice.setSelected(cb_hoarse_voice.isSelected());
             }
         });
 
 
-        cb_broken_plate_or_screws_yes.setOnClickListener(new View.OnClickListener() {
+        cb_broken_plate_or_screws.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_broken_plate_or_screws_yes.setSelected(true);
-                tv_broken_plate_or_screws_yes.setSelected(true);
-                cb_broken_plate_or_screws_no.setSelected(false);
-                tv_broken_plate_or_screws_no.setSelected(false);
-            }
-        });
-
-        cb_broken_plate_or_screws_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_broken_plate_or_screws_yes.setSelected(false);
-                tv_broken_plate_or_screws_yes.setSelected(false);
-                cb_broken_plate_or_screws_no.setSelected(true);
-                tv_broken_plate_or_screws_no.setSelected(true);
+                cb_broken_plate_or_screws.setSelected(!cb_broken_plate_or_screws.isSelected());
+                tv_broken_plate_or_screws.setSelected(cb_broken_plate_or_screws.isSelected());
             }
         });
 
 
-        cb_difficulty_swallowing_yes.setOnClickListener(new View.OnClickListener() {
+        cb_difficulty_swallowing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cb_difficulty_swallowing_yes.setSelected(true);
-                tv_difficulty_swallowing_yes.setSelected(true);
-                cb_difficulty_swallowing_no.setSelected(false);
-                tv_difficulty_swallowing_no.setSelected(false);
+                cb_difficulty_swallowing.setSelected(!cb_difficulty_swallowing.isSelected());
+                tv_difficulty_swallowing.setSelected(cb_difficulty_swallowing.isSelected());
             }
         });
 
-        cb_difficulty_swallowing_no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cb_difficulty_swallowing_yes.setSelected(false);
-                tv_difficulty_swallowing_yes.setSelected(false);
-                cb_difficulty_swallowing_no.setSelected(true);
-                tv_difficulty_swallowing_no.setSelected(true);
-            }
-        });
 
     }
 
@@ -1227,369 +815,161 @@ public class ComplicationsChecklistFragment extends BaseFragment {
         if (checklist.has("hasNewNumbness")) {
             boolean hasNewNumbness = checklist.getBoolean("hasNewNumbness");
 
-            if (hasNewNumbness) {
-                cb_new_numbness_yes.setSelected(true);
-                tv_new_numbness_yes.setSelected(true);
-                cb_new_numbness_no.setSelected(false);
-                tv_new_numbness_no.setSelected(false);
-            }else{
-                cb_new_numbness_yes.setSelected(false);
-                tv_new_numbness_yes.setSelected(false);
-                cb_new_numbness_no.setSelected(true);
-                tv_new_numbness_no.setSelected(true);
-            }
+            cb_new_numbness.setSelected(hasNewNumbness);
+            tv_new_numbness.setSelected(hasNewNumbness);
         }
 
         if (checklist.has("hasInfection")) {
             boolean hasInfection = checklist.getBoolean("hasInfection");
-
-            if (hasInfection) {
-                cb_infection_yes.setSelected(true);
-                tv_infection_yes.setSelected(true);
-                cb_infection_no.setSelected(false);
-                tv_infection_no.setSelected(false);
-            }else{
-                cb_infection_yes.setSelected(false);
-                tv_infection_yes.setSelected(false);
-                cb_infection_no.setSelected(true);
-                tv_infection_no.setSelected(true);
-            }
+            cb_infection.setSelected(hasInfection);
+            tv_infection.setSelected(hasInfection);
         }
 
         if (checklist.has("hasSpinalFluidLeak")) {
             boolean hasSpinalFluidLeak = checklist.getBoolean("hasSpinalFluidLeak");
 
-            if (hasSpinalFluidLeak) {
-                cb_spinal_fluid_leak_yes.setSelected(true);
-                tv_spinal_fluid_leak_yes.setSelected(true);
-                cb_spinal_fluid_leak_no.setSelected(false);
-                tv_spinal_fluid_leak_no.setSelected(false);
-            }else{
-                cb_spinal_fluid_leak_yes.setSelected(false);
-                tv_spinal_fluid_leak_yes.setSelected(false);
-                cb_spinal_fluid_leak_no.setSelected(true);
-                tv_spinal_fluid_leak_no.setSelected(true);
-            }
+            cb_spinal_fluid_leak.setSelected(hasSpinalFluidLeak);
+            tv_spinal_fluid_leak.setSelected(hasSpinalFluidLeak);
         }
 
         if (checklist.has("hasSpinalFluidLeakRequiringSurgery")) {
             boolean hasSpinalFluidLeakRequiringSurgery = checklist.getBoolean("hasSpinalFluidLeakRequiringSurgery");
 
-            if (hasSpinalFluidLeakRequiringSurgery) {
-                cb_spinal_fluid_leak_requiring_further_surgery_yes.setSelected(true);
-                tv_spinal_fluid_leak_requiring_further_surgery_yes.setSelected(true);
-                cb_spinal_fluid_leak_requiring_further_surgery_no.setSelected(false);
-                tv_spinal_fluid_leak_requiring_further_surgery_no.setSelected(false);
-            }else{
-                cb_spinal_fluid_leak_requiring_further_surgery_yes.setSelected(false);
-                tv_spinal_fluid_leak_requiring_further_surgery_yes.setSelected(false);
-                cb_spinal_fluid_leak_requiring_further_surgery_no.setSelected(true);
-                tv_spinal_fluid_leak_requiring_further_surgery_no.setSelected(true);
-            }
+            cb_spinal_fluid_leak_requiring_further_surgery.setSelected(hasSpinalFluidLeakRequiringSurgery);
+            tv_spinal_fluid_leak_requiring_further_surgery.setSelected(hasSpinalFluidLeakRequiringSurgery);
         }
 
         if (checklist.has("hasNewWeakness")) {
             boolean hasNewWeakness = checklist.getBoolean("hasNewWeakness");
 
-            if (hasNewWeakness) {
-                cb_new_weakness_yes.setSelected(true);
-                tv_new_weakness_yes.setSelected(true);
-                cb_new_weakness_no.setSelected(false);
-                tv_new_weakness_no.setSelected(false);
-            }else{
-                cb_new_weakness_yes.setSelected(false);
-                tv_new_weakness_yes.setSelected(false);
-                cb_new_weakness_no.setSelected(true);
-                tv_new_weakness_no.setSelected(true);
-            }
+            cb_new_weakness.setSelected(hasNewWeakness);
+            tv_new_weakness.setSelected(hasNewWeakness);
         }
 
         if (checklist.has("hasNewBalanceProblems")) {
             boolean hasNewBalanceProblems = checklist.getBoolean("hasNewBalanceProblems");
 
-            if (hasNewBalanceProblems) {
-                cb_new_balance_problems_yes.setSelected(true);
-                tv_new_balance_problems_yes.setSelected(true);
-                cb_new_balance_problems_no.setSelected(false);
-                tv_new_balance_problems_no.setSelected(false);
-            }else{
-                cb_new_balance_problems_yes.setSelected(false);
-                tv_new_balance_problems_yes.setSelected(false);
-                cb_new_balance_problems_no.setSelected(true);
-                tv_new_balance_problems_no.setSelected(true);
-            }
+            cb_new_balance_problems.setSelected(hasNewBalanceProblems);
+            tv_new_balance_problems.setSelected(hasNewBalanceProblems);
         }
 
         if (checklist.has("hasNewBladderIncontinence")) {
             boolean hasNewBladderIncontinence = checklist.getBoolean("hasNewBladderIncontinence");
 
-            if (hasNewBladderIncontinence) {
-                cb_new_bladder_incontinence_yes.setSelected(true);
-                tv_new_bladder_incontinence_yes.setSelected(true);
-                cb_new_bladder_incontinence_no.setSelected(false);
-                tv_new_bladder_incontinence_no.setSelected(false);
-            }else{
-                cb_new_bladder_incontinence_yes.setSelected(false);
-                tv_new_bladder_incontinence_yes.setSelected(false);
-                cb_new_bladder_incontinence_no.setSelected(true);
-                tv_new_bladder_incontinence_no.setSelected(true);
-            }
+            cb_new_bladder_incontinence.setSelected(hasNewBladderIncontinence);
+            tv_new_bladder_incontinence.setSelected(hasNewBladderIncontinence);
         }
 
         if (checklist.has("hasNewBowelIncontinence")) {
             boolean hasNewBowelIncontinence = checklist.getBoolean("hasNewBowelIncontinence");
 
-            if (hasNewBowelIncontinence) {
-                cb_new_bowel_incontinence_yes.setSelected(true);
-                tv_new_bowel_incontinence_yes.setSelected(true);
-                cb_new_bowel_incontinence_no.setSelected(false);
-                tv_new_bowel_incontinence_no.setSelected(false);
-            }else{
-                cb_new_bowel_incontinence_yes.setSelected(false);
-                tv_new_bowel_incontinence_yes.setSelected(false);
-                cb_new_bowel_incontinence_no.setSelected(true);
-                tv_new_bowel_incontinence_no.setSelected(true);
-            }
+            cb_new_bowel_incontinence.setSelected(hasNewBowelIncontinence);
+            tv_new_bowel_incontinence.setSelected(hasNewBowelIncontinence);
         }
 
         if (checklist.has("hasParalysis")) {
             boolean hasParalysis = checklist.getBoolean("hasParalysis");
 
-            if (hasParalysis) {
-                cb_paralysis_yes.setSelected(true);
-                tv_paralysis_yes.setSelected(true);
-                cb_paralysis_no.setSelected(false);
-                tv_paralysis_no.setSelected(false);
-            }else{
-                cb_paralysis_yes.setSelected(false);
-                tv_paralysis_yes.setSelected(false);
-                cb_paralysis_no.setSelected(true);
-                tv_paralysis_no.setSelected(true);
-            }
+            cb_paralysis.setSelected(hasParalysis);
+            tv_paralysis.setSelected(hasParalysis);
         }
 
         if (checklist.has("hasBladderInfection")) {
             boolean hasBladderInfection = checklist.getBoolean("hasBladderInfection");
 
-            if (hasBladderInfection) {
-                cb_bladder_infection_yes.setSelected(true);
-                tv_bladder_infection_yes.setSelected(true);
-                cb_bladder_infection_no.setSelected(false);
-                tv_bladder_infection_no.setSelected(false);
-            }else{
-                cb_bladder_infection_yes.setSelected(false);
-                tv_bladder_infection_yes.setSelected(false);
-                cb_bladder_infection_no.setSelected(true);
-                tv_bladder_infection_no.setSelected(true);
-            }
+            cb_bladder_infection.setSelected(hasBladderInfection);
+            tv_bladder_infection.setSelected(hasBladderInfection);
         }
 
         if (checklist.has("hasPneumonia")) {
             boolean hasPneumonia = checklist.getBoolean("hasPneumonia");
 
-            if (hasPneumonia) {
-                cb_pneumonia_yes.setSelected(true);
-                tv_pneumonia_yes.setSelected(true);
-                cb_pneumonia_no.setSelected(false);
-                tv_pneumonia_no.setSelected(false);
-            }else{
-                cb_pneumonia_yes.setSelected(false);
-                tv_pneumonia_yes.setSelected(false);
-                cb_pneumonia_no.setSelected(true);
-                tv_pneumonia_no.setSelected(true);
-            }
+            cb_pneumonia.setSelected(hasPneumonia);
+            tv_pneumonia.setSelected(hasPneumonia);
         }
 
         if (checklist.has("hasHeartAttack")) {
             boolean hasHeartAttack = checklist.getBoolean("hasHeartAttack");
 
-            if (hasHeartAttack) {
-                cb_heart_attack_yes.setSelected(true);
-                tv_heart_attack_yes.setSelected(true);
-                cb_heart_attack_no.setSelected(false);
-                tv_heart_attack_no.setSelected(false);
-            }else{
-                cb_heart_attack_yes.setSelected(false);
-                tv_heart_attack_yes.setSelected(false);
-                cb_heart_attack_no.setSelected(true);
-                tv_heart_attack_no.setSelected(true);
-            }
+            cb_heart_attack.setSelected(hasHeartAttack);
+            tv_heart_attack.setSelected(hasHeartAttack);
         }
 
         if (checklist.has("hasStroke")) {
             boolean hasStroke = checklist.getBoolean("hasStroke");
 
-            if (hasStroke) {
-                cb_stroke_yes.setSelected(true);
-                tv_stroke_yes.setSelected(true);
-                cb_stroke_no.setSelected(false);
-                tv_stroke_no.setSelected(false);
-            }else{
-                cb_stroke_yes.setSelected(false);
-                tv_stroke_yes.setSelected(false);
-                cb_stroke_no.setSelected(true);
-                tv_stroke_no.setSelected(true);
-            }
+            cb_stroke.setSelected(hasStroke);
+            tv_stroke.setSelected(hasStroke);
         }
 
         if (checklist.has("hasBloodClot")) {
             boolean hasBloodClot = checklist.getBoolean("hasBloodClot");
 
-            if (hasBloodClot) {
-                cb_blood_clot_in_leg_or_legs_yes.setSelected(true);
-                tv_blood_clot_in_leg_or_legs_yes.setSelected(true);
-                cb_blood_clot_in_leg_or_legs_no.setSelected(false);
-                tv_blood_clot_in_leg_or_legs_no.setSelected(false);
-            }else{
-                cb_blood_clot_in_leg_or_legs_yes.setSelected(false);
-                tv_blood_clot_in_leg_or_legs_yes.setSelected(false);
-                cb_blood_clot_in_leg_or_legs_no.setSelected(true);
-                tv_blood_clot_in_leg_or_legs_no.setSelected(true);
-            }
+            cb_blood_clot_in_leg_or_legs.setSelected(hasBloodClot);
+            tv_blood_clot_in_leg_or_legs.setSelected(hasBloodClot);
         }
 
         if (checklist.has("hasWorsePain")) {
             boolean hasWorsePain = checklist.getBoolean("hasWorsePain");
 
-            if (hasWorsePain) {
-                cb_worse_pain_after_yes.setSelected(true);
-                tv_worse_pain_after_yes.setSelected(true);
-                cb_worse_pain_after_no.setSelected(false);
-                tv_worse_pain_after_no.setSelected(false);
-            }else{
-                cb_worse_pain_after_yes.setSelected(false);
-                tv_worse_pain_after_yes.setSelected(false);
-                cb_worse_pain_after_no.setSelected(true);
-                tv_worse_pain_after_no.setSelected(true);
-            }
+            cb_worse_pain_after.setSelected(hasWorsePain);
+            tv_worse_pain_after.setSelected(hasWorsePain);
         }
 
         if (checklist.has("needsSubsequentFusion")) {
             boolean needsSubsequentFusion = checklist.getBoolean("needsSubsequentFusion");
 
-            if (needsSubsequentFusion) {
-                cb_needing_a_subsequent_fusion_yes.setSelected(true);
-                tv_needing_a_subsequent_fusion_yes.setSelected(true);
-                cb_needing_a_subsequent_fusion_no.setSelected(false);
-                tv_needing_a_subsequent_fusion_no.setSelected(false);
-            }else{
-                cb_needing_a_subsequent_fusion_yes.setSelected(false);
-                tv_needing_a_subsequent_fusion_yes.setSelected(false);
-                cb_needing_a_subsequent_fusion_no.setSelected(true);
-                tv_needing_a_subsequent_fusion_no.setSelected(true);
-            }
+            cb_needing_a_subsequent_fusion.setSelected(needsSubsequentFusion);
+            tv_needing_a_subsequent_fusion.setSelected(needsSubsequentFusion);
         }
 
         if (checklist.has("hasDiscHerniation")) {
             boolean hasDiscHerniation = checklist.getBoolean("hasDiscHerniation");
 
-            if (hasDiscHerniation) {
-                cb_recurrent_or_new_disc_herniation_yes.setSelected(true);
-                tv_recurrent_or_new_disc_herniation_yes.setSelected(true);
-                cb_recurrent_or_new_disc_herniation_no.setSelected(false);
-                tv_recurrent_or_new_disc_herniation_no.setSelected(false);
-            }else{
-                cb_recurrent_or_new_disc_herniation_yes.setSelected(false);
-                tv_recurrent_or_new_disc_herniation_yes.setSelected(false);
-                cb_recurrent_or_new_disc_herniation_no.setSelected(true);
-                tv_recurrent_or_new_disc_herniation_no.setSelected(true);
-            }
+            cb_recurrent_or_new_disc_herniation.setSelected(hasDiscHerniation);
+            tv_recurrent_or_new_disc_herniation.setSelected(hasDiscHerniation);
         }
 
         if (checklist.has("hasFailureFuseScan")) {
             boolean hasFailureFuseScan = checklist.getBoolean("hasFailureFuseScan");
 
-            if (hasFailureFuseScan) {
-                cb_failure_to_fuse_on_x_ray_or_ct_scan_yes.setSelected(true);
-                tv_failure_to_fuse_on_x_ray_or_ct_scan_yes.setSelected(true);
-                cb_failure_to_fuse_on_x_ray_or_ct_scan_no.setSelected(false);
-                tv_failure_to_fuse_on_x_ray_or_ct_scan_no.setSelected(false);
-            }else{
-                cb_failure_to_fuse_on_x_ray_or_ct_scan_yes.setSelected(false);
-                tv_failure_to_fuse_on_x_ray_or_ct_scan_yes.setSelected(false);
-                cb_failure_to_fuse_on_x_ray_or_ct_scan_no.setSelected(true);
-                tv_failure_to_fuse_on_x_ray_or_ct_scan_no.setSelected(true);
-            }
+            cb_failure_to_fuse_on_x_ray_or_ct_scan.setSelected(hasFailureFuseScan);
+            tv_failure_to_fuse_on_x_ray_or_ct_scan.setSelected(hasFailureFuseScan);
         }
 
         if (checklist.has("hasHardwareLoosening")) {
             boolean hasHardwareLoosening = checklist.getBoolean("hasHardwareLoosening");
 
-            if (hasHardwareLoosening) {
-                cb_screw_or_hardware_loosening_yes.setSelected(true);
-                tv_screw_or_hardware_loosening_yes.setSelected(true);
-                cb_screw_or_hardware_loosening_no.setSelected(false);
-                tv_screw_or_hardware_loosening_no.setSelected(false);
-            }else{
-                cb_screw_or_hardware_loosening_yes.setSelected(false);
-                tv_screw_or_hardware_loosening_yes.setSelected(false);
-                cb_screw_or_hardware_loosening_no.setSelected(true);
-                tv_screw_or_hardware_loosening_no.setSelected(true);
-            }
+            cb_screw_or_hardware_loosening.setSelected(hasHardwareLoosening);
+            tv_screw_or_hardware_loosening.setSelected(hasHardwareLoosening);
         }
 
         if (checklist.has("hasBrokenScrewRod")) {
             boolean hasBrokenScrewRod = checklist.getBoolean("hasBrokenScrewRod");
 
-            if (hasBrokenScrewRod) {
-                cb_broken_screw_s_or_rod_s_yes.setSelected(true);
-                tv_broken_screw_s_or_rod_s_yes.setSelected(true);
-                cb_broken_screw_s_or_rod_s_no.setSelected(false);
-                tv_broken_screw_s_or_rod_s_no.setSelected(false);
-            }else{
-                cb_broken_screw_s_or_rod_s_yes.setSelected(false);
-                tv_broken_screw_s_or_rod_s_yes.setSelected(false);
-                cb_broken_screw_s_or_rod_s_no.setSelected(true);
-                tv_broken_screw_s_or_rod_s_no.setSelected(true);
-            }
+            cb_broken_screw_s_or_rod_s.setSelected(hasBrokenScrewRod);
+            tv_broken_screw_s_or_rod_s.setSelected(hasBrokenScrewRod);
         }
 
         if (checklist.has("hasHoarseVoice")) {
             boolean hasHoarseVoice = checklist.getBoolean("hasHoarseVoice");
 
-            if (hasHoarseVoice) {
-                cb_hoarse_voice_yes.setSelected(true);
-                tv_hoarse_voice_yes.setSelected(true);
-                cb_hoarse_voice_no.setSelected(false);
-                tv_hoarse_voice_no.setSelected(false);
-            }else{
-                cb_hoarse_voice_yes.setSelected(false);
-                tv_hoarse_voice_yes.setSelected(false);
-                cb_hoarse_voice_no.setSelected(true);
-                tv_hoarse_voice_no.setSelected(true);
-            }
+            cb_hoarse_voice.setSelected(hasHoarseVoice);
+            tv_hoarse_voice.setSelected(hasHoarseVoice);
         }
 
         if (checklist.has("hasBrokenPlateScrews")) {
             boolean hasBrokenPlateScrews = checklist.getBoolean("hasBrokenPlateScrews");
 
-            if (hasBrokenPlateScrews) {
-                cb_broken_plate_or_screws_yes.setSelected(true);
-                tv_broken_plate_or_screws_yes.setSelected(true);
-                cb_broken_plate_or_screws_no.setSelected(false);
-                tv_broken_plate_or_screws_no.setSelected(false);
-            }else{
-                cb_broken_plate_or_screws_yes.setSelected(false);
-                tv_broken_plate_or_screws_yes.setSelected(false);
-                cb_broken_plate_or_screws_no.setSelected(true);
-                tv_broken_plate_or_screws_no.setSelected(true);
-            }
+            cb_broken_plate_or_screws.setSelected(hasBrokenPlateScrews);
+            tv_broken_plate_or_screws.setSelected(hasBrokenPlateScrews);
         }
 
         if (checklist.has("hasDifficultySwallowing")) {
             boolean hasDifficultySwallowing = checklist.getBoolean("hasDifficultySwallowing");
 
-            if (hasDifficultySwallowing) {
-                cb_difficulty_swallowing_yes.setSelected(true);
-                tv_difficulty_swallowing_yes.setSelected(true);
-                cb_difficulty_swallowing_no.setSelected(false);
-                tv_difficulty_swallowing_no.setSelected(false);
-            }else{
-                cb_difficulty_swallowing_yes.setSelected(false);
-                tv_difficulty_swallowing_yes.setSelected(false);
-                cb_difficulty_swallowing_no.setSelected(true);
-                tv_difficulty_swallowing_no.setSelected(true);
-            }
+            cb_difficulty_swallowing.setSelected(hasDifficultySwallowing);
+            tv_difficulty_swallowing.setSelected(hasDifficultySwallowing);
         }
 
 
@@ -1598,82 +978,82 @@ public class ComplicationsChecklistFragment extends BaseFragment {
     public void saveChecklist(){
 
         if (surgeryType.equals(SurgeryType.LumbarStenosis)) {
-            checklist.put("hasNewNumbness", cb_new_numbness_yes.isSelected());
-            checklist.put("hasInfection", cb_infection_yes.isSelected());
-            checklist.put("hasSpinalFluidLeak", cb_spinal_fluid_leak_yes.isSelected());
-            checklist.put("hasSpinalFluidLeakRequiringSurgery", cb_spinal_fluid_leak_requiring_further_surgery_yes.isSelected());
-            checklist.put("hasNewWeakness", cb_new_weakness_yes.isSelected());
-            checklist.put("hasNewBalanceProblems", cb_new_balance_problems_yes.isSelected());
-            checklist.put("hasNewBladderIncontinence", cb_new_bladder_incontinence_yes.isSelected());
-            checklist.put("hasNewBowelIncontinence", cb_new_bowel_incontinence_yes.isSelected());
-            checklist.put("hasParalysis", cb_paralysis_yes.isSelected());
-            checklist.put("hasBladderInfection", cb_bladder_infection_yes.isSelected());
-            checklist.put("hasPneumonia", cb_pneumonia_yes.isSelected());
-            checklist.put("hasHeartAttack", cb_heart_attack_yes.isSelected());
-            checklist.put("hasStroke", cb_stroke_yes.isSelected());
-            checklist.put("hasBloodClot", cb_blood_clot_in_leg_or_legs_yes.isSelected());
-            checklist.put("hasWorsePain", cb_worse_pain_after_yes.isSelected());
-            checklist.put("needsSubsequentFusion", cb_needing_a_subsequent_fusion_yes.isSelected());
+            checklist.put("hasNewNumbness", cb_new_numbness.isSelected());
+            checklist.put("hasInfection", cb_infection.isSelected());
+            checklist.put("hasSpinalFluidLeak", cb_spinal_fluid_leak.isSelected());
+            checklist.put("hasSpinalFluidLeakRequiringSurgery", cb_spinal_fluid_leak_requiring_further_surgery.isSelected());
+            checklist.put("hasNewWeakness", cb_new_weakness.isSelected());
+            checklist.put("hasNewBalanceProblems", cb_new_balance_problems.isSelected());
+            checklist.put("hasNewBladderIncontinence", cb_new_bladder_incontinence.isSelected());
+            checklist.put("hasNewBowelIncontinence", cb_new_bowel_incontinence.isSelected());
+            checklist.put("hasParalysis", cb_paralysis.isSelected());
+            checklist.put("hasBladderInfection", cb_bladder_infection.isSelected());
+            checklist.put("hasPneumonia", cb_pneumonia.isSelected());
+            checklist.put("hasHeartAttack", cb_heart_attack.isSelected());
+            checklist.put("hasStroke", cb_stroke.isSelected());
+            checklist.put("hasBloodClot", cb_blood_clot_in_leg_or_legs.isSelected());
+            checklist.put("hasWorsePain", cb_worse_pain_after.isSelected());
+            checklist.put("needsSubsequentFusion", cb_needing_a_subsequent_fusion.isSelected());
 
         } else if (surgeryType.equals(SurgeryType.LumbarDisectomy)) {
 
-            checklist.put("hasNewNumbness", cb_new_numbness_yes.isSelected());
-            checklist.put("hasInfection", cb_infection_yes.isSelected());
-            checklist.put("hasSpinalFluidLeak", cb_spinal_fluid_leak_yes.isSelected());
-            checklist.put("hasSpinalFluidLeakRequiringSurgery", cb_spinal_fluid_leak_requiring_further_surgery_yes.isSelected());
-            checklist.put("hasNewWeakness", cb_new_weakness_yes.isSelected());
-            checklist.put("hasNewBalanceProblems", cb_new_balance_problems_yes.isSelected());
-            checklist.put("hasNewBladderIncontinence", cb_new_bladder_incontinence_yes.isSelected());
-            checklist.put("hasNewBowelIncontinence", cb_new_bowel_incontinence_yes.isSelected());
-            checklist.put("hasParalysis", cb_paralysis_yes.isSelected());
-            checklist.put("hasBladderInfection", cb_bladder_infection_yes.isSelected());
-            checklist.put("hasPneumonia", cb_pneumonia_yes.isSelected());
-            checklist.put("hasHeartAttack", cb_heart_attack_yes.isSelected());
-            checklist.put("hasStroke", cb_stroke_yes.isSelected());
-            checklist.put("hasBloodClot", cb_blood_clot_in_leg_or_legs_yes.isSelected());
-            checklist.put("hasWorsePain", cb_worse_pain_after_yes.isSelected());
-            checklist.put("needsSubsequentFusion", cb_needing_a_subsequent_fusion_yes.isSelected());
-            checklist.put("hasDiscHerniation", cb_recurrent_or_new_disc_herniation_yes.isSelected());
+            checklist.put("hasNewNumbness", cb_new_numbness.isSelected());
+            checklist.put("hasInfection", cb_infection.isSelected());
+            checklist.put("hasSpinalFluidLeak", cb_spinal_fluid_leak.isSelected());
+            checklist.put("hasSpinalFluidLeakRequiringSurgery", cb_spinal_fluid_leak_requiring_further_surgery.isSelected());
+            checklist.put("hasNewWeakness", cb_new_weakness.isSelected());
+            checklist.put("hasNewBalanceProblems", cb_new_balance_problems.isSelected());
+            checklist.put("hasNewBladderIncontinence", cb_new_bladder_incontinence.isSelected());
+            checklist.put("hasNewBowelIncontinence", cb_new_bowel_incontinence.isSelected());
+            checklist.put("hasParalysis", cb_paralysis.isSelected());
+            checklist.put("hasBladderInfection", cb_bladder_infection.isSelected());
+            checklist.put("hasPneumonia", cb_pneumonia.isSelected());
+            checklist.put("hasHeartAttack", cb_heart_attack.isSelected());
+            checklist.put("hasStroke", cb_stroke.isSelected());
+            checklist.put("hasBloodClot", cb_blood_clot_in_leg_or_legs.isSelected());
+            checklist.put("hasWorsePain", cb_worse_pain_after.isSelected());
+            checklist.put("needsSubsequentFusion", cb_needing_a_subsequent_fusion.isSelected());
+            checklist.put("hasDiscHerniation", cb_recurrent_or_new_disc_herniation.isSelected());
         } else if (surgeryType.equals(SurgeryType.LumbarFusion)) {
-            checklist.put("hasNewNumbness", cb_new_numbness_yes.isSelected());
-            checklist.put("hasInfection", cb_infection_yes.isSelected());
-            checklist.put("hasSpinalFluidLeak", cb_spinal_fluid_leak_yes.isSelected());
-            checklist.put("hasSpinalFluidLeakRequiringSurgery", cb_spinal_fluid_leak_requiring_further_surgery_yes.isSelected());
-            checklist.put("hasNewWeakness", cb_new_weakness_yes.isSelected());
-            checklist.put("hasNewBalanceProblems", cb_new_balance_problems_yes.isSelected());
-            checklist.put("hasNewBladderIncontinence", cb_new_bladder_incontinence_yes.isSelected());
-            checklist.put("hasNewBowelIncontinence", cb_new_bowel_incontinence_yes.isSelected());
-            checklist.put("hasParalysis", cb_paralysis_yes.isSelected());
-            checklist.put("hasBladderInfection", cb_bladder_infection_yes.isSelected());
-            checklist.put("hasPneumonia", cb_pneumonia_yes.isSelected());
-            checklist.put("hasHeartAttack", cb_heart_attack_yes.isSelected());
-            checklist.put("hasStroke", cb_stroke_yes.isSelected());
-            checklist.put("hasBloodClot", cb_blood_clot_in_leg_or_legs_yes.isSelected());
-            checklist.put("hasWorsePain", cb_worse_pain_after_yes.isSelected());
-            checklist.put("hasFailureFuseScan", cb_failure_to_fuse_on_x_ray_or_ct_scan_yes.isSelected());
-            checklist.put("hasHardwareLoosening", cb_screw_or_hardware_loosening_yes.isSelected());
-            checklist.put("hasBrokenScrewRod", cb_broken_screw_s_or_rod_s_yes.isSelected());
+            checklist.put("hasNewNumbness", cb_new_numbness.isSelected());
+            checklist.put("hasInfection", cb_infection.isSelected());
+            checklist.put("hasSpinalFluidLeak", cb_spinal_fluid_leak.isSelected());
+            checklist.put("hasSpinalFluidLeakRequiringSurgery", cb_spinal_fluid_leak_requiring_further_surgery.isSelected());
+            checklist.put("hasNewWeakness", cb_new_weakness.isSelected());
+            checklist.put("hasNewBalanceProblems", cb_new_balance_problems.isSelected());
+            checklist.put("hasNewBladderIncontinence", cb_new_bladder_incontinence.isSelected());
+            checklist.put("hasNewBowelIncontinence", cb_new_bowel_incontinence.isSelected());
+            checklist.put("hasParalysis", cb_paralysis.isSelected());
+            checklist.put("hasBladderInfection", cb_bladder_infection.isSelected());
+            checklist.put("hasPneumonia", cb_pneumonia.isSelected());
+            checklist.put("hasHeartAttack", cb_heart_attack.isSelected());
+            checklist.put("hasStroke", cb_stroke.isSelected());
+            checklist.put("hasBloodClot", cb_blood_clot_in_leg_or_legs.isSelected());
+            checklist.put("hasWorsePain", cb_worse_pain_after.isSelected());
+            checklist.put("hasFailureFuseScan", cb_failure_to_fuse_on_x_ray_or_ct_scan.isSelected());
+            checklist.put("hasHardwareLoosening", cb_screw_or_hardware_loosening.isSelected());
+            checklist.put("hasBrokenScrewRod", cb_broken_screw_s_or_rod_s.isSelected());
 
         } else if (surgeryType.equals(SurgeryType.ACDF)) {
-            checklist.put("hasNewNumbness", cb_new_numbness_yes.isSelected());
-            checklist.put("hasInfection", cb_infection_yes.isSelected());
-            checklist.put("hasSpinalFluidLeak", cb_spinal_fluid_leak_yes.isSelected());
-            checklist.put("hasSpinalFluidLeakRequiringSurgery", cb_spinal_fluid_leak_requiring_further_surgery_yes.isSelected());
-            checklist.put("hasNewWeakness", cb_new_weakness_yes.isSelected());
-            checklist.put("hasNewBalanceProblems", cb_new_balance_problems_yes.isSelected());
-            checklist.put("hasNewBladderIncontinence", cb_new_bladder_incontinence_yes.isSelected());
-            checklist.put("hasNewBowelIncontinence", cb_new_bowel_incontinence_yes.isSelected());
-            checklist.put("hasParalysis", cb_paralysis_yes.isSelected());
-            checklist.put("hasBladderInfection", cb_bladder_infection_yes.isSelected());
-            checklist.put("hasPneumonia", cb_pneumonia_yes.isSelected());
-            checklist.put("hasHeartAttack", cb_heart_attack_yes.isSelected());
-            checklist.put("hasStroke", cb_stroke_yes.isSelected());
-            checklist.put("hasBloodClot", cb_blood_clot_in_leg_or_legs_yes.isSelected());
-            checklist.put("hasWorsePain", cb_worse_pain_after_yes.isSelected());
-            checklist.put("hasFailureFuseScan", cb_failure_to_fuse_on_x_ray_or_ct_scan_yes.isSelected());
-            checklist.put("hasBrokenPlateScrews", cb_broken_plate_or_screws_yes.isSelected());
-            checklist.put("hasHoarseVoice", cb_hoarse_voice_yes.isSelected());
-            checklist.put("hasDifficultySwallowing", cb_difficulty_swallowing_yes.isSelected());
+            checklist.put("hasNewNumbness", cb_new_numbness.isSelected());
+            checklist.put("hasInfection", cb_infection.isSelected());
+            checklist.put("hasSpinalFluidLeak", cb_spinal_fluid_leak.isSelected());
+            checklist.put("hasSpinalFluidLeakRequiringSurgery", cb_spinal_fluid_leak_requiring_further_surgery.isSelected());
+            checklist.put("hasNewWeakness", cb_new_weakness.isSelected());
+            checklist.put("hasNewBalanceProblems", cb_new_balance_problems.isSelected());
+            checklist.put("hasNewBladderIncontinence", cb_new_bladder_incontinence.isSelected());
+            checklist.put("hasNewBowelIncontinence", cb_new_bowel_incontinence.isSelected());
+            checklist.put("hasParalysis", cb_paralysis.isSelected());
+            checklist.put("hasBladderInfection", cb_bladder_infection.isSelected());
+            checklist.put("hasPneumonia", cb_pneumonia.isSelected());
+            checklist.put("hasHeartAttack", cb_heart_attack.isSelected());
+            checklist.put("hasStroke", cb_stroke.isSelected());
+            checklist.put("hasBloodClot", cb_blood_clot_in_leg_or_legs.isSelected());
+            checklist.put("hasWorsePain", cb_worse_pain_after.isSelected());
+            checklist.put("hasFailureFuseScan", cb_failure_to_fuse_on_x_ray_or_ct_scan.isSelected());
+            checklist.put("hasBrokenPlateScrews", cb_broken_plate_or_screws.isSelected());
+            checklist.put("hasHoarseVoice", cb_hoarse_voice.isSelected());
+            checklist.put("hasDifficultySwallowing", cb_difficulty_swallowing.isSelected());
 
         }
 
